@@ -1,0 +1,28 @@
+#topbar {
+    display: flex;
+    padding: 1%;
+}
+
+#signin{
+    flex:1;
+    padding:10px;
+    background-color: grey;
+    border-color: grey;
+}
+
+#title{
+    flex:15;
+}
+
+#slogan{
+    text-align: center;
+    padding: 3%;
+    padding-top: 5%;
+}
+
+#navigatebar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

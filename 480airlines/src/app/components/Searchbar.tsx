@@ -3,9 +3,29 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function Searchbar() {
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    alert(
+      origin +
+        " " +
+        destination +
+        " " +
+        depart +
+        " " +
+        returnDate +
+        " " +
+        adults
+    );
+  };
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
+  const [depart, setDepart] = useState("");
+  const [returnDate, setReturnDate] = useState("");
+  const [adults, setAdults] = useState(0);
+
   return (
     <>
-      <div data-aos="fade-up" className="flex">
+      <form onSubmit={handleSubmit} data-aos="fade-up" className="flex">
         <div className="flex">
           <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             <svg
@@ -28,6 +48,8 @@ export default function Searchbar() {
             id="website-admin"
             className="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="From where?"
+            value={origin}
+            onChange={(e) => setOrigin(e.target.value)}
           />
         </div>
         <div className="flex">
@@ -52,6 +74,8 @@ export default function Searchbar() {
             id="website-admin"
             className="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Where to?"
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
           />
         </div>
         <div className="flex">
@@ -92,6 +116,8 @@ export default function Searchbar() {
             id="website-admin"
             className="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Depart - Return"
+            value={depart}
+            onChange={(e) => setDepart(e.target.value)}
           />
         </div>
         <div className="flex">
@@ -115,12 +141,15 @@ export default function Searchbar() {
             id="website-admin"
             className="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="1 adult"
+            min={0}
+            value={adults}
+            onChange={(e) => setAdults(parseInt(e.target.value))}
           />
         </div>
         <button className="w-24 h-12 px-5 py-3 hover:opacity-70 bg-indigo-500 rounded justify-start items-center gap-2 inline-flex">
           <div className="text-neutral-50 text-lg">Search</div>
         </button>
-      </div>
+      </form>
     </>
   );
 }

@@ -8,7 +8,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <Navbar />
       <Hero />
 
       {/* Cards */}
@@ -24,8 +23,6 @@ export default function Home() {
           <div className="text-neutral-50 text-lg">Explore more stays</div>
         </div>
       </Link>
-
-      <Footer />
     </>
   );
 }

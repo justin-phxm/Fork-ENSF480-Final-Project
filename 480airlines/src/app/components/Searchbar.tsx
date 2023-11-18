@@ -1,10 +1,11 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function Searchbar() {
   return (
     <>
-      <div className="flex">
+      <div data-aos="fade-up" className="flex">
         <div className="flex">
           <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             <svg

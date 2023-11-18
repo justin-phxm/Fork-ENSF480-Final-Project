@@ -1,6 +1,6 @@
 package main.java.ensf480.ucalgary.group12;
 
-public class Admin {
+public class Admin extends User{
     private String firstName;
     private String lastName;
     private String AdminID;
@@ -43,6 +43,6 @@ public class Admin {
     }
 
     public void performBrowseStrategy(){
-        
+
     }
 }

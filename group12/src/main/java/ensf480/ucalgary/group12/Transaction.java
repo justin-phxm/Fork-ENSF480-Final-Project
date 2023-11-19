@@ -28,4 +28,28 @@ public class Transaction {
     public void cancelTicket(){
 
     }
+
+    public String getCustomerID() {
+        return CustomerID;
+    }
+
+    public void setCustomerID(String customerID) {
+        CustomerID = customerID;
+    }
+
+    public Ticket getTransactionTicket() {
+        return transactionTicket;
+    }
+
+    public void setTransactionTicket(Ticket transactionTicket) {
+        this.transactionTicket = transactionTicket;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

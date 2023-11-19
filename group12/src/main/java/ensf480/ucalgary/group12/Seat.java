@@ -17,6 +17,19 @@ public class Seat {
         return this.Availability;
     }
 
-    
+    public String getSeatNumber() {
+        return SeatNumber;
+    }
 
+    public void setSeatNumber(String seatNumber) {
+        SeatNumber = seatNumber;
+    }
+
+    public String getSeatType() {
+        return SeatType;
+    }
+
+    public void setSeatType(String seatType) {
+        SeatType = seatType;
+    }
 }

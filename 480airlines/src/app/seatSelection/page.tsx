@@ -4,13 +4,14 @@ import Image from "next/image";
 import RowComfort from "./components/RowComfort";
 import FlightInformation from "./components/FlightInformation";
 import flightInterface from "../interfaces/flight";
+import UserSelection from "./components/UserSelection";
 export default function page() {
   const currentDate = new Date();
   const flight: flightInterface = {
-    destinationCode: "LAX",
-    destinationLocation: "Los Angeles, USA",
-    originCode: "NRT",
-    originLocation: "Tokyo, Japan",
+    originCode: "LAX",
+    originLocation: "Los Angeles, USA",
+    destinationCode: "NRT",
+    destinationLocation: "Tokyo, Japan",
     flightNumber: "480",
     departureTime: new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000),
     arrivalTime: new Date(currentDate.getTime() + 14 * 24 * 60 * 60 * 1000),
@@ -116,7 +117,7 @@ export default function page() {
             </defs>
           </svg> */}
         {/* Selection Area */}
-        <div className=" w-56 overflow-y-scroll overflow-x-hidden h-48 flex flex-col">
+        <div className=" w-56 overflow-y-scroll overflow-x-hidden h-96 flex flex-col">
           {/* Place Front section */}
           <div className="py-3 w-52 bg-white rounded-lg flex-col justify-start items-center gap-3 inline-flex">
             {/* Business class Seats */}
@@ -220,17 +221,11 @@ export default function page() {
         </div>
 
         {/* Right side */}
-        <div className="w-96 h-96 bg-white bg-opacity-50 backdrop-blur-xl justify-start items-center inline-flex">
+        <div className=" bg-white bg-opacity-50 backdrop-blur-xl justify-start items-center inline-flex">
           <div className="w-px self-stretch bg-slate-300" />
           <div className="self-stretch flex-col justify-start items-start inline-flex">
             {/* Top Flight Information */}
-            <FlightInformation
-              {...flight}
-              //   destinationCode={flight.destinationCode}
-              //   destinationLocation={flight.destinationLocation}
-              //   originCode={flight.originCode}
-              //   originLocation={flight.originLocation}
-            ></FlightInformation>
+            <FlightInformation {...flight}></FlightInformation>
 
             {/* Center Flight details */}
             {/* <div className="self-stretch grow shrink basis-0 px-4 py-2 backdrop-blur-xl justify-center items-start gap-1 inline-flex">
@@ -338,43 +333,7 @@ export default function page() {
               </div>
             </div> */}
             {/* Bottom Passenger Selection */}
-            {/* <div className="self-stretch h-24 bg-slate-50 flex-col justify-start items-start flex">
-              <div className="self-stretch h-px flex-col justify-start items-center gap-2.5 flex">
-                <div className="self-stretch h-px bg-slate-300" />
-              </div>
-              <div className="self-stretch px-6 py-4 justify-start items-center gap-4 inline-flex">
-                <div className="grow shrink basis-0 h-16 justify-start items-start gap-4 flex">
-                  <div className="p-2 flex-col justify-start items-start gap-1 inline-flex">
-                    <div className="w-40 text-slate-400 text-sm font-normal">
-                      Passenger 1
-                    </div>
-                    <div className="text-slate-500 text-lg font-semibold">
-                      Sofia Knowles
-                    </div>
-                  </div>
-                  <div className="grow shrink basis-0 p-2 flex-col justify-start items-start gap-1 inline-flex">
-                    <div className="text-slate-400 text-sm font-normal">
-                      Seat number
-                    </div>
-                    <div className="text-slate-500 text-lg font-semibold">
-                      --
-                    </div>
-                  </div>
-                </div>
-                <div className="justify-start items-start gap-4 flex">
-                  <div className="w-36 px-5 py-3 rounded border border-indigo-500 justify-start items-center gap-2 flex">
-                    <div className="text-indigo-500 text-base font-normal">
-                      Save and close
-                    </div>
-                  </div>
-                  <div className="w-28 px-5 py-3 bg-slate-300 bg-opacity-30 rounded border border-slate-400 justify-start items-center gap-2 flex">
-                    <div className="text-slate-400 text-base font-normal">
-                      Next flight
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
+            <UserSelection {...flight} />
           </div>
         </div>
 

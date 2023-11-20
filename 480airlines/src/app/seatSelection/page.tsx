@@ -6,6 +6,8 @@ import FlightInformation from "./components/FlightInformation";
 import flightInterface from "../interfaces/flight";
 import UserSelection from "./components/UserSelection";
 export default function page() {
+  // const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+
   const currentDate = new Date();
   const flight: flightInterface = {
     originCode: "LAX",
@@ -117,7 +119,7 @@ export default function page() {
             </defs>
           </svg> */}
         {/* Selection Area */}
-        <div className=" w-56 overflow-y-scroll overflow-x-hidden h-96 flex flex-col">
+        <div className=" w-64 overflow-y-scroll py-4 overflow-x-hidden h-96 flex flex-col">
           {/* Place Front section */}
           <div className="py-3 w-52 bg-white rounded-lg flex-col justify-start items-center gap-3 inline-flex">
             {/* Business class Seats */}
@@ -219,9 +221,8 @@ export default function page() {
             </div>
           </div>
         </div>
-
         {/* Right side */}
-        <div className=" bg-white bg-opacity-50 backdrop-blur-xl justify-start items-center inline-flex">
+        <div className=" bg-white h-[550px] bg-opacity-50 backdrop-blur-xl justify-start items-center inline-flex">
           <div className="w-px self-stretch bg-slate-300" />
           <div className="self-stretch flex-col justify-start items-start inline-flex">
             {/* Top Flight Information */}

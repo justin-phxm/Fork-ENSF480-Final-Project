@@ -2,7 +2,7 @@ package main.java.ensf480.ucalgary.group12;
 
 public class Customer {
     private Membership MembershipStatus;
-    private Transcation[] CustomerTransactions;
+    private Transaction[] CustomerTransactions;
     private String CustomerID;
     private String firstName;
     private String lastName;
@@ -58,11 +58,11 @@ public class Customer {
         MembershipStatus = membershipStatus;
     }
 
-    public Transcation[] getCustomerTransactions() {
+    public Transaction[] getCustomerTransactions() {
         return CustomerTransactions;
     }
 
-    public void setCustomerTransactions(Transcation[] customerTransactions) {
+    public void setCustomerTransactions(Transaction[] customerTransactions) {
         CustomerTransactions = customerTransactions;
     }
 

@@ -1,5 +1,7 @@
 package main.java.ensf480.ucalgary.group12;
 
+import java.util.Date;
+
 public class Flight {
     private String destinationCity;
     private String originCity;

@@ -1,39 +1,74 @@
 CREATE DATABASE IF NOT EXISTS AIRLINEDB;
 USE AIRLINEDB;
 
-CREATE TABLE IF NOT EXISTS Passengers (
-    PassengerID INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS Customer (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
-    Email VARCHAR(100)
+    Email VARCHAR(100),
+    isMember BOOLEAN,
+    Address VARCHAR(20)
+);
+
+CREATE TABLE IF NOT EXISTS Employee (
+	ID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    EmployeeRole VARCHAR(20)
 );
 
 CREATE TABLE IF NOT EXISTS Flights (
     FlightID INT PRIMARY KEY AUTO_INCREMENT,
-    FlightNumber VARCHAR(20),
     DepartureAirport VARCHAR(3),
     ArrivalAirport VARCHAR(3),
     DepartureTime DATETIME,
-    ArrivalTime DATETIME
+    ArrivalTime DATETIME,
+    AircraftID INT
 );
 
-CREATE TABLE IF NOT EXISTS Reservations (
-    ReservationID INT PRIMARY KEY AUTO_INCREMENT,
-    PassengerID INT,
-    FlightID INT,
-    ReservationDate DATETIME,
-    FOREIGN KEY (PassengerID) REFERENCES Passengers(PassengerID),
-    FOREIGN KEY (FlightID) REFERENCES Flights(FlightID)
+CREATE TABLE IF NOT EXISTS Aircraft (
+	AircraftID INT PRIMARY KEY,
+    AircraftName VARCHAR(10),
+    SeatsID INT
 );
 
-INSERT INTO Passengers (FirstName, LastName, Email)
-VALUES
-    ('John', 'Doe', 'john.doe@email.com'),
-    ('Jane', 'Smith', 'jane.smith@email.com');
+CREATE TABLE IF NOT EXISTS Seats (
+	SeatsID INT PRIMARY KEY,
+    Availability BOOLEAN,
+    SeatType VARCHAR(20),
+    Seat VARCHAR(2)
+);
 
-INSERT INTO Flights (FlightNumber, DepartureAirport, ArrivalAirport, DepartureTime, ArrivalTime)
+INSERT INTO Customer (FirstName, LastName, Email, isMember, Address)
 VALUES
-    ('FL001', 'JFK', 'LAX', '2023-11-19 08:00:00', '2023-11-19 12:00:00'),
-    ('FL002', 'LAX', 'JFK', '2023-11-20 14:00:00', '2023-11-20 18:00:00');
+    ('John', 'Doe', 'john.doe@email.com', FALSE, '123 Street'),
+    ('Jane', 'Smith', 'jane.smith@email.com', True, 'Sesame Street');
     
+INSERT INTO Employee (FirstName, LastName, EmployeeRole)
+VALUES
+    ('Ryan', 'Gosling', 'Admin'),
+    ('Brad', 'Pitt', 'Crew'),
+    ('Barack', 'Obama', 'Agent');
+
+INSERT INTO Flights (DepartureAirport, ArrivalAirport, DepartureTime, ArrivalTime, AircraftID)
+VALUES
+    ('JFK', 'LAX', '2023-11-19 08:00:00', '2023-11-19 12:00:00', 1),
+    ('LAX', 'JFK', '2023-11-20 14:00:00', '2023-11-20 18:00:00', 2);
+
+INSERT INTO Aircraft (AircraftID, AircraftName, SeatsID)
+	VALUES
+    (1, 'Boeing747', 1),
+    (2, 'Boeing727', 2);
     
+INSERT INTO Seats (SeatsID, Availability, SeatType, Seat)
+	VALUES
+    (1, TRUE, 'Ordinary', 'A1'),
+    (1, TRUE, 'Ordinary', 'A2'),
+    (1, TRUE, 'Ordinary', 'A3'),
+    (1, FALSE, 'Comfort', 'A4'),
+    (1, TRUE, 'Business', 'A5'),
+    (2, FALSE, 'Ordinary', 'A1'),
+    (2, FALSE, 'Ordinary', 'A2'),
+    (2, TRUE, 'Ordinary', 'A3'),
+    (2, TRUE, 'Comfort', 'A4'),
+    (2, FALSE, 'Business', 'A5');

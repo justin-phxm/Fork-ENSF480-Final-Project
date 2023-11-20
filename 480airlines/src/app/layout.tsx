@@ -4,6 +4,7 @@ import "./globals.css";
 import AOSinit from "./AOSinit";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Providers from "./components/Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,9 +22,11 @@ export default function RootLayout({
       <html lang="en">
         <AOSinit />
         <body className={inter.className}>
-          <Navbar></Navbar>
-          {children}
-          <Footer></Footer>
+          <Providers>
+            <Navbar></Navbar>
+            {children}
+            <Footer></Footer>
+          </Providers>
         </body>
       </html>
     </>

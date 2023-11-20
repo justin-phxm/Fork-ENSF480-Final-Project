@@ -47,9 +47,9 @@ export default function FlightInformation(props: flightInterface) {
             <path
               d="M6 16.0005H25.5M25.5 16.0005L18 8.50049M25.5 16.0005L18 23.5005"
               stroke="white"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
 

@@ -143,7 +143,7 @@ export default function page() {
                     cy="9"
                     r="6"
                     stroke="#7C8DB0"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                   />
                   <path
                     fill-rule="evenodd"
@@ -174,7 +174,7 @@ export default function page() {
                     cy="9"
                     r="6"
                     stroke="#7C8DB0"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                   />
                   <path
                     fill-rule="evenodd"
@@ -205,7 +205,7 @@ export default function page() {
                     cy="9"
                     r="6"
                     stroke="#7C8DB0"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                   />
                   <path
                     fill-rule="evenodd"

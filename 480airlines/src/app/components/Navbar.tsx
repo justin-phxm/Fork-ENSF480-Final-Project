@@ -3,6 +3,8 @@ import React from "react";
 import Link from "next/link";
 import { signIn, signOut } from "next-auth/react";
 import { Session } from "next-auth";
+import { Sign } from "crypto";
+import SigninButton from "./SigninButton";
 export default function Navbar() {
   return (
     <>
@@ -33,9 +35,9 @@ export default function Navbar() {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M1 1h15M1 7h15M1 13h15"
               />
             </svg>
@@ -76,7 +78,8 @@ export default function Navbar() {
                 </a>
               </li>
               <li>
-                <Link href="/api/auth/signin">
+                <SigninButton />
+                {/* <Link href="/api/auth/signin">
                   <button
                     onClick={(e) => {
                       e.preventDefault();
@@ -86,9 +89,9 @@ export default function Navbar() {
                   >
                     Sign in
                   </button>
-                </Link>
+                </Link> */}
               </li>
-              <li>
+              {/* <li>
                 <Link href="/api/auth/signout">
                   <button
                     onClick={(e) => {
@@ -100,7 +103,7 @@ export default function Navbar() {
                     Sign out
                   </button>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

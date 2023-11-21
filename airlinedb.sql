@@ -38,10 +38,11 @@ CREATE TABLE Aircraft (
 
 DROP TABLE IF EXISTS Seats;
 CREATE TABLE Seats (
+	ID INT PRIMARY KEY AUTO_INCREMENT,
 	SeatsID INT,
     Availability BOOLEAN,
     SeatType VARCHAR(20),
-    Seat VARCHAR(2)
+    SeatNumber VARCHAR(2)
 );
 
 INSERT INTO Customer (FirstName, LastName, Email, isMember, Address)
@@ -65,7 +66,7 @@ INSERT INTO Aircraft (AircraftID, AircraftName, SeatsID)
     (1, 'Boeing747', 1),
     (2, 'Boeing727', 2);
     
-INSERT INTO Seats (SeatsID, Availability, SeatType, Seat)
+INSERT INTO Seats (SeatsID, Availability, SeatType, SeatNumber)
 	VALUES
     (1, TRUE, 'Ordinary', 'A1'),
     (1, TRUE, 'Ordinary', 'A2'),

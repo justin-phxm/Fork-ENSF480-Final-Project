@@ -1,9 +1,18 @@
 package main.java.ensf480.ucalgary.group12;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Seats")
 public class Seat {
+    @Id
+    private int ID;
+    private int SeatsID;
     private boolean Availability;
-    private String SeatNumber;
     private String SeatType;
+    private String SeatNumber;
 
     public Seat(){
 
@@ -31,5 +40,13 @@ public class Seat {
 
     public void setSeatType(String seatType) {
         SeatType = seatType;
+    }
+
+    public int getSeatsID() {
+        return SeatsID;
+    }
+
+    public void setSeatsID(int seatsID) {
+        SeatsID = seatsID;
     }
 }

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function PaymentModal({ onClose }: { onClose: () => void }) {
@@ -9,9 +9,8 @@ export default function PaymentModal({ onClose }: { onClose: () => void }) {
   const [cvv, setCVV] = useState("");
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Add your payment processing logic here
-    // alert("Payment Successful!");
     toast.success("Payment Successful!");
+    console.log({ cardNumber, expirationDate, cvv });
     onClose();
   };
   return (

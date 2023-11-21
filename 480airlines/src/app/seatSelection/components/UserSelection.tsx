@@ -2,13 +2,15 @@
 import flightInterface from "@/app/interfaces/flight";
 import React, { useState } from "react";
 import PaymentModal from "./PaymentModal";
+import { useSession } from "next-auth/react";
+
 export default function UserSelection(props: {
   flight: flightInterface;
   selectedSeat: string;
 }) {
   const { flight, selectedSeat } = props;
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
-
+  const { data: session } = useSession();
   return (
     <div className="self-stretch h-24 bg-slate-50 flex-col justify-start items-start flex">
       <div className="self-stretch h-px flex-col justify-start items-center gap-2.5 flex">
@@ -21,7 +23,7 @@ export default function UserSelection(props: {
               Passenger 1
             </div>
             <div className="text-slate-500 text-lg font-semibold">
-              Sofia Knowles
+              {session ? session?.user?.name : "Guest"}
             </div>
           </div>
           <div className="grow shrink basis-0 p-2 flex-col justify-start items-start gap-1 inline-flex">

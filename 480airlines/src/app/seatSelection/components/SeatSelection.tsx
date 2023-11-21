@@ -8,6 +8,10 @@ import flightInterface from "../../interfaces/flight";
 import UserSelection from "./UserSelection";
 import SeatOptions from "./SeatOptions";
 import RowOrdinary from "./RowOrdinary";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function SeatSelection() {
   const currentDate = new Date();
   const flight: flightInterface = {
@@ -188,6 +192,7 @@ export default function SeatSelection() {
   return (
     <>
       <div className="flex h-[3000px] flex-row px-4 justify-between overflow-hidden">
+        <ToastContainer position="bottom-right" />
         {/* Selection Area */}
         <div className=" w-[550px] h-[550px]">
           {/* Plane Model */}

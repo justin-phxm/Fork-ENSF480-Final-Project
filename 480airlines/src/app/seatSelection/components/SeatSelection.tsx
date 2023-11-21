@@ -6,9 +6,9 @@ import RowComfort from "./RowComfort";
 import FlightInformation from "./FlightInformation";
 import flightInterface from "../../interfaces/flight";
 import UserSelection from "./UserSelection";
+import SeatOptions from "./SeatOptions";
 
 export default function SeatSelection() {
-  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const currentDate = new Date();
   const flight: flightInterface = {
     originCode: "LAX",
@@ -341,117 +341,14 @@ export default function SeatSelection() {
           </div>
         </div>
         {/* Right side */}
-        <div className=" fixed top-20 right-0 bg-white h-[550px] bg-opacity-50 backdrop-blur-xl justify-start items-center inline-flex">
+        <div className=" fixed top-20 right-0 bg-white h-[650px] bg-opacity-50 backdrop-blur-xl justify-start items-center inline-flex">
           <div className="w-px self-stretch bg-slate-300" />
           <div className="self-stretch flex-col justify-start items-start inline-flex">
             {/* Top Flight Information */}
             <FlightInformation {...flight}></FlightInformation>
 
             {/* Center Flight details */}
-            {/* <div className="self-stretch grow shrink basis-0 px-4 py-2 backdrop-blur-xl justify-center items-start gap-1 inline-flex">
-              <div className="px-2 py-8 rounded-lg flex-col justify-start items-center gap-4 inline-flex">
-                <div className="w-80 h-44 relative">
-                  <div className="w-40 h-36 left-[5.50px] top-[14.50px] absolute"></div>
-                  <div className="w-40 h-36 left-[81.75px] top-[14.50px] absolute"></div>
-                  <div className="w-40 h-36 left-[153px] top-[14.50px] absolute"></div>
-                </div>
-                <div className="h-60 flex-col justify-start items-start gap-4 flex">
-                  <div className="w-36 justify-start items-start gap-4 inline-flex">
-                    <div className="text-slate-500 text-lg font-semibold">
-                      Economy
-                    </div>
-                    <div className="px-1.5 py-0.5 bg-gradient-to-b from-indigo-500 to-indigo-700 rounded justify-start items-center gap-2.5 flex">
-                      <div className="text-white text-sm font-bold leading-none">
-                        Selected
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch text-slate-400 text-sm font-normal">
-                    Rest and recharge during your flight with extended leg room,
-                    personalized service, and a multi-course meal service
-                  </div>
-                  <div className="w-8 h-1 relative opacity-50 bg-indigo-500" />
-                  <div className="self-stretch px-1 justify-start items-center gap-3 inline-flex">
-                    <div className="w-6 h-6 relative">
-                      <div className="w-2.5 h-2.5 left-[7px] top-[7px] absolute bg-indigo-500 rounded-full" />
-                    </div>
-                    <div className="grow shrink basis-0 text-slate-500 text-sm font-normal">
-                      Built-in entertainment system
-                    </div>
-                  </div>
-                  <div className="self-stretch px-1 justify-start items-center gap-3 inline-flex">
-                    <div className="w-6 h-6 relative">
-                      <div className="w-2.5 h-2.5 left-[7px] top-[7px] absolute bg-indigo-500 rounded-full" />
-                    </div>
-                    <div className="grow shrink basis-0 text-slate-500 text-sm font-normal">
-                      Complimentary snacks and drinks
-                    </div>
-                  </div>
-                  <div className="self-stretch px-1 justify-start items-center gap-3 inline-flex">
-                    <div className="w-6 h-6 relative">
-                      <div className="w-2.5 h-2.5 left-[7px] top-[7px] absolute bg-indigo-500 rounded-full" />
-                    </div>
-                    <div className="grow shrink basis-0 text-slate-500 text-sm font-normal">
-                      One free carry-on and personal item
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="px-2 py-8 rounded-lg flex-col justify-start items-center gap-4 inline-flex">
-                <div className="w-80 h-44 relative">
-                  <div className="w-44 h-36 left-[28px] top-[14.50px] absolute"></div>
-                  <div className="w-44 h-36 left-[115.50px] top-[14.50px] absolute"></div>
-                </div>
-                <div className="h-96 flex-col justify-start items-start gap-4 flex">
-                  <div className="justify-start items-start gap-4 inline-flex">
-                    <div className="text-slate-500 text-lg font-semibold">
-                      Business class
-                    </div>
-                  </div>
-                  <div className="self-stretch text-slate-400 text-sm font-normal">
-                    Rest and recharge during your flight with extended leg room,
-                    personalized service, and a multi-course meal service
-                  </div>
-                  <div className="w-8 h-1 relative opacity-50 bg-emerald-300" />
-                  <div className="self-stretch px-1 justify-start items-center gap-3 inline-flex">
-                    <div className="w-6 h-6 relative" />
-                    <div className="grow shrink basis-0 text-slate-500 text-sm font-normal">
-                      Extended leg room
-                    </div>
-                  </div>
-                  <div className="self-stretch px-1 justify-start items-center gap-3 inline-flex">
-                    <div className="w-6 h-6 relative" />
-                    <div className="grow shrink basis-0 text-slate-500 text-sm font-normal">
-                      First two checked bags free
-                    </div>
-                  </div>
-                  <div className="self-stretch px-1 justify-start items-center gap-3 inline-flex">
-                    <div className="w-6 h-6 relative" />
-                    <div className="grow shrink basis-0 text-slate-500 text-sm font-normal">
-                      Priority boarding
-                    </div>
-                  </div>
-                  <div className="self-stretch px-1 justify-start items-center gap-3 inline-flex">
-                    <div className="w-6 h-6 relative" />
-                    <div className="grow shrink basis-0 text-slate-500 text-sm font-normal">
-                      Personalized service
-                    </div>
-                  </div>
-                  <div className="self-stretch px-1 justify-start items-center gap-3 inline-flex">
-                    <div className="w-6 h-6 relative" />
-                    <div className="grow shrink basis-0 text-slate-500 text-sm font-normal">
-                      Enhanced food and drink service
-                    </div>
-                  </div>
-                  <div className="self-stretch px-1 justify-start items-center gap-3 inline-flex">
-                    <div className="w-6 h-6 relative" />
-                    <div className="grow shrink basis-0 text-slate-500 text-sm font-normal">
-                      Seats that recline 40% more than economy
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
+            <SeatOptions />
             {/* Bottom Passenger Selection */}
             <UserSelection {...flight} />
           </div>

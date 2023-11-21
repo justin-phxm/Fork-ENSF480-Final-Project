@@ -7,10 +7,15 @@ export default function PaymentModal({ onClose }: { onClose: () => void }) {
   const [cardNumber, setCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvv, setCVV] = useState("");
+  const [ticketCancellation, setTicketCancellation] = useState(false);
+  const handleTicketCancellationChange = (event: React.ChangeEvent) => {
+    setTicketCancellation(!ticketCancellation);
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     toast.success("Payment Successful!");
-    console.log({ cardNumber, expirationDate, cvv });
+    console.log({ cardNumber, expirationDate, cvv, ticketCancellation });
     onClose();
   };
   return (
@@ -24,6 +29,7 @@ export default function PaymentModal({ onClose }: { onClose: () => void }) {
         </span>
         <h2 className="text-2xl font-bold mb-4">Payment Details</h2>
         <form onSubmit={handleSubmit}>
+          {/* Card Number */}
           <label className="block mb-2" htmlFor="cardNumber">
             Card Number:
           </label>
@@ -47,6 +53,7 @@ export default function PaymentModal({ onClose }: { onClose: () => void }) {
             required
           />
 
+          {/* Expiration Date */}
           <label className="block mb-2" htmlFor="expirationDate">
             Expiration Date:
           </label>
@@ -67,6 +74,7 @@ export default function PaymentModal({ onClose }: { onClose: () => void }) {
             required
           />
 
+          {/* CVV */}
           <label className="block mb-2" htmlFor="cvv">
             CVV:
           </label>
@@ -86,7 +94,20 @@ export default function PaymentModal({ onClose }: { onClose: () => void }) {
             }}
             required
           />
-
+          {/* Ticket Cancellation Insurance */}
+          <label className="block mb-2" htmlFor="cvv">
+            Cancellation Insurance
+          </label>
+          <input
+            type="checkbox"
+            id="cancellationInsurance"
+            name="cancellationInsurance"
+            className="p-2 mb-4 border justify-start border-gray-300 rounded"
+            checked={ticketCancellation}
+            onChange={handleTicketCancellationChange}
+            required
+          />
+          <div className=""></div>
           <button
             type="submit"
             className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"

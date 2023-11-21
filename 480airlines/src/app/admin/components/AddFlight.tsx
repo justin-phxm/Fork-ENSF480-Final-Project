@@ -1,8 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-
-export default function Searchbar() {
+export default function AddFlight() {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     alert(
@@ -33,6 +32,7 @@ export default function Searchbar() {
   return (
     <>
       <form onSubmit={handleSubmit} data-aos="fade-up" className="flex">
+        {/* Origin */}
         <div className="flex">
           <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             <svg
@@ -59,6 +59,7 @@ export default function Searchbar() {
             onChange={(e) => setOrigin(e.target.value)}
           />
         </div>
+        {/* Destination */}
         <div className="flex">
           <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             <svg
@@ -85,6 +86,7 @@ export default function Searchbar() {
             onChange={(e) => setDestination(e.target.value)}
           />
         </div>
+        {/* Departure Date */}
         <div className="flex">
           <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             <svg
@@ -127,6 +129,7 @@ export default function Searchbar() {
             onChange={(e) => setDepart(e.target.value)}
           />
         </div>
+        {/* Number of adults */}
         <div className="flex">
           <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             <svg
@@ -153,8 +156,8 @@ export default function Searchbar() {
             onChange={(e) => setAdults(parseInt(e.target.value))}
           />
         </div>
-        <button className="w-24 h-12 px-5 py-3 hover:opacity-70 bg-indigo-500 rounded justify-start items-center gap-2 inline-flex">
-          <div className="text-neutral-50 text-lg">Search</div>
+        <button className=" px-5 py-3 hover:opacity-70 bg-indigo-500 rounded items-center gap-2 inline-flex">
+          <div className="text-neutral-50 whitespace-nowrap">Add Flight</div>
         </button>
       </form>
     </>

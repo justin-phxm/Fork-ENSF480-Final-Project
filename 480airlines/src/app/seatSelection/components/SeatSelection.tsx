@@ -7,7 +7,7 @@ import FlightInformation from "./FlightInformation";
 import flightInterface from "../../interfaces/flight";
 import UserSelection from "./UserSelection";
 import SeatOptions from "./SeatOptions";
-
+import RowOrdinary from "./RowOrdinary";
 export default function SeatSelection() {
   const currentDate = new Date();
   const flight: flightInterface = {
@@ -184,6 +184,7 @@ export default function SeatSelection() {
       "available",
     ],
   };
+  const [selectedSeat, setSelectedSeat] = useState<string>("--");
   return (
     <>
       <div className="flex h-[3000px] flex-row px-4 justify-between overflow-hidden">
@@ -241,7 +242,10 @@ export default function SeatSelection() {
             {/* Place Front section */}
             <div className="py-3 w-52 bg-white rounded-lg flex-col justify-start items-center gap-3 inline-flex">
               {/* Business class Seats */}
-              <Row seats={flight.seatsBusinessClass} />
+              <Row
+                seats={flight.seatsBusinessClass}
+                setSelectedSeat={setSelectedSeat}
+              />
             </div>
 
             {/* Plane back section */}
@@ -276,7 +280,10 @@ export default function SeatSelection() {
                 </div>
               </div>
               {/* Comfort class seats */}
-              <RowComfort seats={flight.seatsComfort}></RowComfort>
+              <RowComfort
+                seats={flight.seatsComfort}
+                setSelectedSeat={setSelectedSeat}
+              />
               {/* Exit Row */}
               <div className="w-48 h-4 bg-white justify-start items-start gap-0.5 inline-flex">
                 <div className="w-4 h-4 relative rounded-sm flex-col justify-start items-start flex">
@@ -307,7 +314,10 @@ export default function SeatSelection() {
                 </div>
               </div>
               {/* Economy class seats */}
-              <RowComfort seats={flight.seatsOrdinary}></RowComfort>
+              <RowOrdinary
+                seats={flight.seatsOrdinary}
+                setSelectedSeat={setSelectedSeat}
+              />
               {/* Exit Row */}
               <div className="w-48 h-4 bg-white justify-start items-start gap-0.5 inline-flex">
                 <div className="w-4 h-4 relative rounded-sm flex-col justify-start items-start flex">
@@ -350,7 +360,7 @@ export default function SeatSelection() {
             {/* Center Flight details */}
             <SeatOptions />
             {/* Bottom Passenger Selection */}
-            <UserSelection {...flight} />
+            <UserSelection flight={flight} selectedSeat={selectedSeat} />
           </div>
         </div>
 

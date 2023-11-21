@@ -1,12 +1,12 @@
 import React from "react";
-import Seat from "./Seat";
-export default function Row(props: {
+import SeatOrdinary from "./SeatOrdinary";
+export default function RowOrdinary(props: {
   seats: string[];
   setSelectedSeat: (seatCode: string) => void;
 }) {
   const { seats, setSelectedSeat } = props;
 
-  const seatsPerRow = 4;
+  const seatsPerRow = 6;
   const numRows = Math.ceil(seats.length / seatsPerRow);
 
   return (
@@ -16,7 +16,7 @@ export default function Row(props: {
       }).map((_, rowIndex) => (
         <div
           key={rowIndex}
-          className="self-stretch px-2 py-1 bg-white justify-between items-center inline-flex"
+          className="self-stretch p-1 bg-white justify-between items-center gap-1 inline-flex"
         >
           {/* Render first seats */}
           {seats
@@ -25,10 +25,10 @@ export default function Row(props: {
               rowIndex * seatsPerRow + seatsPerRow / 2
             )
             .map((seat, index) => (
-              <Seat
+              <SeatOrdinary
                 availability={seat}
                 key={index}
-                seatCode={`Business ${rowIndex + 1} - A${index}`}
+                seatCode={`Ordinary ${rowIndex + 1} - A${index}`}
                 setSelectedSeat={setSelectedSeat}
               />
             ))}
@@ -47,10 +47,10 @@ export default function Row(props: {
               rowIndex * seatsPerRow + seatsPerRow
             )
             .map((seat, index) => (
-              <Seat
+              <SeatOrdinary
                 availability={seat}
                 key={index}
-                seatCode={`Business ${rowIndex + 1} - B${index}`}
+                seatCode={`Ordinary ${rowIndex + 1} - B${index}`}
                 setSelectedSeat={setSelectedSeat}
               />
             ))}

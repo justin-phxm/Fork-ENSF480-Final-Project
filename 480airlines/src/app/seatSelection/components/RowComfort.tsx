@@ -1,8 +1,10 @@
 import React from "react";
-import Seat from "./Seat";
 import SeatOrdinary from "./SeatOrdinary";
-export default function RowComfort(props: { seats: string[] }) {
-  const { seats } = props;
+export default function RowComfort(props: {
+  seats: string[];
+  setSelectedSeat: (seatCode: string) => void;
+}) {
+  const { seats, setSelectedSeat } = props;
 
   const seatsPerRow = 6;
   const numRows = Math.ceil(seats.length / seatsPerRow);
@@ -23,7 +25,12 @@ export default function RowComfort(props: { seats: string[] }) {
               rowIndex * seatsPerRow + seatsPerRow / 2
             )
             .map((seat, index) => (
-              <SeatOrdinary availability={seat} key={index} />
+              <SeatOrdinary
+                availability={seat}
+                key={index}
+                seatCode={`Comfort ${rowIndex + 1} - A${index}`}
+                setSelectedSeat={setSelectedSeat}
+              />
             ))}
 
           {/* Row Number */}
@@ -40,7 +47,12 @@ export default function RowComfort(props: { seats: string[] }) {
               rowIndex * seatsPerRow + seatsPerRow
             )
             .map((seat, index) => (
-              <SeatOrdinary availability={seat} key={index} />
+              <SeatOrdinary
+                availability={seat}
+                key={index}
+                seatCode={`Comfort ${rowIndex + 1} - B${index}`}
+                setSelectedSeat={setSelectedSeat}
+              />
             ))}
         </div>
       ))}

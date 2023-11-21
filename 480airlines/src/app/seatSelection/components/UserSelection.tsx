@@ -2,7 +2,11 @@
 import flightInterface from "@/app/interfaces/flight";
 import React, { useState } from "react";
 import PaymentModal from "./PaymentModal";
-export default function UserSelection(props: flightInterface) {
+export default function UserSelection(props: {
+  flight: flightInterface;
+  selectedSeat: string;
+}) {
+  const { flight, selectedSeat } = props;
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
 
   return (
@@ -24,7 +28,9 @@ export default function UserSelection(props: flightInterface) {
             <div className="text-slate-400 text-sm font-normal">
               Seat number
             </div>
-            <div className="text-slate-500 text-lg font-semibold">--</div>
+            <div className="text-slate-500 text-lg font-semibold">
+              {selectedSeat}
+            </div>
           </div>
         </div>
         <div className="justify-start items-start gap-4 flex">

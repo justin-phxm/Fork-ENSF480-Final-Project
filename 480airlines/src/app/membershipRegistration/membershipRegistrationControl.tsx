@@ -8,7 +8,7 @@ export default function MembershipRegistrationControl() {
   const handleOnSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (session) {
-      console.log(session.user?.email);
+      console.log({ email: session.user?.email, name: session.user?.name });
       toast.success("You have successfully signed up for membership!");
     }
   };

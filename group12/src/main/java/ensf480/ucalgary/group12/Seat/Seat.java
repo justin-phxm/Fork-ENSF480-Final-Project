@@ -5,16 +5,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
 @Entity
 @Table(name = "Seats")
 public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int iD;
+    @Column(name = "SeatsID")
     private int seatsID;
+    @Column(name = "Availability")
     private boolean availability;
+    @Column(name = "SeatType")
     private String seatType;
+    @Column(name = "SeatNumber")
     private String seatNumber;
 
     public Seat(){

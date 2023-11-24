@@ -1,4 +1,6 @@
-package main.java.ensf480.ucalgary.group12;
+package ensf480.ucalgary.group12;
+
+import ensf480.ucalgary.group12.Seat.Seat;
 
 public class Aircraft {
     private Seat[] seats;

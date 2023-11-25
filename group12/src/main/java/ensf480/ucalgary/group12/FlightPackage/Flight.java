@@ -1,15 +1,40 @@
-package ensf480.ucalgary.group12;
+package ensf480.ucalgary.group12.FlightPackage;
 
+import java.beans.Transient;
 import java.util.Date;
 
+import ensf480.ucalgary.group12.UserPackage.CrewMember;
+import ensf480.ucalgary.group12.UserPackage.Customer;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import main.java.ensf480.ucalgary.group12.Aircraft;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+
+@Entity
+@Table(name = "Flights")
 public class Flight {
-    private String destinationCity;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private int flightID;
+    @Column(name = "DepartureAirport")
     private String originCity;
+    @Column(name = "ArrivalAirport")
+    private String destinationCity;
+    @Column(name = "AircraftID") // IDK
     private Aircraft flightAircraft;
+    @Column(name = "ArrivalTime")
     private Date dateOfArrival;
+    @Column(name = "DepartureTime")
     private Date dateOfDeparture;
+    @Transient
     private String flightNum;
+    @Transient
     private CrewMember[] Crew;
+    @Transient
     private Customer[] Passengers;
 
     public Flight(){

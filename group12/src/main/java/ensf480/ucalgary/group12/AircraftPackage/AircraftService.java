@@ -19,6 +19,19 @@ public class AircraftService {
     public List<Aircraft> getAllAircrafts(){
         return repo.findAll();
     }
+
+    public Aircraft saveAircraft(Aircraft ac){
+       return repo.save(ac);
+    }
+
+    public String deleteAicraft(int id){
+        try {
+            repo.deleteById(id);
+            return "Aircraft with ID " + id + " was removed";
+        } catch (Exception e) {
+            return "Aircraft with ID " + id + " not found";
+        }
+    }
 }
 
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Row from "./Row";
 import Image from "next/image";
 import RowComfort from "./RowComfort";
@@ -8,11 +8,28 @@ import flightInterface from "../../interfaces/flight";
 import UserSelection from "./UserSelection";
 import SeatOptions from "./SeatOptions";
 import RowOrdinary from "./RowOrdinary";
-
+import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function SeatSelection() {
+  useEffect(() => {
+    // Replace the URL with your actual API endpoint
+    const apiUrl = "http://localhost:8080/seats/getSeats/1";
+
+    // Make a GET request using Axios
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        // Handle the data from the response
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle errors during the request
+        console.error("Axios error:", error);
+      });
+  }, []); // The empty dependency array ensures the effect runs only once after the initial render
+
   const currentDate = new Date();
   const flight: flightInterface = {
     originCode: "LAX",

@@ -62,15 +62,13 @@ public class Flight {
         this.originCity = originCity;
     }
     
-     public Aircraft getAircraftID() {
-         //return aircraftID;
-        return plane;
-     }
+    // public Aircraft getAircraftID() {
+    //     return aircraftID;
+    // }
 
-     public void setAircraftID(Aircraft aircraftID) {
+    // public void setAircraftID(Aircraft aircraftID) {
     //     this.aircraftID = aircraftID;
-        this.plane = aircraftID;
-     }
+    // }
 
     public Date getDateOfArrival() {
         return dateOfArrival;

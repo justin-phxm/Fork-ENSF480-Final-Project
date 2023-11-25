@@ -1,4 +1,4 @@
-package ensf480.ucalgary.group12;
+package ensf480.ucalgary.group12.UserPackage;
 
 
 public class CustomerPermission implements BrowseStrategy{

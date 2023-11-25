@@ -1,17 +1,16 @@
-package ensf480.ucalgary.group12;
+package ensf480.ucalgary.group12.UserPackage;
 
-public class Customer {
+public class Customer extends User{
     private Membership MembershipStatus;
     private Transaction[] CustomerTransactions;
     private String CustomerID;
     private String firstName;
     private String lastName;
     private String creditCardNum;
-    private BrowseStrategy browseStrategy;
+    private BrowseStrategy browseStrategy = new CustomerPermission();
     private String email;
 
     public Customer(){
-
     }
 
     public void createTransaction(){
@@ -44,10 +43,6 @@ public class Customer {
 
     public void receiveMonthlyEmail(){
 
-    }
-
-    public void performBrowseStrategy(){
-        
     }
 
     public Membership getMembershipStatus() {

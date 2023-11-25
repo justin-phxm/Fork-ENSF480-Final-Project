@@ -1,11 +1,7 @@
 package ensf480.ucalgary.group12.Seat;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
+import ensf480.ucalgary.group12.AircraftPackage.Aircraft;
 
 @Entity
 @Table(name = "Seats")
@@ -22,6 +18,9 @@ public class Seat {
     private String seatType;
     @Column(name = "SeatNumber")
     private String seatNumber;
+    // @ManyToOne(fetch=FetchType.LAZY)
+    // @JoinColumn(name = "AircraftID")
+    // private Aircraft aircraft;
 
     public Seat(){
 

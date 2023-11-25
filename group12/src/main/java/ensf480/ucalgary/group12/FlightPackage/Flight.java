@@ -19,8 +19,9 @@ public class Flight {
     private String originCity;
     @Column(name = "ArrivalAirport")
     private String destinationCity;
-    @Column(name = "AircraftID")
-    private int aircraftID;
+    @OneToOne
+    @JoinColumn(name = "AircraftID")
+    private Aircraft plane;
     @Column(name = "ArrivalTime")
     private Date dateOfArrival;
     @Column(name = "DepartureTime")

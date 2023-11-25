@@ -18,9 +18,9 @@ public class Seat {
     private String seatType;
     @Column(name = "SeatNumber")
     private String seatNumber;
-    // @ManyToOne(fetch=FetchType.LAZY)
-    // @JoinColumn(name = "AircraftID")
-    // private Aircraft aircraft;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "AircraftID")
+    private Aircraft aircraft;
 
     public Seat(){
 

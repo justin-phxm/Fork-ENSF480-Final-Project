@@ -1,25 +1,25 @@
-// package ensf480.ucalgary.group12.AircraftPackage;
+package ensf480.ucalgary.group12.AircraftPackage;
 
-// import ensf480.ucalgary.group12.AircraftPackage.Aircraft;
-// import ensf480.ucalgary.group12.AircraftPackage.AircraftRepository;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Service;
+import ensf480.ucalgary.group12.AircraftPackage.Aircraft;
+import ensf480.ucalgary.group12.AircraftPackage.AircraftRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-// import java.util.List;
+import java.util.List;
 
-// @Service
-// public class AircraftService {
-//     private final AircraftRepository repo;
+@Service
+public class AircraftService {
+    private final AircraftRepository repo;
     
-//     @Autowired
-//     public AircraftService(AircraftRepository r){
-//         this.repo = r;
-//     }
+    @Autowired
+    public AircraftService(AircraftRepository r){
+        this.repo = r;
+    }
 
-//     public List<Aircraft> getAllAircrafts(){
-//         return repo.findAll();
-//     }
-// }
+    public List<Aircraft> getAllAircrafts(){
+        return repo.findAll();
+    }
+}
 
 
 

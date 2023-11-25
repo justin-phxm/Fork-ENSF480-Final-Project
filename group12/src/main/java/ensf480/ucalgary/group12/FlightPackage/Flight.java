@@ -15,6 +15,7 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "FlightID")
     private int flightID;
+    
     @Column(name = "DepartureAirport")
     private String originCity;
     @Column(name = "ArrivalAirport")
@@ -35,6 +36,14 @@ public class Flight {
     
     public Flight(){
         
+    }
+    
+    public int getFlightID() {
+        return flightID;
+    }
+
+    public void setFlightID(int flightID) {
+        this.flightID = flightID;
     }
     
     public String getDestinationCity() {

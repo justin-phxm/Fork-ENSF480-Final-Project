@@ -4,11 +4,7 @@ import ensf480.ucalgary.group12.FlightPackage.Flight;
 import ensf480.ucalgary.group12.FlightPackage.FlightService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -26,5 +22,15 @@ public class FlightController {
     @GetMapping("/getFlights")
     public List<Flight> getFlights(){
        return service.getAllFlights();
+    }
+
+    @GetMapping("/getFlight/{id}")
+    public Flight getFlight(@PathVariable("id") int id){
+        return service.getFlight(id);
+    }
+
+    @PutMapping("/updateFlight")
+    public Flight updateFlight(@RequestBody Flight fl){
+        return service.updateFlight(fl);
     }
 }

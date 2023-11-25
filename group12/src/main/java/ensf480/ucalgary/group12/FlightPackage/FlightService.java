@@ -19,6 +19,19 @@ public class FlightService {
     public List<Flight> getAllFlights(){
         return repo.findAll();
     }
+
+    public Flight getFlight(int id){
+        return repo.findById(id).orElse(null);
+    }
+
+    public Flight updateFlight(Flight fl){
+        Flight existing = repo.findById(fl.getFlightID()).orElse(null);
+        existing.setDateOfArrival(fl.getDateOfArrival());
+        existing.setDateOfDeparture(fl.getDateOfDeparture());
+        existing.setDestinationCity(fl.getDestinationCity());
+        existing.setOriginCity(fl.getOriginCity());
+        return repo.save(existing);
+    }
 }
 
 

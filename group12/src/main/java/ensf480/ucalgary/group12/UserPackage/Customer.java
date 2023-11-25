@@ -1,5 +1,7 @@
 package ensf480.ucalgary.group12.UserPackage;
 
+import ensf480.ucalgary.group12.Transaction;
+
 public class Customer extends User{
     private Membership MembershipStatus;
     private Transaction[] CustomerTransactions;
@@ -44,7 +46,7 @@ public class Customer extends User{
     public void receiveMonthlyEmail(){
 
     }
-
+    
     public Membership getMembershipStatus() {
         return MembershipStatus;
     }

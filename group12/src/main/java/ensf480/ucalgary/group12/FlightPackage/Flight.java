@@ -8,7 +8,7 @@ import ensf480.ucalgary.group12.UserPackage.Customer;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import main.java.ensf480.ucalgary.group12.Aircraft;
+import ensf480.ucalgary.group12.Aircraft;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
@@ -24,18 +24,18 @@ public class Flight {
     private String originCity;
     @Column(name = "ArrivalAirport")
     private String destinationCity;
-    @Column(name = "AircraftID") // IDK
-    private Aircraft flightAircraft;
+    // @Column(name = "AircraftID") // IDK
+    // private Aircraft flightAircraft;
     @Column(name = "ArrivalTime")
     private Date dateOfArrival;
     @Column(name = "DepartureTime")
     private Date dateOfDeparture;
-    @Transient
-    private String flightNum;
-    @Transient
-    private CrewMember[] Crew;
-    @Transient
-    private Customer[] Passengers;
+    // @Transient
+    // private String flightNum;
+    // @Transient
+    // private CrewMember[] Crew;
+    // @Transient
+    // private Customer[] Passengers;
 
     public Flight(){
         
@@ -57,13 +57,13 @@ public class Flight {
         this.originCity = originCity;
     }
 
-    public Aircraft getFlightAircraft() {
-        return flightAircraft;
-    }
+    // public Aircraft getFlightAircraft() {
+    //     return flightAircraft;
+    // }
 
-    public void setFlightAircraft(Aircraft flightAircraft) {
-        this.flightAircraft = flightAircraft;
-    }
+    // public void setFlightAircraft(Aircraft flightAircraft) {
+    //     this.flightAircraft = flightAircraft;
+    // }
 
     public Date getDateOfArrival() {
         return dateOfArrival;
@@ -81,27 +81,27 @@ public class Flight {
         this.dateOfDeparture = dateOfDeparture;
     }
 
-    public String getFlightNum() {
-        return flightNum;
-    }
+    // public String getFlightNum() {
+    //     return flightNum;
+    // }
 
-    public void setFlightNum(String flightNum) {
-        this.flightNum = flightNum;
-    }
+    // public void setFlightNum(String flightNum) {
+    //     this.flightNum = flightNum;
+    // }
 
-    public CrewMember[] getCrew() {
-        return Crew;
-    }
+    // public CrewMember[] getCrew() {
+    //     return Crew;
+    // }
 
-    public void setCrew(CrewMember[] crew) {
-        Crew = crew;
-    }
+    // public void setCrew(CrewMember[] crew) {
+    //     Crew = crew;
+    // }
 
-    public Customer[] getPassengers() {
-        return Passengers;
-    }
+    // public Customer[] getPassengers() {
+    //     return Passengers;
+    // }
 
-    public void setPassengers(Customer[] passengers) {
-        Passengers = passengers;
-    }
+    // public void setPassengers(Customer[] passengers) {
+    //     Passengers = passengers;
+    // }
 }

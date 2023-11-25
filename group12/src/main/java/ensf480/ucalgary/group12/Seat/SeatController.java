@@ -19,16 +19,9 @@ public class SeatController {
     public SeatController(SeatService s){
         this.service = s;
     }
-    
-    @GetMapping
-    public String test(){
-        return "this in seat";
-    }
 
     @GetMapping("/getSeats/{id}")
     public List<Seat> getSeats(@PathVariable("id") int SeatsID){
-
-
         return service.getSeatsByAircraft(SeatsID);
     }
 }

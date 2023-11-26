@@ -24,7 +24,7 @@ public class AircraftService {
        return repo.save(ac);
     }
 
-    public String deleteAicraft(int id){
+    public String deleteAircraft(int id){
         try {
             repo.deleteById(id);
             return "Aircraft with ID " + id + " was removed";

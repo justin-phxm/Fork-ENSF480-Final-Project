@@ -24,6 +24,16 @@ public class FlightService {
         return repo.findById(id).orElse(null);
     }
 
+    public String deleteFlight(int id){
+        try{
+            repo.deleteById(id);
+            return "Flight with ID " + id + " was removed";
+        }
+        catch(Exception e){
+            return "Flight with ID " + id + " not found";
+        }
+    }
+
     public Flight updateFlight(Flight fl){
         Flight existing = repo.findById(fl.getFlightID()).orElse(null);
         existing.setDateOfArrival(fl.getDateOfArrival());

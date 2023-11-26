@@ -31,7 +31,7 @@ public class AircraftController {
 
     @DeleteMapping("/deleteAircraft/{id}")
     public String deleteAircraft(@PathVariable("id") int id){
-        return service.deleteAicraft(id);
+        return service.deleteAircraft(id);
     }
 }
 

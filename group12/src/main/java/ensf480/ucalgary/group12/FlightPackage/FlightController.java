@@ -29,6 +29,11 @@ public class FlightController {
         return service.getFlight(id);
     }
 
+    @DeleteMapping("/deleteFlight/{id}")
+    public String deleteFlight(@PathVariable("id") int id){
+        return service.deleteFlight(id);
+    }
+
     @PutMapping("/updateFlight")
     public Flight updateFlight(@RequestBody Flight fl){
         return service.updateFlight(fl);

@@ -11,7 +11,7 @@
 | Justin Pham  | 30139323 |
 | Joseph Duong | 30145210 |
 | Aidan Wong   | 30147200 |
-| Rohan Kapila |          |
+| Rohan Kapila | 30145862 |
 
 ---
 

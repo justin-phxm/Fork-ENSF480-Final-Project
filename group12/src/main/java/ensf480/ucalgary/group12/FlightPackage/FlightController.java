@@ -24,9 +24,24 @@ public class FlightController {
        return service.getAllFlights();
     }
 
-    @GetMapping("/getFlight/{id}")
-    public Flight getFlight(@PathVariable("id") int id){
-        return service.getFlight(id);
+    @GetMapping("/getFlightArrive/{id}")
+    public Flight getFlightA(@PathVariable("id") String id){
+        return service.getFlightA(id);
+    }
+
+    @GetMapping("/getFlightDest/{id}")
+    public Flight getFlightD(@PathVariable("id") String id){
+        return service.getFlightD(id);
+    }
+
+    @GetMapping("/getFlightArriveCode/{id}")
+    public Flight getFlightAC(@PathVariable("id") String id){
+        return service.getFlightAC(id);
+    }
+
+    @GetMapping("/getFlightDestCode/{id}")
+    public Flight getFlightDC(@PathVariable("id") String id){
+        return service.getFlightDC(id);
     }
 
     @DeleteMapping("/deleteFlight/{id}")

@@ -20,6 +20,22 @@ public class FlightService {
         return repo.findAll();
     }
 
+    public Flight getFlightA(String id){
+        return repo.findByArrivalCity(id);
+    }
+
+    public Flight getFlightD(String id){
+        return repo.findByDepartureCity(id);
+    }
+
+    public Flight getFlightAC(String id){
+        return repo.findByArrivalAirport(id);
+    }
+
+    public Flight getFlightDC(String id){
+        return repo.findByDepartureAirport(id);
+    }
+    
     public Flight getFlight(int id){
         return repo.findById(id).orElse(null);
     }
@@ -38,8 +54,10 @@ public class FlightService {
         Flight existing = repo.findById(fl.getFlightID()).orElse(null);
         existing.setDateOfArrival(fl.getDateOfArrival());
         existing.setDateOfDeparture(fl.getDateOfDeparture());
-        existing.setDestinationCity(fl.getDestinationCity());
-        existing.setOriginCity(fl.getOriginCity());
+        existing.setArrivalCity(fl.getArrivalCity());
+        existing.setDepartureAirport(fl.getDepartureAirport());
+        existing.setArrivalAirport(fl.getArrivalAirport());
+        existing.setDepartureCity(fl.getDepartureCity());
         return repo.save(existing);
     }
 }

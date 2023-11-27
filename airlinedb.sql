@@ -13,13 +13,13 @@ CREATE TABLE Customer (
     creditCard VARCHAR(12),
     companionTicket BOOLEAN,
     monthlyEmails BOOLEAN, 
-    loungeDiscount BOOLEAN
+    loungeDiscount BOOLEAN,
     Address VARCHAR(20)
     -- constraints to ensure that there are no issues of member being false but perks are true
-    CONSTRAINT chk_creditCard
-        CHECK ((isMember = TRUE) OR (isMember = FALSE AND creditCard IS NULL)),
-    CONSTRAINT chk_booleans
-        CHECK ((isMember = TRUE) OR (isMember = FALSE AND companionTicket = FALSE AND monthlyEmails = FALSE AND loungeDiscount = FALSE))
+--     CONSTRAINT chk_creditCard
+--         CHECK ((isMember = TRUE) OR (isMember = FALSE AND creditCard IS NULL)),
+--     CONSTRAINT chk_booleans
+--         CHECK ((isMember = TRUE) OR (isMember = FALSE AND companionTicket = FALSE AND monthlyEmails = FALSE AND loungeDiscount = FALSE))
 );
 
 DROP TABLE IF EXISTS Employee;
@@ -43,6 +43,8 @@ CREATE TABLE Flights (
     ArrivalAirport VARCHAR(3),
     DepartureTime DATETIME,
     ArrivalTime DATETIME,
+    ArrivalCity VARCHAR(20),
+    DepartureCity VARCHAR(20),
     AircraftID INT,
     FOREIGN KEY (AircraftID) REFERENCES Aircrafts(AircraftID) ON DELETE CASCADE 	ON UPDATE CASCADE
 );
@@ -76,10 +78,10 @@ INSERT INTO Aircrafts (AircraftName)
     ('Boeing747'),
     ('Boeing727');
 
-INSERT INTO Flights (DepartureAirport, ArrivalAirport, DepartureTime, ArrivalTime, AircraftID)
+INSERT INTO Flights (DepartureCity, ArrivalCity, DepartureAirport, ArrivalAirport, DepartureTime, ArrivalTime, AircraftID)
 VALUES
-    ('JFK', 'LAX', '2023-11-19 08:00:00', '2023-11-19 12:00:00', 1),
-    ('LAX', 'JFK', '2023-11-20 14:00:00', '2023-11-20 18:00:00', 2);
+    ('New York', 'Los Angeles', 'JFK', 'LAX', '2023-11-19 08:00:00', '2023-11-19 12:00:00', 1),
+    ('Los Angeles', 'New York', 'LAX', 'JFK', '2023-11-20 14:00:00', '2023-11-20 18:00:00', 2);
     
 INSERT INTO Seats (SeatsID, Availability, SeatType, SeatCode, Plane)
 	VALUES

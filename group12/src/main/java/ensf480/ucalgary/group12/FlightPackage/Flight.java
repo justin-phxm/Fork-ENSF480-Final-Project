@@ -17,9 +17,9 @@ public class Flight {
     private int flightID;
     
     @Column(name = "DepartureAirport")
-    private String originCity;
+    private String departureAirport;
     @Column(name = "ArrivalAirport")
-    private String destinationCity;
+    private String arrivalAirport;
     @OneToOne
     @JoinColumn(name = "AircraftID")
     private Aircraft plane;
@@ -27,6 +27,10 @@ public class Flight {
     private Date dateOfArrival;
     @Column(name = "DepartureTime")
     private Date dateOfDeparture;
+    @Column(name = "DepartureCity")
+    private String departureCity;
+    @Column(name = "ArrivalCity")
+    private String arrivalCity;
     // @Transient
     // private String flightNum;
     // @Transient
@@ -45,30 +49,6 @@ public class Flight {
     public void setFlightID(int flightID) {
         this.flightID = flightID;
     }
-    
-    public String getDestinationCity() {
-        return destinationCity;
-    }
-    
-    public void setDestinationCity(String destinationCity) {
-        this.destinationCity = destinationCity;
-    }
-    
-    public String getOriginCity() {
-        return originCity;
-    }
-    
-    public void setOriginCity(String originCity) {
-        this.originCity = originCity;
-    }
-    
-    // public Aircraft getAircraftID() {
-    //     return aircraftID;
-    // }
-
-    // public void setAircraftID(Aircraft aircraftID) {
-    //     this.aircraftID = aircraftID;
-    // }
 
     public Date getDateOfArrival() {
         return dateOfArrival;
@@ -86,27 +66,43 @@ public class Flight {
         this.dateOfDeparture = dateOfDeparture;
     }
 
-    // public String getFlightNum() {
-    //     return flightNum;
-    // }
+    public String getDepartureAirport() {
+        return departureAirport;
+    }
 
-    // public void setFlightNum(String flightNum) {
-    //     this.flightNum = flightNum;
-    // }
+    public void setDepartureAirport(String departureAirport) {
+        this.departureAirport = departureAirport;
+    }
 
-    // public CrewMember[] getCrew() {
-    //     return Crew;
-    // }
+    public String getArrivalAirport() {
+        return arrivalAirport;
+    }
 
-    // public void setCrew(CrewMember[] crew) {
-    //     Crew = crew;
-    // }
+    public void setArrivalAirport(String arrivalAirport) {
+        this.arrivalAirport = arrivalAirport;
+    }
 
-    // public Customer[] getPassengers() {
-    //     return Passengers;
-    // }
+    public Aircraft getPlane() {
+        return plane;
+    }
 
-    // public void setPassengers(Customer[] passengers) {
-    //     Passengers = passengers;
-    // }
+    public void setPlane(Aircraft plane) {
+        this.plane = plane;
+    }
+
+    public String getDepartureCity() {
+        return departureCity;
+    }
+
+    public void setDepartureCity(String departureCity) {
+        this.departureCity = departureCity;
+    }
+
+    public String getArrivalCity() {
+        return arrivalCity;
+    }
+
+    public void setArrivalCity(String arrivalCity) {
+        this.arrivalCity = arrivalCity;
+    }
 }

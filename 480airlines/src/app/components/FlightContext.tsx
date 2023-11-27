@@ -1,3 +1,4 @@
+"use client";
 import React, { createContext, useContext, useState } from "react";
 import flightInterface from "../interfaces/flight";
 import { ReactNode } from "react";

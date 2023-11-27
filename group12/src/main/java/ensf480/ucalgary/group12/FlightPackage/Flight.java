@@ -35,7 +35,7 @@ public class Flight {
     // private Customer[] Passengers;
     
     public Flight(){
-        
+        System.out.println("hello");
     }
     
     public int getFlightID() {

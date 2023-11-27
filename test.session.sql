@@ -1,1 +1,1 @@
-SELECT * from flights
+SELECT * from seats

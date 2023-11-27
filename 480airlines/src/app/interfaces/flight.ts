@@ -9,7 +9,7 @@ export default interface flightInterface {
   currentDate?: Date;
   price: number;
   duration: string;
-  seatsBusinessClass: string[];
-  seatsComfort: string[];
-  seatsOrdinary: string[];
+  seatsBusinessClass: boolean[];
+  seatsComfort: boolean[];
+  seatsOrdinary: boolean[];
 }

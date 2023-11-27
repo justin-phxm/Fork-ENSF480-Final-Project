@@ -1,20 +1,21 @@
 import React from "react";
 
 export default function Seat(props: {
-  availability?: string;
+  availability: boolean;
   seatCode: string;
   setSelectedSeat: (seatCode: string) => void;
+  selectedSeat: string;
 }) {
-  const { availability, seatCode, setSelectedSeat } = props;
+  const { availability, seatCode, setSelectedSeat, selectedSeat } = props;
   const seatColor =
-    availability === "available"
+    selectedSeat === seatCode
+      ? "from-indigo-300 to-indigo-500"
+      : availability
       ? "from-yellow-300 to-yellow-500"
-      : availability === "selected"
-      ? "from-indigo-500 to-indigo-700"
       : "from-violet-100 to-violet-100";
 
   const handleClick = () => {
-    if (availability === "available") {
+    if (availability) {
       setSelectedSeat(seatCode);
 
       // alert(seatCode);
@@ -24,7 +25,7 @@ export default function Seat(props: {
     <div
       onClick={handleClick}
       className={`w-7 h-10 ${
-        availability === "available" && "cursor-pointer"
+        availability && "cursor-pointer"
       } flex-col justify-center items-center inline-flex`}
     >
       <div

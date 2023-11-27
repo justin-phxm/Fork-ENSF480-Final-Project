@@ -1,10 +1,11 @@
 import React from "react";
 import SeatOrdinary from "./SeatOrdinary";
 export default function RowComfort(props: {
-  seats: string[];
+  seats: boolean[];
   setSelectedSeat: (seatCode: string) => void;
+  selectedSeat: string;
 }) {
-  const { seats, setSelectedSeat } = props;
+  const { seats, setSelectedSeat, selectedSeat } = props;
 
   const seatsPerRow = 6;
   const numRows = Math.ceil(seats.length / seatsPerRow);
@@ -30,6 +31,7 @@ export default function RowComfort(props: {
                 key={index}
                 seatCode={`Comfort ${rowIndex + 1} - A${index}`}
                 setSelectedSeat={setSelectedSeat}
+                selectedSeat={selectedSeat}
               />
             ))}
 
@@ -52,6 +54,7 @@ export default function RowComfort(props: {
                 key={index}
                 seatCode={`Comfort ${rowIndex + 1} - B${index}`}
                 setSelectedSeat={setSelectedSeat}
+                selectedSeat={selectedSeat}
               />
             ))}
         </div>

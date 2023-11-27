@@ -5,6 +5,7 @@ import AOSinit from "./AOSinit";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Providers from "./components/Providers";
+import FlightContextProvider from "./components/FlightContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,9 +24,11 @@ export default function RootLayout({
         <AOSinit />
         <body className={inter.className}>
           <Providers>
-            <Navbar></Navbar>
-            {children}
-            <Footer></Footer>
+            <FlightContextProvider>
+              <Navbar></Navbar>
+              {children}
+              <Footer></Footer>
+            </FlightContextProvider>
           </Providers>
         </body>
       </html>

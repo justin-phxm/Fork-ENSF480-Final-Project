@@ -3,14 +3,17 @@ package ensf480.ucalgary.group12;
 public class Transaction {
     private String CustomerID;
     private Ticket transactionTicket;
-    private int price;
+    private double price;
 
     public Transaction(){
 
     }
     
-    public void printReciept(){
-
+    public void printReciept(){ 
+        // system.out.print for now can change if needed
+        System.out.println("Successfully purchased Ticket to " + transactionTicket.getDestination() + 
+        "from " + transactionTicket.getOrigin() + "seat Number " + transactionTicket.getSeatNumber() 
+        + "on flight number " + transactionTicket.getFlightNumber() + "for " + String.valueOf(getPrice()));
     }
 
     public void calculateTotal(){
@@ -18,7 +21,9 @@ public class Transaction {
     }
 
     public void addInsurance(){
-
+        // placeholder of an added insurance cost of 15% of ticket price
+        setPrice(1.15 * price);
+        // System.out.println("Insurance added for an additional cost of 15%");
     }
 
     public void modifyTicket(){
@@ -26,7 +31,7 @@ public class Transaction {
     }
 
     public void cancelTicket(){
-
+        // cancel the ticket / flight 
     }
 
     public String getCustomerID() {
@@ -45,11 +50,11 @@ public class Transaction {
         this.transactionTicket = transactionTicket;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }

@@ -16,7 +16,7 @@ public class Seat {
     private boolean availability;
     @Column(name = "SeatType")
     private String seatType;
-    @Column(name = "SeatNumber")
+    @Column(name = "SeatCode")
     private String seatNumber;
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "AircraftID")

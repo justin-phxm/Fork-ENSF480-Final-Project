@@ -9,11 +9,12 @@ public class Transaction {
 
     }
     
-    public void printReciept(){ 
+    public String printReciept(){ 
         // system.out.print for now can change if needed
-        System.out.println("Successfully purchased Ticket to " + transactionTicket.getDestination() + 
+        String ret = "Successfully purchased Ticket to " + transactionTicket.getDestination() + 
         "from " + transactionTicket.getOrigin() + "seat Number " + transactionTicket.getSeatNumber() 
-        + "on flight number " + transactionTicket.getFlightNumber() + "for " + String.valueOf(getPrice()));
+        + "on flight number " + transactionTicket.getFlightNumber() + "for " + String.valueOf(getPrice());
+        return ret; 
     }
 
     public void calculateTotal(){

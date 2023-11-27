@@ -10,7 +10,16 @@ CREATE TABLE Customer (
     LastName VARCHAR(50),
     Email VARCHAR(100),
     isMember BOOLEAN,
+    creditCard VARCHAR(12),
+    companionTicket BOOLEAN,
+    monthlyEmails BOOLEAN, 
+    loungeDiscount BOOLEAN
     Address VARCHAR(20)
+    -- constraints to ensure that there are no issues of member being false but perks are true
+    CONSTRAINT chk_creditCard
+        CHECK ((isMember = TRUE) OR (isMember = FALSE AND creditCard IS NULL)),
+    CONSTRAINT chk_booleans
+        CHECK ((isMember = TRUE) OR (isMember = FALSE AND companionTicket = FALSE AND monthlyEmails = FALSE AND loungeDiscount = FALSE))
 );
 
 DROP TABLE IF EXISTS Employee;
@@ -51,10 +60,10 @@ CREATE TABLE Seats (
     FOREIGN KEY (Plane) REFERENCES Aircrafts(AircraftID) ON DELETE CASCADE 	ON UPDATE CASCADE
 );
 
-INSERT INTO Customer (FirstName, LastName, Email, isMember, Address)
+INSERT INTO Customer (FirstName, LastName, Email, isMember, creditCard, companionTicket, monthlyEmails, loungeDiscount, Address)
 VALUES
-    ('John', 'Doe', 'john.doe@email.com', FALSE, '123 Street'),
-    ('Jane', 'Smith', 'jane.smith@email.com', TRUE, 'Sesame Street');
+    ('John', 'Doe', 'john.doe@email.com', FALSE, NULL, FALSE, FALSE, FALSE, '123 Street'),
+    ('Jane', 'Smith', 'jane.smith@email.com', TRUE, 123456789012, TRUE, FALSE, TRUE, 'Sesame Street');
     
 INSERT INTO Employee (FirstName, LastName, EmployeeRole)
 VALUES

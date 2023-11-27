@@ -11,10 +11,12 @@ export default function Home() {
       <Hero />
 
       {/* Cards */}
-      <div className="grid grid-cols-3 gap-4">
-        <DestinationCard></DestinationCard>
-        <DestinationCard></DestinationCard>
-        <DestinationCard></DestinationCard>
+      <div className="flex justify-center items-center">
+        <div className="grid grid-cols-3 gap-4">
+          <DestinationCard></DestinationCard>
+          <DestinationCard></DestinationCard>
+          <DestinationCard></DestinationCard>
+        </div>
       </div>
 
       {/* Explore more */}

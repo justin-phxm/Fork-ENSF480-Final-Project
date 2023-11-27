@@ -6,9 +6,7 @@ export default interface flightInterface {
   flightNumber: string;
   departureTime: Date;
   arrivalTime: Date;
-  currentDate?: Date;
   price: number;
-  duration: string;
   seatsBusinessClass: boolean[];
   seatsComfort: boolean[];
   seatsOrdinary: boolean[];

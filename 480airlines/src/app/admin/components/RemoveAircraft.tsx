@@ -4,11 +4,34 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 
 export default function RemoveAircraft() {
+  // useEffect(() => {
+  //   fetch("api/aircraft/", {
+  //     method: "POST",
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => console.log(data));
+  // }, []);
+
+  const delAircraft = async () => {
+    const response = await fetch("api/aircraft", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        aircraftID,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+    alert(data);
+  };
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log({
-      aircraftID,
-    });
+    // console.log({
+    //   aircraftID,
+    // });
+    delAircraft();
     toast.success("Aircraft removed!");
   };
 

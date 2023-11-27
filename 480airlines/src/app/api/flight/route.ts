@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-  const response = await fetch("http://localhost:8080/aircrafts/getAircrafts");
+  const response = await fetch("http://localhost:8080/flights/getFlights");
   return response;
 }
 
@@ -12,8 +12,7 @@ export async function POST(req: Request) {
 export async function DELETE(req: Request) {
   const body = await req.json();
   console.log(body);
-  const uri =
-    "http://localhost:8080/aircrafts/deleteAircraft/" + body.aircraftID;
+  const uri = "http://localhost:8080/flights/deleteFlight/" + body.flightID;
 
   const response = await fetch(uri, {
     method: "DELETE",
@@ -23,9 +22,5 @@ export async function DELETE(req: Request) {
     body: JSON.stringify(body),
   });
   const responseText = await response.text();
-  // console.log(responseText);
-  return NextResponse.json(
-    { message: responseText }
-    // { status: 200 }
-  );
+  return NextResponse.json({ message: responseText });
 }

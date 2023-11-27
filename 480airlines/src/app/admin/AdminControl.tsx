@@ -13,6 +13,7 @@ import RemoveCrew from "./components/RemoveCrew";
 import AddDestination from "./components/AddDestination";
 import RemoveDestination from "./components/RemoveDestination";
 import ViewRegistered from "./components/ViewRegistered";
+import RemoveFlight from "./components/RemoveFlight";
 export default function AdminControl() {
   return (
     <>
@@ -26,8 +27,9 @@ export default function AdminControl() {
         <AddCrew></AddCrew>
         <RemoveCrew></RemoveCrew>
         <RemoveAircraft></RemoveAircraft>
-        <AddDestination></AddDestination>
-        <RemoveDestination></RemoveDestination>
+        <RemoveFlight></RemoveFlight>
+        {/* <AddDestination></AddDestination> */}
+        {/* <RemoveDestination></RemoveDestination> */}
         <ViewRegistered></ViewRegistered>
         <ToastContainer position="bottom-right"></ToastContainer>
       </div>

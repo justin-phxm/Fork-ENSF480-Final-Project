@@ -3,15 +3,15 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { toast } from "react-toastify";
 
-export default function RemoveAircraft() {
-  const delAircraft = async () => {
-    const response = await fetch("api/aircraft", {
+export default function RemoveFlight() {
+  const delFlight = async () => {
+    const response = await fetch("api/flight", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        aircraftID,
+        flightID,
       }),
     });
     const data = await response.json();
@@ -19,14 +19,14 @@ export default function RemoveAircraft() {
   };
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    toast.promise(delAircraft(), {
-      pending: "Removing Aircraft...",
-      success: `Aircraft ${aircraftID} removed!`,
-      error: "Error removing aircraft",
+    toast.promise(delFlight(), {
+      pending: "Removing Flight...",
+      success: `Flight ${flightID} removed!`,
+      error: "Error removing flight",
     });
   };
 
-  const [aircraftID, setAircraftID] = useState("");
+  const [flightID, setFlightID] = useState("");
 
   return (
     <>
@@ -34,7 +34,7 @@ export default function RemoveAircraft() {
         data-aos="fade-up"
         className=" border border-slate-400 p-2 rounded bg-white"
       >
-        <h1 className="text-lg font-bold">Remove Aircraft</h1>
+        <h1 className="text-lg font-bold">Remove Flight</h1>
         <form onSubmit={handleSubmit} className="flex">
           {/* Aircraft ID */}
           <div className="flex">
@@ -59,14 +59,14 @@ export default function RemoveAircraft() {
               type="text"
               id="website-admin"
               className="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="AircraftID"
-              value={aircraftID}
-              onChange={(e) => setAircraftID(e.target.value)}
+              placeholder="FlightID"
+              value={flightID}
+              onChange={(e) => setFlightID(e.target.value)}
             />
           </div>
           <button className=" px-5 py-3 hover:opacity-70 bg-indigo-500 rounded items-center gap-2 inline-flex">
             <div className="text-neutral-50 whitespace-nowrap">
-              Remove Aircraft
+              Remove Flight
             </div>
           </button>
         </form>

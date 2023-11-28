@@ -1,5 +1,9 @@
 package ensf480.ucalgary.group12.UserPackage;
 
-public class TourismAgent extends Customer{
-    
+import org.springframework.jdbc.core.JdbcTemplate;
+
+public class TourismAgent extends Customer {
+    public TourismAgent(JdbcTemplate jdbcTemplate) {
+        super(jdbcTemplate);
+    }
 }

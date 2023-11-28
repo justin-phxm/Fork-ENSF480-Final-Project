@@ -16,8 +16,8 @@ CREATE TABLE Customer (
     loungeDiscount BOOLEAN,
     Address VARCHAR(20)
     -- different version of the constraints might work, didn't have time to test yet
-    --CHECK ((isMember = TRUE) OR (isMember = FALSE AND creditCard IS NULL)),
-    --CHECK ((isMember = TRUE) OR (isMember = FALSE AND companionTicket = FALSE AND monthlyEmails = FALSE AND loungeDiscount = FALSE))
+    -- CHECK ((isMember = TRUE) OR (isMember = FALSE AND creditCard IS NULL)),
+    -- CHECK ((isMember = TRUE) OR (isMember = FALSE AND companionTicket = FALSE AND monthlyEmails = FALSE AND loungeDiscount = FALSE))
 
 
     -- constraints to ensure that there are no issues of member being false but perks are true

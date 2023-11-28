@@ -48,6 +48,13 @@ public class Customer extends User{
         return notice;
     }
 
+    public String cancelMembership(){
+        setMembershipStatus(null);
+        updateIsMemberInDatabase(false);
+        String notice = "Cancelling membership";
+        return notice;
+    }
+
 
     private void updateIsMemberInDatabase(boolean flag){
         String updateQuery = "UPDATE Customer SET isMember = ? WHERE ID = ?";

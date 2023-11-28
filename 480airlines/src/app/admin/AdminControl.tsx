@@ -2,18 +2,19 @@
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import AddFlight from "./components/AddFlight";
-import AddAircraft from "./components/AddAircraft";
-import BrowseFlights from "./components/BrowseFlights";
-import BrowseAircrafts from "./components/BrowseAircrafts";
-import RemoveAircraft from "./components/RemoveAircraft";
-import AddCrew from "./components/AddCrew";
-import BrowseCrew from "./components/BrowseCrew";
-import RemoveCrew from "./components/RemoveCrew";
+import AddFlight from "./components/flightComponents/AddFlight";
+import AddAircraft from "./components/aircraftComponents/AddAircraft";
+import BrowseFlights from "./components/flightComponents/BrowseFlights";
+import BrowseAircrafts from "./components/aircraftComponents/BrowseAircrafts";
+import RemoveAircraft from "./components/aircraftComponents/RemoveAircraft";
+import AddCrew from "./components/aircraftComponents/AddCrew";
+import BrowseCrew from "./components/aircraftComponents/BrowseCrew";
+import RemoveCrew from "./components/aircraftComponents/RemoveCrew";
 import AddDestination from "./components/AddDestination";
 import RemoveDestination from "./components/RemoveDestination";
 import ViewRegistered from "./components/ViewRegistered";
-import RemoveFlight from "./components/RemoveFlight";
+import RemoveFlight from "./components/flightComponents/RemoveFlight";
+import ModifyFlight from "./components/flightComponents/ModifyFlight";
 export default function AdminControl() {
   return (
     <>
@@ -25,11 +26,10 @@ export default function AdminControl() {
         <AddFlight></AddFlight>
         <AddAircraft></AddAircraft>
         <AddCrew></AddCrew>
+        <ModifyFlight></ModifyFlight>
         <RemoveCrew></RemoveCrew>
         <RemoveAircraft></RemoveAircraft>
         <RemoveFlight></RemoveFlight>
-        {/* <AddDestination></AddDestination> */}
-        {/* <RemoveDestination></RemoveDestination> */}
         <ViewRegistered></ViewRegistered>
         <ToastContainer position="bottom-right"></ToastContainer>
       </div>

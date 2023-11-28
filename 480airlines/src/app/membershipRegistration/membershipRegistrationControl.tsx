@@ -60,14 +60,15 @@ export default function MembershipRegistrationControl() {
 
       try {
         if (session.user?.email && session.user?.name) {
-          await sendEmail(session.user.email, session.user?.name);
-          // console.log(test(4));
+          toast.promise(sendEmail(session.user.email, session.user?.name), {
+            pending: "Signing you up for membership...",
+            success: `You have successfully signed up for membership!`,
+            error: "Error signing you up for membership",
+          });
         }
       } catch (error) {
         console.log(error);
       }
-
-      toast.success("You have successfully signed up for membership!");
     }
   };
   return (

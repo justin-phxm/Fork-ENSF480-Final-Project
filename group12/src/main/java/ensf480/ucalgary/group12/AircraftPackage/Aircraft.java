@@ -16,13 +16,17 @@ public class Aircraft {
     @Column(name = "AircraftName")
     private String name;
 
-    @OneToMany(mappedBy = "aircraft")
+    @OneToMany(mappedBy = "aircraft", fetch = FetchType.EAGER)
     private List<Seat> seats;
 
     @OneToOne(mappedBy = "plane")
     private Flight flight;
 
     public Aircraft() {
+    }
+
+    public Aircraft(String name) {
+        this.name = name;
     }
 
     public int getAircraftID() {
@@ -48,4 +52,13 @@ public class Aircraft {
     // public void setSeats(List<Seat> seats) {
     //     this.seats = seats;
     // }
+
+    // public Flight getFlight() {
+    //     return flight;
+    // }
+
+    // public void setFlight(Flight flight) {
+    //     this.flight = flight;
+    // }
+
 }

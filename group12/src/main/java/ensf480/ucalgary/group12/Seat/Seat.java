@@ -6,6 +6,7 @@ import ensf480.ucalgary.group12.AircraftPackage.Aircraft;
 @Entity
 @Table(name = "Seats")
 public class Seat {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -18,12 +19,18 @@ public class Seat {
     private String seatType;
     @Column(name = "SeatCode")
     private String seatNumber;
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "AircraftID")
     private Aircraft aircraft;
+    
+    public Seat() {
+    }
 
-    public Seat(){
-
+    public Seat(int seatsID, boolean availability, String seatType, String seatNumber) {
+        this.seatsID = seatsID;
+        this.availability = availability;
+        this.seatType = seatType;
+        this.seatNumber = seatNumber;
     }
 
     public void setAvailability(boolean val){

@@ -22,7 +22,7 @@ public class Transaction {
     private double price;
 
     public Transaction(){
-
+        
     }
     
     public String printReciept(){ 

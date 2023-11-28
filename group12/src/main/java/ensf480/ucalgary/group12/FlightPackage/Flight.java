@@ -32,12 +32,10 @@ public class Flight {
     @Column(name = "ArrivalCity")
     private String arrivalCity;
     // @Transient
-    // private String flightNum;
-    // @Transient
     // private CrewMember[] Crew;
     // @Transient
     // private Customer[] Passengers;
-    
+
     public Flight() {
     }
 

@@ -60,6 +60,7 @@ public class FlightController {
 
     @PutMapping("/updateFlight")
     public Flight updateFlight(@RequestBody Flight fl){
+        System.out.println("ID WHEN CREATED: "+ fl.getFlightID());
         return service.updateFlight(fl);
     }
 }

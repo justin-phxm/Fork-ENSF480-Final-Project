@@ -57,13 +57,17 @@ public class FlightService {
 
     public Flight updateFlight(Flight fl){
         Flight existing = repo.findById(fl.getFlightID()).orElse(null);
-        existing.setDateOfArrival(fl.getDateOfArrival());
-        existing.setDateOfDeparture(fl.getDateOfDeparture());
-        existing.setArrivalCity(fl.getArrivalCity());
-        existing.setDepartureAirport(fl.getDepartureAirport());
-        existing.setArrivalAirport(fl.getArrivalAirport());
-        existing.setDepartureCity(fl.getDepartureCity());
-        return repo.save(existing);
+        if (existing != null) {
+            existing.setDateOfArrival(fl.getDateOfArrival());
+            existing.setDateOfDeparture(fl.getDateOfDeparture());
+            existing.setArrivalCity(fl.getArrivalCity());
+            existing.setDepartureAirport(fl.getDepartureAirport());
+            existing.setArrivalAirport(fl.getArrivalAirport());
+            existing.setDepartureCity(fl.getDepartureCity());
+            return repo.save(existing);
+        } else {
+            return null;
+        }
     }
 }
 

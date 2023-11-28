@@ -1,14 +1,16 @@
 package ensf480.ucalgary.group12.UserPackage;
 
-public class AirlineAgent extends Customer{
+import org.springframework.jdbc.core.JdbcTemplate;
+
+
+public class AirlineAgent extends Customer {
     
     private BrowseStrategy browseStyle;
 
-    public AirlineAgent(){
-
+    public AirlineAgent(JdbcTemplate jdbcTemplate) {
+        super(jdbcTemplate);
     }
 
     public void performBrowseStrategy(){
-        
     }
 }

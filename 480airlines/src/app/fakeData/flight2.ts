@@ -13,4 +13,18 @@ const fakeFlight: flight2Interface = {
   departureCity: "New York",
   arrivalCity: "Los Angeles",
 };
-export { fakeFlight };
+const fakeFlight2: flight2Interface = {
+  flightID: 2,
+  departureAirport: "LAX",
+  arrivalAirport: "JFK",
+  plane: {
+    aircraftID: 2,
+    name: "Boeing727",
+  },
+  dateOfArrival: new Date("2023-11-21T01:00:00.000+00:00"),
+  dateOfDeparture: new Date("2023-11-20T21:00:00.000+00:00"),
+  departureCity: "Los Angeles",
+  arrivalCity: "New York",
+};
+
+export { fakeFlight, fakeFlight2 };

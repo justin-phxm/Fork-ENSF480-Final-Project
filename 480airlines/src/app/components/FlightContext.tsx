@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useState } from "react";
 import flight2Interface from "../interfaces/flight2";
 import { ReactNode } from "react";
-import { fakeFlight } from "../fakeData/flight2";
+import { fakeFlight, fakeFlight2 } from "../fakeData/flight2";
 interface AppState {
   flights?: flight2Interface[];
 }
@@ -13,7 +13,7 @@ interface Props {
   children: ReactNode;
 }
 
-const defaultAppState: AppState = { flights: [fakeFlight] };
+const defaultAppState: AppState = { flights: [] };
 const defaultChosenFlight: ChosenFlight = { flight: undefined };
 
 export const AppStateContext = createContext<

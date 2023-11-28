@@ -1,1 +1,1 @@
-SELECT * from seats
+SELECT * from Admin

@@ -2,6 +2,13 @@ DROP DATABASE IF EXISTS AIRLINEDB;
 CREATE DATABASE AIRLINEDB;
 USE AIRLINEDB;
 
+DROP TABLE IF EXISTS User;
+CREATE TABLE User (
+    -- ID INT PRIMARY KEY AUTO_INCREMENT,
+    Email VARCHAR(100) PRIMARY KEY,
+    BrowseStyle ENUM("Customer", "Employee", "Admin") NOT NULL
+);
+
 DROP TABLE IF EXISTS Customer;
 CREATE TABLE Customer (
     
@@ -14,26 +21,31 @@ CREATE TABLE Customer (
     companionTicket BOOLEAN,
     monthlyEmails BOOLEAN, 
     loungeDiscount BOOLEAN,
-    Address VARCHAR(20)
-    -- different version of the constraints might work, didn't have time to test yet
-    -- CHECK ((isMember = TRUE) OR (isMember = FALSE AND creditCard IS NULL)),
-    -- CHECK ((isMember = TRUE) OR (isMember = FALSE AND companionTicket = FALSE AND monthlyEmails = FALSE AND loungeDiscount = FALSE))
-
-
-    -- constraints to ensure that there are no issues of member being false but perks are true
---     CONSTRAINT chk_creditCard
---         CHECK ((isMember = TRUE) OR (isMember = FALSE AND creditCard IS NULL)),
---     CONSTRAINT chk_booleans
---         CHECK ((isMember = TRUE) OR (isMember = FALSE AND companionTicket = FALSE AND monthlyEmails = FALSE AND loungeDiscount = FALSE))
-);
+    Address VARCHAR(20),
+    FOREIGN KEY (Email) REFERENCES User(Email) ON DELETE CASCADE 	ON UPDATE CASCADE
+ );
 
 DROP TABLE IF EXISTS Employee;
 CREATE TABLE Employee (
 	ID INT PRIMARY KEY AUTO_INCREMENT,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
-    EmployeeRole VARCHAR(20)
+    EmployeeRole VARCHAR(20),
+    Email VARCHAR(100),
+    FOREIGN KEY (Email) REFERENCES User(Email) ON DELETE CASCADE 	ON UPDATE CASCADE
+
 );
+
+DROP TABLE IF EXISTS Admin;
+CREATE TABLE Admin (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    FOREIGN KEY (Email) REFERENCES User(Email) ON DELETE CASCADE 	ON UPDATE CASCADE
+);
+
+
 
 DROP TABLE IF EXISTS Aircrafts;
 CREATE TABLE Aircrafts (
@@ -77,16 +89,31 @@ CREATE TABLE Transactions (
     FOREIGN KEY (FlightID) REFERENCES Flights(FlightID)
 );
 
+INSERT INTO User (Email, BrowseStyle)
+VALUES
+    ('justin.phamx4@gmail.com', 'Admin'),
+    ('john.doe@email.com', 'Customer'),
+    ('jane.smith@email.com', 'Customer'),
+    ('ryan.gosling@gmail.com', 'Employee'),
+    ('Brad.pitt@gmail.com', 'Employee'),
+    ('BarackObama@gmail.com', 'Employee');
+
+
+INSERT INTO Admin (FirstName, LastName, Email)
+VALUES
+    ('Justin', 'Pham', 'justin.phamx4@gmail.com');
+
+
 INSERT INTO Customer (FirstName, LastName, Email, isMember, creditCard, companionTicket, monthlyEmails, loungeDiscount, Address)
 VALUES
     ('John', 'Doe', 'john.doe@email.com', FALSE, NULL, FALSE, FALSE, FALSE, '123 Street'),
     ('Jane', 'Smith', 'jane.smith@email.com', TRUE, 123456789012, TRUE, FALSE, TRUE, 'Sesame Street');
     
-INSERT INTO Employee (FirstName, LastName, EmployeeRole)
+INSERT INTO Employee (FirstName, LastName, EmployeeRole, Email)
 VALUES
-    ('Ryan', 'Gosling', 'Admin'),
-    ('Brad', 'Pitt', 'Crew'),
-    ('Barack', 'Obama', 'Agent');
+    ('Ryan', 'Gosling', 'Crew',"ryan.gosling@gmail.com"),
+    ('Brad', 'Pitt', 'Crew', "Brad.pitt@gmail.com"),
+    ('Barack', 'Obama', 'Agent',"BarackObama@gmail.com");
 
 INSERT INTO Aircrafts (AircraftName)
 	VALUES

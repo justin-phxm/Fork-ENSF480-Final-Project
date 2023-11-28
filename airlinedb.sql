@@ -33,7 +33,7 @@ CREATE TABLE Employee (
 DROP TABLE IF EXISTS Aircrafts;
 CREATE TABLE Aircrafts (
 	AircraftID INT PRIMARY KEY AUTO_INCREMENT,
-    AircraftName VARCHAR(10)
+    AircraftName VARCHAR(20)
 );
 
 DROP TABLE IF EXISTS Flights;
@@ -60,6 +60,16 @@ CREATE TABLE Seats (
     SeatCode VARCHAR(3),
     Plane INT,
     FOREIGN KEY (Plane) REFERENCES Aircrafts(AircraftID) ON DELETE CASCADE 	ON UPDATE CASCADE
+);
+
+DROP TABLE IF EXISTS Transactions;
+CREATE TABLE Transactions (
+	ID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT,
+    FlightID INT,
+    SeatCode VARCHAR(3),
+    FOREIGN KEY (CustomerID) REFERENCES Customer(ID),
+    FOREIGN KEY (FlightID) REFERENCES Flights(FlightID)
 );
 
 INSERT INTO Customer (FirstName, LastName, Email, isMember, creditCard, companionTicket, monthlyEmails, loungeDiscount, Address)
@@ -148,3 +158,8 @@ INSERT INTO Seats (SeatsID, Availability, SeatType, SeatCode, Plane)
 (1, true, 'Ordinary', 'D9', 1),
 (1, true, 'Ordinary', 'D10', 1);
 -- Add more rows as needed...
+
+INSERT INTO Transactions (CustomerID, FlightID, SeatCode)
+VALUES
+	(1, 1, 'A1'),
+    (2, 1, 'A2');

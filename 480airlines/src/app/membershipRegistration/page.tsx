@@ -1,6 +1,5 @@
 import React from "react";
-import MembershipRegistrationControl from "./membershipRegistrationControl";
-import MembershipFeatureCards from "./components/membershipFeatureCards";
+import MembershipFeatureCards from "./components/MembershipFeatureCards";
 import MembershipHero from "./components/MembershipHero";
 
 export default function page() {

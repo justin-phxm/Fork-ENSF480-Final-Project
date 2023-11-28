@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import DestinationCard from "./components/DestinationCard";
 import Link from "next/link";
+import DestinationTable from "./components/DestinationTable";
 
 export default function Home() {
   return (
@@ -12,11 +13,7 @@ export default function Home() {
 
       {/* Cards */}
       <div className="flex justify-center items-center">
-        <div className="grid grid-cols-3 gap-4">
-          <DestinationCard></DestinationCard>
-          <DestinationCard></DestinationCard>
-          <DestinationCard></DestinationCard>
-        </div>
+        <DestinationTable></DestinationTable>
       </div>
 
       {/* Explore more */}

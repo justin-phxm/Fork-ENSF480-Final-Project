@@ -5,6 +5,7 @@ const nextConfig = {
       "via.placeholder.com",
       "res.cloudinary.com",
       "flowbite.s3.amazonaws.com",
+      "iso.500px.com",
     ],
   },
 };

@@ -1,11 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import flight2Interface from "../interfaces/flight2";
 
-export default function DestinationCard() {
-  const cityName = "London";
-  const price = "$490";
-  const description = "London's calling! Discover the best hotels!";
+export default function DestinationCard(props: { flight: flight2Interface }) {
+  const { flight } = props;
+  const cityName = flight.arrivalCity;
+  const flightID = flight.flightID;
+  const description = cityName + "'s calling! Book your trip now!";
   return (
     <>
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -14,7 +16,7 @@ export default function DestinationCard() {
             width={400}
             height={300}
             className="rounded-t-lg"
-            src="https://via.placeholder.com/411x397"
+            src="https://iso.500px.com/wp-content/uploads/2015/10/anthony-1500x995.jpg"
             alt="city Image"
           />
         </Link>
@@ -29,7 +31,7 @@ export default function DestinationCard() {
               href="#"
               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Only {price}!
+              FlightID: {flightID}
               <svg
                 className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
                 aria-hidden="true"

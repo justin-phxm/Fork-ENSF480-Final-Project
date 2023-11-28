@@ -1,5 +1,11 @@
-package ensf480.ucalgary.group12;
+package ensf480.ucalgary.group12.TicketPackage;
 
+import jakarta.persistence.*;
+import java.util.List;
+
+
+@Entity
+@Table(name = "Aircrafts")
 public class Ticket {
     private String seatNumber;
     private String flightNumber;

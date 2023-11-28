@@ -1,6 +1,6 @@
 package ensf480.ucalgary.group12.UserPackage;
 
-import ensf480.ucalgary.group12.Transaction;
+import ensf480.ucalgary.group12.TransactionPackage.Transaction;
 
 public class Customer extends User{
     private Membership MembershipStatus;

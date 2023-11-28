@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import flight2Interface from "../interfaces/flight2";
+import { AppStateContext } from "./FlightContext";
 
 export default function DestinationCard(props: { flight: flight2Interface }) {
+  const flightProvider = useContext(AppStateContext);
+  const { setChosenFlight, chosenFlight } = flightProvider!;
   const { flight } = props;
   const cityName = flight.arrivalCity;
   const flightID = flight.flightID;
   const description = cityName + "'s calling! Book your trip now!";
+  const handleButtonClick = () => {
+    setChosenFlight({ flight: flight });
+    console.log(chosenFlight);
+  };
+
   return (
     <>
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -28,7 +36,8 @@ export default function DestinationCard(props: { flight: flight2Interface }) {
               </h5>
             </Link>
             <Link
-              href="#"
+              onClick={handleButtonClick}
+              href="/seatSelection"
               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               FlightID: {flightID}

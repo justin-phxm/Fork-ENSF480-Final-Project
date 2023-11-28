@@ -6,22 +6,32 @@ import { fakeFlight } from "../fakeData/flight2";
 interface AppState {
   flights?: flight2Interface[];
 }
+interface ChosenFlight {
+  flight?: flight2Interface;
+}
 interface Props {
   children: ReactNode;
 }
 
 const defaultAppState: AppState = { flights: [fakeFlight] };
+const defaultChosenFlight: ChosenFlight = { flight: undefined };
+
 export const AppStateContext = createContext<
   | {
       appState: AppState;
       setAppState: React.Dispatch<React.SetStateAction<AppState>>;
+      chosenFlight: ChosenFlight;
+      setChosenFlight: React.Dispatch<React.SetStateAction<ChosenFlight>>;
     }
   | undefined
 >(undefined);
 const FlightContextProvider = (props: Props) => {
   const [appState, setAppState] = useState(defaultAppState);
+  const [chosenFlight, setChosenFlight] = useState(defaultChosenFlight);
   return (
-    <AppStateContext.Provider value={{ appState, setAppState }}>
+    <AppStateContext.Provider
+      value={{ appState, setAppState, chosenFlight, setChosenFlight }}
+    >
       {props.children}
     </AppStateContext.Provider>
   );

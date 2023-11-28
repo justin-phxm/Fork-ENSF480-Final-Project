@@ -1,14 +1,17 @@
 package ensf480.ucalgary.group12.UserPackage;
 
-import ensf480.ucalgary.group12.TransactionPackage.Transaction;
+import ensf480.ucalgary.group12.TransactionPackage.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.jdbc.core.JdbcTemplate;
+//import org.springframework.stereotype.Component;
 import java.util.Objects;
+import jakarta.persistence.*;
 
-@Component
+@Entity
+@Table(name = "Customer")
 public class Customer extends User{
+    /* 
     private Membership MembershipStatus;
     private Transaction[] CustomerTransactions;
     private String CustomerID;
@@ -17,12 +20,55 @@ public class Customer extends User{
     private String creditCardNum;
     private BrowseStrategy browseStrategy = new CustomerPermission();
     private String email;
+*/
 
-    private final JdbcTemplate jdbcTemplate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CustomerID")
+    private int CustomerID;
 
-    @Autowired
-    public Customer(JdbcTemplate jdbcTemplate){
-        this.jdbcTemplate = jdbcTemplate;
+    @Column(name = "FirstName")
+    private String firstName;
+    @Column(name = "LastName")
+    private String lastName;
+    @OneToOne
+    @JoinColumn(name = "Email")
+    private String email;
+    @Column(name = "isMember")
+    private boolean isMember;
+    @Column(name = "creditCard")
+    private String creditCardNum;
+    @Column(name = "companionTicket")
+    private boolean companionTicket;
+    @Column(name = "monthlyEmails")
+    private boolean monthlyEmails;
+    @Column(name = "loungeDiscount")
+    private boolean loungeDiscount;
+    @Column(name = "Address")
+    private String Address;
+
+    @Transient
+    Membership MembershipStatus;
+    @Transient
+    Transaction[] CustomerTransactions;
+
+    @Transient
+    BrowseStrategy browseStrategy = new CustomerPermission();
+
+//    private final JdbcTemplate jdbcTemplate;
+
+    //@Autowired
+    public Customer(){
+    }
+
+    public Customer(String firstName, String lastName, boolean isMember, String Address, Membership MembershipStatus, Transaction[]CustomerTransactions){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.isMember = isMember;
+        this.Address = Address;
+        this.MembershipStatus = MembershipStatus;
+        this.CustomerTransactions = CustomerTransactions;
+        // may need adjusting for what has to be initialized
     }
 
     public void createTransaction(){
@@ -37,6 +83,8 @@ public class Customer extends User{
 
     }
 
+
+/* 
     // MEMBER STUFF
     // supposed to update the isMember for that customer to be true/false
     // same rough idea for all the perks below
@@ -124,6 +172,7 @@ public class Customer extends User{
         jdbcTemplate.update(updateQuery, receiveMonthlyEmails, getCustomerID()); 
     }
 
+    */
     
     public Membership getMembershipStatus() {
         return MembershipStatus;
@@ -141,11 +190,11 @@ public class Customer extends User{
         CustomerTransactions = customerTransactions;
     }
 
-    public String getCustomerID() {
+    public int getCustomerID() {
         return CustomerID;
     }
 
-    public void setCustomerID(String customerID) {
+    public void setCustomerID(int customerID) {
         CustomerID = customerID;
     }
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Row from "./Row";
 import Image from "next/image";
 import RowComfort from "./RowComfort";
@@ -11,7 +11,8 @@ import RowOrdinary from "./RowOrdinary";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { flight } from "@/app/fakeData/flight";
+// import { flight } from "@/app/fakeData/flight";
+import { AppStateContext } from "@/app/components/FlightContext";
 export default function SeatSelection() {
   useEffect(() => {
     // Replace the URL with your actual API endpoint
@@ -23,189 +24,17 @@ export default function SeatSelection() {
       .then((response) => {
         // Handle the data from the response
         console.log(response.data);
+        setSeats(response.data);
       })
       .catch((error) => {
         // Handle errors during the request
         console.error("Axios error:", error);
       });
   }, []); // The empty dependency array ensures the effect runs only once after the initial render
-
-  const currentDate = new Date();
-  // const flight: flightInterface = {
-  //   originCode: "LAX",
-  //   originLocation: "Los Angeles, USA",
-  //   destinationCode: "NRT",
-  //   destinationLocation: "Tokyo, Japan",
-  //   flightNumber: "480",
-  //   departureTime: new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000),
-  //   arrivalTime: new Date(currentDate.getTime() + 14 * 24 * 60 * 60 * 1000),
-  //   currentDate: new Date(),
-  //   price: 420,
-  //   duration: "2h",
-  //   seatsBusinessClass: [
-  //     true,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //   ],
-
-  //   seatsComfort: [
-  //     true,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //   ],
-  //   seatsOrdinary: [
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     true,
-  //     false,
-  //     true,
-  //     false,
-  //     false,
-  //     false,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     true,
-  //   ],
-  // };
+  const flightProvider = useContext(AppStateContext);
+  const { chosenFlight } = flightProvider!;
+  const flight = chosenFlight?.flight;
+  const [seats, setSeats] = useState([]);
   const [selectedSeat, setSelectedSeat] = useState<string>("--");
   return (
     <>
@@ -266,7 +95,7 @@ export default function SeatSelection() {
             <div className="py-3 w-52 bg-white rounded-lg flex-col justify-start items-center gap-3 inline-flex">
               {/* Business class Seats */}
               <Row
-                seats={flight.seatsBusinessClass}
+                seats={seats}
                 setSelectedSeat={setSelectedSeat}
                 selectedSeat={selectedSeat}
               />
@@ -305,7 +134,7 @@ export default function SeatSelection() {
               </div>
               {/* Comfort class seats */}
               <RowComfort
-                seats={flight.seatsComfort}
+                seats={seats}
                 setSelectedSeat={setSelectedSeat}
                 selectedSeat={selectedSeat}
               />
@@ -340,7 +169,7 @@ export default function SeatSelection() {
               </div>
               {/* Economy class seats */}
               <RowOrdinary
-                seats={flight.seatsOrdinary}
+                seats={seats}
                 setSelectedSeat={setSelectedSeat}
                 selectedSeat={selectedSeat}
               />
@@ -381,12 +210,12 @@ export default function SeatSelection() {
           <div className="w-px self-stretch bg-slate-300" />
           <div className="self-stretch flex-col justify-start items-start inline-flex">
             {/* Top Flight Information */}
-            <FlightInformation {...flight}></FlightInformation>
+            <FlightInformation flight={flight}></FlightInformation>
 
             {/* Center Flight details */}
             <SeatOptions />
             {/* Bottom Passenger Selection */}
-            <UserSelection flight={flight} selectedSeat={selectedSeat} />
+            <UserSelection selectedSeat={selectedSeat} />
           </div>
         </div>
 

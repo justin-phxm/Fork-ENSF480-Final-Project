@@ -1,14 +1,11 @@
 "use client";
-import flightInterface from "@/app/interfaces/flight";
+import flightInterface from "@/app/interfaces/flight2";
 import React, { useState } from "react";
 import PaymentModal from "./PaymentModal";
 import { useSession } from "next-auth/react";
 
-export default function UserSelection(props: {
-  flight: flightInterface;
-  selectedSeat: string;
-}) {
-  const { flight, selectedSeat } = props;
+export default function UserSelection(props: { selectedSeat: string }) {
+  const { selectedSeat } = props;
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const { data: session } = useSession();
   return (

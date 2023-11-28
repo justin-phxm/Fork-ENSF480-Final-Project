@@ -1,14 +1,17 @@
 import React from "react";
-import flightInterface from "@/app/interfaces/flight";
-export default function FlightInformation(props: flightInterface) {
-  const {
-    destinationCode,
-    destinationLocation,
-    originCode,
-    originLocation,
-    departureTime,
-    arrivalTime,
-  } = props;
+import flightInterface from "@/app/interfaces/flight2";
+export default function FlightInformation(props: {
+  flight: flightInterface | undefined;
+}) {
+  const { flight } = props;
+  const departureTime = flight ? new Date(flight.dateOfDeparture) : new Date();
+
+  const arrivalTime = flight ? new Date(flight.dateOfArrival) : new Date();
+
+  const originCode = flight?.departureAirport;
+  const originLocation = flight?.departureCity;
+  const destinationCode = flight?.arrivalAirport;
+  const destinationLocation = flight?.arrivalCity;
 
   const formattedDepartureDate = departureTime.toLocaleString("en-US", {
     month: "long",

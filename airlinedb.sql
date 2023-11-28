@@ -76,13 +76,32 @@ VALUES
 INSERT INTO Aircrafts (AircraftName)
 	VALUES
     ('Boeing747'),
-    ('Boeing727');
+    ('Boeing727'),
+    ('AirbusA320'),
+    ('AirbusA330'),
+    ('EmbraerE190'),
+    ('Boeing777'),
+    ('AirbusA380'),
+    ('BombardierCRJ700'),
+    ('Boeing737'),
+    ('EmbraerE145'),
+    ('AirbusA350');
 
 INSERT INTO Flights (DepartureCity, ArrivalCity, DepartureAirport, ArrivalAirport, DepartureTime, ArrivalTime, AircraftID)
 VALUES
     ('New York', 'Los Angeles', 'JFK', 'LAX', '2023-11-19 08:00:00', '2023-11-19 12:00:00', 1),
-    ('Los Angeles', 'New York', 'LAX', 'JFK', '2023-11-20 14:00:00', '2023-11-20 18:00:00', 2);
-    
+    ('Los Angeles', 'New York', 'LAX', 'JFK', '2023-11-20 14:00:00', '2023-11-20 18:00:00', 2),
+    ('Chicago', 'Miami', 'ORD', 'MIA', '2023-11-21 10:00:00', '2023-11-21 14:00:00', 3),
+    ('Miami', 'Chicago', 'MIA', 'ORD', '2023-11-22 16:00:00', '2023-11-22 20:00:00', 4),
+    ('Seattle', 'San Francisco', 'SEA', 'SFO', '2023-11-23 12:00:00', '2023-11-23 16:00:00', 5),
+    ('Denver', 'Dallas', 'DEN', 'DFW', '2023-11-24 09:00:00', '2023-11-24 13:00:00', 6),
+    ('Dallas', 'Denver', 'DFW', 'DEN', '2023-11-25 15:00:00', '2023-11-25 19:00:00', 7),
+    ('Atlanta', 'Orlando', 'ATL', 'MCO', '2023-11-26 11:00:00', '2023-11-26 15:00:00', 8),
+    ('Orlando', 'Atlanta', 'MCO', 'ATL', '2023-11-27 17:00:00', '2023-11-27 21:00:00', 9),
+    -- Add more flights as needed
+    ('Houston', 'Phoenix', 'IAH', 'PHX', '2023-11-28 13:00:00', '2023-11-28 17:00:00', 10),
+    ('Phoenix', 'Houston', 'PHX', 'IAH', '2023-11-29 19:00:00', '2023-11-29 23:00:00', 11);
+
 INSERT INTO Seats (SeatsID, Availability, SeatType, SeatCode, Plane)
 	VALUES
 (1, true, 'Business', 'A1', 1),

@@ -1,5 +1,6 @@
 package ensf480.ucalgary.group12.FlightPackage;
 
+import java.time.LocalDateTime;
 import ensf480.ucalgary.group12.FlightPackage.Flight;
 import ensf480.ucalgary.group12.FlightPackage.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,10 @@ public class FlightService {
     
     public Flight getFlight(int id){
         return repo.findById(id).orElse(null);
+    }
+
+    public List<Flight> getFlightByDepTime(LocalDateTime date){
+        return repo.findByDateOfDepartureAfter(date);
     }
 
     public String deleteFlight(int id){

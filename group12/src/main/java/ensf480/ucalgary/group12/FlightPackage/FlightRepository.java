@@ -1,6 +1,6 @@
 package ensf480.ucalgary.group12.FlightPackage;
 
-
+import java.time.LocalDateTime;
 import ensf480.ucalgary.group12.FlightPackage.Flight;
 import ensf480.ucalgary.group12.Seat.Seat;
 
@@ -16,5 +16,5 @@ public interface FlightRepository extends JpaRepository<Flight, Integer> {
     public Flight findByArrivalAirport(String id);
     public Flight findByDepartureCity(String id);
     public Flight findByDepartureAirport(String id);
-    
+    public List<Flight> findByDateOfDepartureAfter(LocalDateTime departureTime);
 }

@@ -1,15 +1,16 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
-import flightInterface from "../interfaces/flight";
+import flight2Interface from "../interfaces/flight2";
 import { ReactNode } from "react";
+import { fakeFlight } from "../fakeData/flight2";
 interface AppState {
-  flight?: flightInterface;
+  flight?: flight2Interface;
 }
 interface Props {
   children: ReactNode;
 }
 
-const defaultAppState: AppState = { flight: undefined };
+const defaultAppState: AppState = { flight: fakeFlight };
 const AppStateContext = createContext<
   | {
       appState: AppState;

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import BrowseFlights from "../admin/components/BrowseFlights";
+import BrowseFlights from "../admin/components/flightComponents/BrowseFlights";
 
 export default function AirlineEmployeeControl() {
   return (

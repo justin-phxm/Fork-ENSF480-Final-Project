@@ -38,9 +38,11 @@ public class Transaction {
 
     }
 
-    public void addInsurance(){
+    public String addInsurance(){
         // placeholder of an added insurance cost of 15% of ticket price
         setPrice(1.15 * price);
+        String ret = "Insurance added for an additional 15%";
+        return ret;
         // System.out.println("Insurance added for an additional cost of 15%");
     }
 

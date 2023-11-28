@@ -8,7 +8,12 @@ public abstract class MembershipDecorator implements Membership{
     }
 
     @Override
-    public void viewMembership(){
+    public String viewMembership(){
         membership.viewMembership();
+        // has "basic membership" return for now since the other "perks" classes
+        // are extending this so the super.viewMembership() in theirs is returning
+        // this one I believe
+        // I will need to fix this later if it does not behave as expected
+        return "Basic Membership";
     }
 }

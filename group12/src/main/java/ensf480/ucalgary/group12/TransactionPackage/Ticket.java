@@ -1,4 +1,5 @@
-package ensf480.ucalgary.group12;
+package ensf480.ucalgary.group12.TransactionPackage;
+
 
 public class Ticket {
     private String seatNumber;

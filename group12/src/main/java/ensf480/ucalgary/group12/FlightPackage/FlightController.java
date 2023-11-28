@@ -1,5 +1,7 @@
 package ensf480.ucalgary.group12.FlightPackage;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import ensf480.ucalgary.group12.FlightPackage.Flight;
 import ensf480.ucalgary.group12.FlightPackage.FlightService;
 
@@ -42,6 +44,13 @@ public class FlightController {
     @GetMapping("/getFlightDestCode/{id}")
     public Flight getFlightDC(@PathVariable("id") String id){
         return service.getFlightDC(id);
+    }
+
+    @GetMapping("getFlightByDep/{date}")
+    public List<Flight> getFlightDepTime(@PathVariable String date) {
+        LocalDateTime departureTime = LocalDateTime.parse(date);
+        Date departureDate = java.sql.Timestamp.valueOf(departureTime);
+        return service.getFlightByDepTime(departureDate);
     }
 
     @DeleteMapping("/deleteFlight/{id}")

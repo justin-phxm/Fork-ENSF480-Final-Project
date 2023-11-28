@@ -2,7 +2,8 @@ package ensf480.ucalgary.group12.UserPackage;
 
 public class BasicMembership implements Membership{
     @Override
-    public void viewMembership(){
-        System.out.println("Basic Membership");
+    public String viewMembership(){
+        //System.out.println("Basic Membership");
+        return "Basic Membership";
     }
 }

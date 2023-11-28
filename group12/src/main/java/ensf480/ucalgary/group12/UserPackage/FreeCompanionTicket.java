@@ -5,8 +5,9 @@ public class FreeCompanionTicket extends MembershipDecorator{
         super(membership);
     }
     @Override
-    public void viewMembership(){
-        super.viewMembership();
-        System.out.println(" + Companion Ticket");
+    public String viewMembership(){
+        String ret1 = super.viewMembership();
+        String ret2 = " + Companion Ticket";
+        return ret1 + ret2;
     }
 }

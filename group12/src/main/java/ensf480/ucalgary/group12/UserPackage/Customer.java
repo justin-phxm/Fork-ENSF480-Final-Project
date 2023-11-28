@@ -1,7 +1,13 @@
 package ensf480.ucalgary.group12.UserPackage;
 
-import ensf480.ucalgary.group12.Transaction;
+import ensf480.ucalgary.group12.TransactionPackage.Transaction;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+import java.util.Objects;
+
+@Component
 public class Customer extends User{
     private Membership MembershipStatus;
     private Transaction[] CustomerTransactions;
@@ -12,7 +18,11 @@ public class Customer extends User{
     private BrowseStrategy browseStrategy = new CustomerPermission();
     private String email;
 
-    public Customer(){
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public Customer(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public void createTransaction(){
@@ -27,25 +37,86 @@ public class Customer extends User{
 
     }
 
+    // MEMBER STUFF
+    // supposed to update the isMember for that customer to be true/false
+    // same rough idea for all the perks below
+    // not tested yet
+    public String signUpForMembership(){
+        setMembershipStatus(new BasicMembership());
+        updateIsMemberInDatabase(true);
+        String notice = "Successfully signed up for membership";
+        return notice;
+    }
+
+
+    private void updateIsMemberInDatabase(boolean flag){
+        String updateQuery = "UPDATE Customer SET isMember = ? WHERE ID = ?";
+        jdbcTemplate.update(updateQuery, flag, getCustomerID());
+    }
+
+    // how are we generating the companycredit card numbers? 
+    // 
     public void applyCompanyCreditCard(){
 
     }
 
-    public void applyAirportLoungeDiscount(){
-
+    // AIRPORT LOUNGE STUFF
+    public String applyAirportLoungeDiscount(){
+        updateAirportLoungeInDatabase(true);
+        String notice = "Successfully opted into Airport Lounge Discount!";
+        return notice;
     }
 
-    public void receiveMonthlyDiscount(){
-
+    public String cancelAirportLoungeDiscount(){
+        updateAirportLoungeInDatabase(false);
+        String notice = "Successfully opted out of Airport Lounge Discount";
+        return notice;
+    }
+    private void updateAirportLoungeInDatabase(boolean loudisc){
+        String updateQuery = "UPDATE Customer SET loungeDiscount = ? WHERE ID = ?";
+        jdbcTemplate.update(updateQuery, loudisc, getCustomerID());
     }
 
-    public void viewMembership(){
 
+    // COMPANION TICKET STUFF
+    public String addCompanionTicket(){
+        updateCompanionTicketInDatabase(true);
+        String notice = "Successfully signed up for companion ticket";
+        return notice;
+    }
+    public String removeCompanionTicket(){
+        updateCompanionTicketInDatabase(false);
+        String notice = "Successfully opted out of companion ticket";
+        return notice;
+    }
+    private void updateCompanionTicketInDatabase(boolean flag){
+        String updateQuery = "UPDATE Customer SET companionTicket = ? WHERE ID = ?";
+        jdbcTemplate.update(updateQuery, flag, getCustomerID());
     }
 
-    public void receiveMonthlyEmail(){
 
+    public String viewMembership(){
+        return "temp";
+        // working on it
     }
+
+    // MONTHLY EMAIL STUFF
+    public String receiveMonthlyEmail(){
+        updateMonthlyEmailsInDatabase(true);
+        String notice = "Successfully opted into monthly emails!";
+        return notice;
+    }
+    public String cancelReceiveMonthlyEmails() {
+        updateMonthlyEmailsInDatabase(false);
+        String notice = "Successfully opted out of monthly emails!";
+        return notice;
+    }
+
+    private void updateMonthlyEmailsInDatabase(boolean receiveMonthlyEmails) {
+        String updateQuery = "UPDATE Customer SET monthlyEmails = ? WHERE ID = ?";
+        jdbcTemplate.update(updateQuery, receiveMonthlyEmails, getCustomerID()); 
+    }
+
     
     public Membership getMembershipStatus() {
         return MembershipStatus;

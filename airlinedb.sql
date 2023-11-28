@@ -15,6 +15,11 @@ CREATE TABLE Customer (
     monthlyEmails BOOLEAN, 
     loungeDiscount BOOLEAN,
     Address VARCHAR(20)
+    -- different version of the constraints might work, didn't have time to test yet
+    --CHECK ((isMember = TRUE) OR (isMember = FALSE AND creditCard IS NULL)),
+    --CHECK ((isMember = TRUE) OR (isMember = FALSE AND companionTicket = FALSE AND monthlyEmails = FALSE AND loungeDiscount = FALSE))
+
+
     -- constraints to ensure that there are no issues of member being false but perks are true
 --     CONSTRAINT chk_creditCard
 --         CHECK ((isMember = TRUE) OR (isMember = FALSE AND creditCard IS NULL)),
@@ -33,7 +38,7 @@ CREATE TABLE Employee (
 DROP TABLE IF EXISTS Aircrafts;
 CREATE TABLE Aircrafts (
 	AircraftID INT PRIMARY KEY AUTO_INCREMENT,
-    AircraftName VARCHAR(10)
+    AircraftName VARCHAR(20)
 );
 
 DROP TABLE IF EXISTS Flights;
@@ -62,6 +67,16 @@ CREATE TABLE Seats (
     FOREIGN KEY (Plane) REFERENCES Aircrafts(AircraftID) ON DELETE CASCADE 	ON UPDATE CASCADE
 );
 
+DROP TABLE IF EXISTS Transactions;
+CREATE TABLE Transactions (
+	ID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT,
+    FlightID INT,
+    SeatCode VARCHAR(3),
+    FOREIGN KEY (CustomerID) REFERENCES Customer(ID),
+    FOREIGN KEY (FlightID) REFERENCES Flights(FlightID)
+);
+
 INSERT INTO Customer (FirstName, LastName, Email, isMember, creditCard, companionTicket, monthlyEmails, loungeDiscount, Address)
 VALUES
     ('John', 'Doe', 'john.doe@email.com', FALSE, NULL, FALSE, FALSE, FALSE, '123 Street'),
@@ -76,13 +91,32 @@ VALUES
 INSERT INTO Aircrafts (AircraftName)
 	VALUES
     ('Boeing747'),
-    ('Boeing727');
+    ('Boeing727'),
+    ('AirbusA320'),
+    ('AirbusA330'),
+    ('EmbraerE190'),
+    ('Boeing777'),
+    ('AirbusA380'),
+    ('BombardierCRJ700'),
+    ('Boeing737'),
+    ('EmbraerE145'),
+    ('AirbusA350');
 
 INSERT INTO Flights (DepartureCity, ArrivalCity, DepartureAirport, ArrivalAirport, DepartureTime, ArrivalTime, AircraftID)
 VALUES
     ('New York', 'Los Angeles', 'JFK', 'LAX', '2023-11-19 08:00:00', '2023-11-19 12:00:00', 1),
-    ('Los Angeles', 'New York', 'LAX', 'JFK', '2023-11-20 14:00:00', '2023-11-20 18:00:00', 2);
-    
+    ('Los Angeles', 'New York', 'LAX', 'JFK', '2023-11-20 14:00:00', '2023-11-20 18:00:00', 2),
+    ('Chicago', 'Miami', 'ORD', 'MIA', '2023-11-21 10:00:00', '2023-11-21 14:00:00', 3),
+    ('Miami', 'Chicago', 'MIA', 'ORD', '2023-11-22 16:00:00', '2023-11-22 20:00:00', 4),
+    ('Seattle', 'San Francisco', 'SEA', 'SFO', '2023-11-23 12:00:00', '2023-11-23 16:00:00', 5),
+    ('Denver', 'Dallas', 'DEN', 'DFW', '2023-11-24 09:00:00', '2023-11-24 13:00:00', 6),
+    ('Dallas', 'Denver', 'DFW', 'DEN', '2023-11-25 15:00:00', '2023-11-25 19:00:00', 7),
+    ('Atlanta', 'Orlando', 'ATL', 'MCO', '2023-11-26 11:00:00', '2023-11-26 15:00:00', 8),
+    ('Orlando', 'Atlanta', 'MCO', 'ATL', '2023-11-27 17:00:00', '2023-11-27 21:00:00', 9),
+    -- Add more flights as needed
+    ('Houston', 'Phoenix', 'IAH', 'PHX', '2023-11-28 13:00:00', '2023-11-28 17:00:00', 10),
+    ('Phoenix', 'Houston', 'PHX', 'IAH', '2023-11-29 19:00:00', '2023-11-29 23:00:00', 11);
+
 INSERT INTO Seats (SeatsID, Availability, SeatType, SeatCode, Plane)
 	VALUES
 (1, true, 'Business', 'A1', 1),
@@ -129,3 +163,8 @@ INSERT INTO Seats (SeatsID, Availability, SeatType, SeatCode, Plane)
 (1, true, 'Ordinary', 'D9', 1),
 (1, true, 'Ordinary', 'D10', 1);
 -- Add more rows as needed...
+
+INSERT INTO Transactions (CustomerID, FlightID, SeatCode)
+VALUES
+	(1, 1, 'A1'),
+    (2, 1, 'A2');

@@ -38,10 +38,19 @@ public class Flight {
     // @Transient
     // private Customer[] Passengers;
     
-    public Flight(){
-        System.out.println("hello");
+    public Flight() {
     }
-    
+
+    public Flight(String departureAirport, String arrivalAirport, Date dateOfArrival, Date dateOfDeparture,
+            String departureCity, String arrivalCity) {
+        this.departureAirport = departureAirport;
+        this.arrivalAirport = arrivalAirport;
+        this.dateOfArrival = dateOfArrival;
+        this.dateOfDeparture = dateOfDeparture;
+        this.departureCity = departureCity;
+        this.arrivalCity = arrivalCity;
+    }
+
     public int getFlightID() {
         return flightID;
     }

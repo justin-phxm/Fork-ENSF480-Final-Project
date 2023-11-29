@@ -125,7 +125,8 @@ INSERT INTO Aircrafts (AircraftName)
     ('BombardierCRJ700'),
     ('Boeing737'),
     ('EmbraerE145'),
-    ('AirbusA350');
+    ('AirbusA350'),
+    ('AirbusZ150');
 
 INSERT INTO Flights (DepartureCity, ArrivalCity, DepartureAirport, ArrivalAirport, DepartureTime, ArrivalTime, AircraftID)
 VALUES
@@ -140,7 +141,8 @@ VALUES
     ('Orlando', 'Atlanta', 'MCO', 'ATL', '2023-11-27 17:00:00', '2023-11-27 21:00:00', 9),
     -- Add more flights as needed
     ('Houston', 'Phoenix', 'IAH', 'PHX', '2023-11-28 13:00:00', '2023-11-28 17:00:00', 10),
-    ('Phoenix', 'Houston', 'PHX', 'IAH', '2023-11-29 19:00:00', '2023-11-29 23:00:00', 11);
+    ('Phoenix', 'Houston', 'PHX', 'IAH', '2023-11-29 19:00:00', '2023-11-29 23:00:00', 11),
+    ('New York', 'Houston', 'JFK', 'IAH', '2023-11-19 08:00:00', '2023-11-19 12:00:00', 12);
 
 INSERT INTO Seats (SeatsID, Availability, SeatType, SeatCode, Plane)
 	VALUES

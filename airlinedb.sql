@@ -17,7 +17,7 @@ CREATE TABLE Customer (
     LastName VARCHAR(50),
     Email VARCHAR(100),
     isMember BOOLEAN,
-    creditCard VARCHAR(12),
+    creditCard VARCHAR(16),
     companionTicket BOOLEAN,
     monthlyEmails BOOLEAN, 
     loungeDiscount BOOLEAN,
@@ -108,7 +108,7 @@ VALUES
 INSERT INTO Customer (FirstName, LastName, Email, isMember, creditCard, companionTicket, monthlyEmails, loungeDiscount, Address)
 VALUES
     ('John', 'Doe', 'john.doe@email.com', FALSE, NULL, FALSE, FALSE, FALSE, '123 Street'),
-    ('Jane', 'Smith', 'jane.smith@email.com', TRUE, 123456789012, TRUE, FALSE, TRUE, 'Sesame Street');
+    ('Jane', 'Smith', 'jane.smith@email.com', TRUE, '1234567890123456', TRUE, FALSE, TRUE, 'Sesame Street');
     
 INSERT INTO Employee (FirstName, LastName, EmployeeRole, Email)
 VALUES

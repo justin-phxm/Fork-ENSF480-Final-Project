@@ -195,6 +195,38 @@ public class Customer extends User{
         return customerID;
     }
 
+    public void setCompanionTicket(boolean flag){
+        this.companionTicket = flag;
+    }
+
+    public boolean getCompanionTicket(){
+        return companionTicket;
+    }
+
+    public void setMonthlyEmails(boolean flag){
+        this.monthlyEmails = flag;
+    }
+
+    public boolean getMonthlyEmails(){
+        return monthlyEmails;
+    }
+
+    public void setLoungeDiscount(boolean flag){
+        this.loungeDiscount = flag;
+    }
+
+    public boolean getLoungeDiscount(){
+        return loungeDiscount;
+    }
+
+    public void setIsMember(boolean flag){
+        this.isMember = flag;
+    }
+
+    public boolean getIsMember(){
+        return isMember;
+    }
+
     public void setCustomerID(int cID) {
         customerID = cID;
     }

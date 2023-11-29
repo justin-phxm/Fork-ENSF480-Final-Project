@@ -1,19 +1,29 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Searchbar from "@/app/components/Searchbar";
 import FlightTable from "./FlightTable";
-import flightInterface from "@/app/interfaces/flight";
-import { flight, flight2 } from "@/app/fakeData/flight";
+import flight2Interface from "@/app/interfaces/flight2";
+import { fakeFlight, fakeFlight2 } from "@/app/fakeData/flight2";
+import { AppStateContext } from "@/app/components/FlightContext";
 export default function FlightSelectionControl() {
-  const currentDate = new Date();
-  const [flights, setFlights] = React.useState([flight, flight2]);
+  const flightProvider = useContext(AppStateContext);
+  const { appState, setAppState, chosenFlight, setChosenFlight } =
+    flightProvider!;
+  const [flights, setFlights] = React.useState(
+    flightProvider?.appState.flights
+  );
   useEffect(() => {
-    // fetch("/api/flight")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setFlights(data);
-    //   });
+    if (appState?.flights?.length === 0) {
+      fetch("/api/flight")
+        .then((res) => res.json())
+        .then((data) => {
+          setAppState({ flights: data });
+        });
+    }
   }, []);
+  useEffect(() => {
+    setFlights(appState.flights);
+  }, [appState]);
 
   return (
     <div className="mx-auto max-w-4xl bg-white rounded p-4">

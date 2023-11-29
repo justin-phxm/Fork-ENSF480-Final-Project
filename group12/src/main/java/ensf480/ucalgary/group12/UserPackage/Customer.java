@@ -50,8 +50,10 @@ public class Customer extends User{
 
     @Transient
     Membership MembershipStatus;
-    @Transient
-    Transaction[] CustomerTransactions;
+
+    // I believe transaction will now handle this stuff
+    //@Transient
+    //Transaction[] CustomerTransactions;
 
     @Transient
     BrowseStrategy browseStrategy = new CustomerPermission();
@@ -62,29 +64,34 @@ public class Customer extends User{
     public Customer(){
     }
 
-    public Customer(String firstName, String lastName, boolean isMember, String address, Membership MembershipStatus, Transaction[]CustomerTransactions){
+    public Customer(String firstName, String lastName, boolean isMember, String address, Membership MembershipStatus){
         this.firstName = firstName;
         this.lastName = lastName;
         this.isMember = isMember;
         this.address = address;
         this.MembershipStatus = MembershipStatus;
-        this.CustomerTransactions = CustomerTransactions;
+        //this.CustomerTransactions = CustomerTransactions;
         // may need adjusting for what has to be initialized
     }
 
-    public void createTransaction(){
 
-    }
+    // handled by transaction now
+//    public void createTransaction(){
+
+//    }
     
-    public void cancelTransaction(){
+//    public void cancelTransaction(){
 
-    }
+//    }
 
-    public void modifyTranscation(){
+//    public void modifyTranscation(){
 
-    }
+//    }
 
 
+
+// OLD IMPLEMENTATION OF MEMBER, NO LONGER USED SWITCHED TO
+// SERVICE
 /* 
     // MEMBER STUFF
     // supposed to update the isMember for that customer to be true/false
@@ -212,13 +219,14 @@ public class Customer extends User{
         MembershipStatus = membershipStatus;
     }
 
-    public Transaction[] getCustomerTransactions() {
-        return CustomerTransactions;
-    }
+    // HANDLED BY TRANSACTION NOW I BELIEVE
+//    public Transaction[] getCustomerTransactions() {
+    //    return CustomerTransactions;
+//    }
 
-    public void setCustomerTransactions(Transaction[] customerTransactions) {
-        CustomerTransactions = customerTransactions;
-    }
+//    public void setCustomerTransactions(Transaction[] customerTransactions) {
+    //    CustomerTransactions = customerTransactions;
+//    }
 
     public int getCustomerID() {
         return customerID;

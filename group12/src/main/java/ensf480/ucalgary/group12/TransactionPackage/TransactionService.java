@@ -23,8 +23,8 @@ public class TransactionService {
         return repo.findByID(id);
     }
 
-    public List<Transaction> getTransactionsByCustomerID(int cid){
-        return repo.findByCustomerID(cid);
+    public List<Transaction> getTransactionsByEmail(String e){
+        return repo.findByEmail(e);
     }
 
     public Transaction saveTransaction(Transaction tc){

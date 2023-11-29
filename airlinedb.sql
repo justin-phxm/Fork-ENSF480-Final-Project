@@ -45,8 +45,6 @@ CREATE TABLE Admin (
     FOREIGN KEY (Email) REFERENCES User(Email) ON DELETE CASCADE 	ON UPDATE CASCADE
 );
 
-
-
 DROP TABLE IF EXISTS Aircrafts;
 CREATE TABLE Aircrafts (
 	AircraftID INT PRIMARY KEY AUTO_INCREMENT,
@@ -82,11 +80,10 @@ CREATE TABLE Seats (
 DROP TABLE IF EXISTS Transactions;
 CREATE TABLE Transactions (
 	ID INT PRIMARY KEY AUTO_INCREMENT,
-    CustomerID INT,
+    Email VARCHAR(100),
     FlightID INT,
     SeatCode VARCHAR(3),
     Aircraft INT,
-    FOREIGN KEY (CustomerID) REFERENCES Customer(ID),
     FOREIGN KEY (FlightID) REFERENCES Flights(FlightID)
 );
 
@@ -254,7 +251,7 @@ INSERT INTO Seats (SeatsID, Availability, SeatType, SeatCode, Plane)
 (11, true, 'Business', 'A3', 1),
 (11, true, 'Business', 'A4', 1);
 
-INSERT INTO Transactions (CustomerID, FlightID, SeatCode, Aircraft)
+INSERT INTO Transactions (Email, FlightID, SeatCode, Aircraft)
 VALUES
-	(1, 1, 'A1', 1),
-    (2, 1, 'A2', 1);
+	("john.doe@email.com", 1, 'A1', 1),
+    ("jane.smith@email.com", 1, 'A2', 1);

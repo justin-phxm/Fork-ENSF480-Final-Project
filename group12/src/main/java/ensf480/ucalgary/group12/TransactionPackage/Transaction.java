@@ -13,8 +13,8 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int iD;
-    @Column(name = "CustomerID")
-    private int customerID;
+    @Column(name = "Email")
+    private String email;
     @Column(name = "FlightID")
     private int flightID;
     @Column(name = "SeatCode")
@@ -45,12 +45,12 @@ public class Transaction {
         return total;
     }
 
-    public int getCustomerID() {
-        return customerID;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
+    public void setEmail(String e) {
+        this.email = e;
     }
 
     public int getFlightID() {

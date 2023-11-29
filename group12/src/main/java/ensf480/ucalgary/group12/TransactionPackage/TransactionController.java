@@ -31,9 +31,9 @@ public class TransactionController {
         this.fservice = sss;
     }
 
-    @GetMapping("/getTransactionsByC/{id}")
-    public List<Transaction> getTransactionsByC(@PathVariable("id") int cid) {
-        return service.getTransactionsByCustomerID(cid);
+    @GetMapping("/getTransactionsByE/{id}")
+    public List<Transaction> getTransactionsByE(@PathVariable("id") String e) {
+        return service.getTransactionsByEmail(e);
     }
 
     @PostMapping("/addTransaction/{airid}/{insure}/{stype}")
@@ -61,9 +61,7 @@ public class TransactionController {
     public void deleteTransaction(@PathVariable int id){
         Transaction t = service.getTransactionByID(id);
         Seat seat = sservice.findSeatByCodeAndID(t.getSeatCode(), t.getPlane());
-        seat.setAvailability(true);
-        System.out.println(t.getiD());
-        System.out.println(t.getSeatCode());        
+        seat.setAvailability(true);  
         sservice.updateSeat(seat);
         service.cancelTicket(id);
     }

@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Integer>{
-    public List<Transaction> findByCustomerID(int cid);
+    public List<Transaction> findByEmail(String e);
     public Transaction findByID(int id);
 }

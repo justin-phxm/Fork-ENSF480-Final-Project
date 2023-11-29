@@ -7,8 +7,7 @@ public class AirlineAgent extends Customer {
     
     private BrowseStrategy browseStyle;
 
-    public AirlineAgent(JdbcTemplate jdbcTemplate) {
-        super(jdbcTemplate);
+    public AirlineAgent() {
     }
 
     public void performBrowseStrategy(){

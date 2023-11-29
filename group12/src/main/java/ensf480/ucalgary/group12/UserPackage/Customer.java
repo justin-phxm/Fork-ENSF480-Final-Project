@@ -25,14 +25,15 @@ public class Customer extends User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CustomerID")
-    private int CustomerID;
+    private int customerID;
 
     @Column(name = "FirstName")
     private String firstName;
     @Column(name = "LastName")
     private String lastName;
-    @OneToOne
-    @JoinColumn(name = "Email")
+    // @OneToOne
+    // @JoinColumn(name = "Email")
+    @Column(name = "Email")
     private String email;
     @Column(name = "isMember")
     private boolean isMember;
@@ -45,7 +46,7 @@ public class Customer extends User{
     @Column(name = "loungeDiscount")
     private boolean loungeDiscount;
     @Column(name = "Address")
-    private String Address;
+    private String address;
 
     @Transient
     Membership MembershipStatus;
@@ -61,11 +62,11 @@ public class Customer extends User{
     public Customer(){
     }
 
-    public Customer(String firstName, String lastName, boolean isMember, String Address, Membership MembershipStatus, Transaction[]CustomerTransactions){
+    public Customer(String firstName, String lastName, boolean isMember, String address, Membership MembershipStatus, Transaction[]CustomerTransactions){
         this.firstName = firstName;
         this.lastName = lastName;
         this.isMember = isMember;
-        this.Address = Address;
+        this.address = address;
         this.MembershipStatus = MembershipStatus;
         this.CustomerTransactions = CustomerTransactions;
         // may need adjusting for what has to be initialized
@@ -191,11 +192,11 @@ public class Customer extends User{
     }
 
     public int getCustomerID() {
-        return CustomerID;
+        return customerID;
     }
 
-    public void setCustomerID(int customerID) {
-        CustomerID = customerID;
+    public void setCustomerID(int cID) {
+        customerID = cID;
     }
 
     public String getFirstName() {

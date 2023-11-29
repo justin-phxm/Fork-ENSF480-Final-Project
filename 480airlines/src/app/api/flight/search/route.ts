@@ -40,19 +40,37 @@ export async function GET(req: Request) {
   const urlQuery = url.searchParams;
   // console.log(urlQuery);
 
-  const origin = urlQuery.get("origin") ?? "null";
-  const destination = urlQuery.get("destination") ?? "null";
-  const depart = urlQuery.get("depart") ?? "null";
+  let origin = urlQuery.get("origin") ?? "null";
+  if (!origin) {
+    origin = "null";
+  }
+  let destination = urlQuery.get("destination");
+  if (!destination) {
+    destination = "null";
+  }
+
+  let depart = urlQuery.get("depart");
+  if (!depart) {
+    depart = "null";
+  }
 
   console.log(
     `Origin: ${origin}, Destination: ${destination}, Depart: ${depart}`
   );
 
-  const response = await getFlightsArrivalAirportCode(origin || "");
+  let response = await getFlightsArrivalAirportCode(origin);
   console.log(response);
-  const response2 = await getFlightsDestinationAirportCode(destination || "");
+  if (response.length === 0) {
+    response = await getFlightsArrivalCity(origin);
+    console.log(response);
+  }
+  let response2 = await getFlightsDestinationAirportCode(destination);
   console.log(response2);
-  const response3 = await getFlightByDepartureDate(depart || "");
+  if (response2.length === 0) {
+    response2 = await getFlightsDestinationCity(destination);
+    console.log(response2);
+  }
+  const response3 = await getFlightByDepartureDate(depart);
   console.log(response3);
 
   return NextResponse.json({

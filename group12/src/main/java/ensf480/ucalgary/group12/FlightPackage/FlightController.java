@@ -27,22 +27,22 @@ public class FlightController {
     }
 
     @GetMapping("/getFlightArrive/{id}")
-    public Flight getFlightA(@PathVariable("id") String id){
+    public List<Flight> getFlightA(@PathVariable("id") String id){
         return service.getFlightA(id);
     }
 
     @GetMapping("/getFlightDest/{id}")
-    public Flight getFlightD(@PathVariable("id") String id){
+    public List<Flight> getFlightD(@PathVariable("id") String id){
         return service.getFlightD(id);
     }
 
     @GetMapping("/getFlightArriveCode/{id}")
-    public Flight getFlightAC(@PathVariable("id") String id){
+    public List<Flight> getFlightAC(@PathVariable("id") String id){
         return service.getFlightAC(id);
     }
 
     @GetMapping("/getFlightDestCode/{id}")
-    public Flight getFlightDC(@PathVariable("id") String id){
+    public List<Flight> getFlightDC(@PathVariable("id") String id){
         return service.getFlightDC(id);
     }
 

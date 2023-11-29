@@ -21,6 +21,10 @@ public class FlightService {
         return repo.findAll();
     }
 
+    public Flight getFlightById(int id){
+        return repo.findByFlightID(id);
+    }
+
     public Flight getFlightA(String id){
         return repo.findByArrivalCity(id);
     }

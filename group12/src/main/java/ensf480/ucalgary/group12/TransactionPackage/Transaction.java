@@ -1,6 +1,7 @@
 package ensf480.ucalgary.group12.TransactionPackage;
 
 import jakarta.persistence.*;
+
 import java.util.List;
 
 import ensf480.ucalgary.group12.TransactionPackage.Ticket;
@@ -18,40 +19,30 @@ public class Transaction {
     private int flightID;
     @Column(name = "SeatCode")
     private String seatCode;
+    @Column(name = "Aircraft")
+    private int plane;
     @Transient
     private double price;
+    @Transient
+    private Ticket ticket = new Ticket();
 
     public Transaction(){
-        
-    }
-    
-    public String printReciept(){ 
-        // system.out.print for now can change if needed
-        // String ret = "Successfully purchased Ticket to " + transactionTicket.getDestination() + 
-        // "from " + transactionTicket.getOrigin() + "seat Number " + transactionTicket.getSeatNumber() 
-        // + "on flight number " + transactionTicket.getFlightNumber() + "for " + String.valueOf(getPrice());
-        // return ret; 
-        return "temp";
     }
 
-    public void calculateTotal(){
+    public double calculateTotal(int insure, int stype){
+        double total = 500;
+        if (stype == 2){
+            total *= 1.4;
+        }
+        else if (stype == 3){
+            total *= 1.9;
+        }
 
-    }
+        if (insure == 1){
+            total *= 1.15;
+        }
 
-    public String addInsurance(){
-        // placeholder of an added insurance cost of 15% of ticket price
-        setPrice(1.15 * price);
-        String ret = "Insurance added for an additional 15%";
-        return ret;
-        // System.out.println("Insurance added for an additional cost of 15%");
-    }
-
-    public void modifyTicket(){
-
-    }
-
-    public void cancelTicket(){
-        // cancel the ticket / flight 
+        return total;
     }
 
     public int getCustomerID() {
@@ -84,5 +75,29 @@ public class Transaction {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getiD() {
+        return iD;
+    }
+
+    public void setiD(int iD) {
+        this.iD = iD;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
+
+    public int getPlane() {
+        return plane;
+    }
+
+    public void setPlane(int plane) {
+        this.plane = plane;
     }
 }

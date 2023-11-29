@@ -24,7 +24,7 @@ public class Customer extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CustomerID")
+    @Column(name = "ID")
     private int customerID;
 
     @Column(name = "FirstName")

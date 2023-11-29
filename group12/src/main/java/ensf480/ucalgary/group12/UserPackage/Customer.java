@@ -174,6 +174,35 @@ public class Customer extends User{
     }
 
     */
+
+    public String viewMembership(){
+        String ret = "";
+        if(isMember == false){
+            ret = "Not a Member";
+            return ret;
+        }
+        if(companionTicket){
+            MembershipStatus = new FreeCompanionTicket(MembershipStatus);
+            ret += MembershipStatus.viewMembership();
+        }
+        if(loungeDiscount){
+            MembershipStatus = new AirportLoungeDiscount(MembershipStatus);
+            ret += MembershipStatus.viewMembership();
+        }
+        if(creditCardNum != null){
+            MembershipStatus = new CompanyCreditCard(MembershipStatus);
+            ret += MembershipStatus.viewMembership();
+        }
+        if(monthlyEmails){
+            MembershipStatus = new ReceiveMonthlyEmails(MembershipStatus);
+            ret += MembershipStatus.viewMembership();
+        }
+        if(!companionTicket && !loungeDiscount && !monthlyEmails && (creditCardNum == null)){
+            return "Basic Membership";
+        }
+
+        return ret;
+    }
     
     public Membership getMembershipStatus() {
         return MembershipStatus;

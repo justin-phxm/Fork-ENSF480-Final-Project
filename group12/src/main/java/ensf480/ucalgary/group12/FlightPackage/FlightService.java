@@ -25,19 +25,19 @@ public class FlightService {
         return repo.findByFlightID(id);
     }
 
-    public Flight getFlightA(String id){
+    public List<Flight> getFlightA(String id){
         return repo.findByArrivalCity(id);
     }
 
-    public Flight getFlightD(String id){
+    public List<Flight> getFlightD(String id){
         return repo.findByDepartureCity(id);
     }
 
-    public Flight getFlightAC(String id){
+    public List<Flight> getFlightAC(String id){
         return repo.findByArrivalAirport(id);
     }
 
-    public Flight getFlightDC(String id){
+    public List<Flight> getFlightDC(String id){
         return repo.findByDepartureAirport(id);
     }
     

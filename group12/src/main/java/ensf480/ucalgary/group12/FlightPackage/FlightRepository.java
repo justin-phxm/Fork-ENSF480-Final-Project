@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Integer> {
     public Flight findByFlightID(int id);
-    public Flight findByArrivalCity(String id);
-    public Flight findByArrivalAirport(String id);
-    public Flight findByDepartureCity(String id);
-    public Flight findByDepartureAirport(String id);
+    public List<Flight> findByArrivalCity(String id);
+    public List<Flight> findByArrivalAirport(String id);
+    public List<Flight> findByDepartureCity(String id);
+    public List<Flight> findByDepartureAirport(String id);
     public List<Flight> findByDateOfDepartureAfter(Date departureTime);
 }

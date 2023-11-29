@@ -43,6 +43,11 @@ public class TransactionController {
         Ticket curr = tc.getTicket();
         
         tc.setPrice(tc.calculateTotal(insure, stype));
+
+        if (!seat.getAvailability()){
+            return null;
+        }
+
         seat.setAvailability(false);
         sservice.updateSeat(seat);
         curr.setSeatNumber(tc.getSeatCode());

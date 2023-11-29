@@ -1,6 +1,20 @@
 import { NextResponse } from "next/server";
 const uri = "http://localhost:8080/flights";
 
+const getFlightsArrivalCity = async (originCity: string) => {
+  const response = await fetch(`${uri}/getFlightArrive/${originCity}`, {
+    method: "GET",
+  });
+  return response.json();
+};
+
+const getFlightsDestinationCity = async (destinationCity: string) => {
+  const response = await fetch(`${uri}/getFlightDest/${destinationCity}`, {
+    method: "GET",
+  });
+  return response.json();
+};
+
 const getFlightsArrivalAirportCode = async (origin: string) => {
   const response = await fetch(`${uri}/getFlightArriveCode/${origin}`, {
     method: "GET",
@@ -26,9 +40,9 @@ export async function GET(req: Request) {
   const urlQuery = url.searchParams;
   // console.log(urlQuery);
 
-  const origin = urlQuery.get("origin");
-  const destination = urlQuery.get("destination");
-  const depart = urlQuery.get("depart");
+  const origin = urlQuery.get("origin") ?? "null";
+  const destination = urlQuery.get("destination") ?? "null";
+  const depart = urlQuery.get("depart") ?? "null";
 
   console.log(
     `Origin: ${origin}, Destination: ${destination}, Depart: ${depart}`
@@ -41,17 +55,11 @@ export async function GET(req: Request) {
   const response3 = await getFlightByDepartureDate(depart || "");
   console.log(response3);
 
-  //   const response = await fetch("http://localhost:8080/flights/getFlights");
-  //   if (!response.ok) {
-  //     return NextResponse.error();
-  //   }
-  //   return response;
   return NextResponse.json({
     flightsArrivalAirport: response,
     flightsDestinationAirport: response2,
     flightsDepartureDate: response3,
   });
-  return NextResponse.error();
 }
 
 export async function POST(req: Request) {

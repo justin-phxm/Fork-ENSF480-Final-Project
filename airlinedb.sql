@@ -12,7 +12,7 @@ CREATE TABLE User (
 DROP TABLE IF EXISTS Customer;
 CREATE TABLE Customer (
     
-    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+    ID INT PRIMARY KEY AUTO_INCREMENT,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     Email VARCHAR(100),
@@ -85,6 +85,7 @@ CREATE TABLE Transactions (
     CustomerID INT,
     FlightID INT,
     SeatCode VARCHAR(3),
+    Aircraft INT,
     FOREIGN KEY (CustomerID) REFERENCES Customer(ID),
     FOREIGN KEY (FlightID) REFERENCES Flights(FlightID)
 );
@@ -191,7 +192,7 @@ INSERT INTO Seats (SeatsID, Availability, SeatType, SeatCode, Plane)
 (1, true, 'Ordinary', 'D10', 1);
 -- Add more rows as needed...
 
-INSERT INTO Transactions (CustomerID, FlightID, SeatCode)
+INSERT INTO Transactions (CustomerID, FlightID, SeatCode, Aircraft)
 VALUES
-	(1, 1, 'A1'),
-    (2, 1, 'A2');
+	(1, 1, 'A1', 1),
+    (2, 1, 'A2', 1);

@@ -85,7 +85,7 @@ CREATE TABLE Transactions (
     CustomerID INT,
     FlightID INT,
     SeatCode VARCHAR(3),
-    FOREIGN KEY (CustomerID) REFERENCES Customer(ID),
+    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
     FOREIGN KEY (FlightID) REFERENCES Flights(FlightID)
 );
 

@@ -1,1 +1,1 @@
-SELECT * from transactions
+SELECT * from flights

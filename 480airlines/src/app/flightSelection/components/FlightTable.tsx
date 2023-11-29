@@ -11,6 +11,7 @@ export default function FlightTable(props: { flights?: flightInterface[] }) {
         flights.map((flight, index) => (
           <FlightRow key={index} flight={flight} />
         ))}
+      {flights && flights.length === 0 && <div>No flights found</div>}
     </ul>
   );
 }

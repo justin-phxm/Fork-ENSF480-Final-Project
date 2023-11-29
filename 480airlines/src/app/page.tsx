@@ -17,7 +17,7 @@ export default function Home() {
       </div>
 
       {/* Explore more */}
-      <Link className="flex justify-center py-4" href="/destinations">
+      <Link className="flex justify-center py-4" href="/flightSelection">
         <div className="w-48 h-12 flex justify-center bg-indigo-500 rounded items-center">
           <div className="text-neutral-50 text-lg">Explore more stays</div>
         </div>

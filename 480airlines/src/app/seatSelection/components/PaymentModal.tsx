@@ -1,6 +1,7 @@
 "use client";
 import { AppStateContext } from "@/app/components/FlightContext";
 import seatsInterface from "@/app/interfaces/seats";
+import { useSession } from "next-auth/react";
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,6 +13,7 @@ export default function PaymentModal({
   onClose: () => void;
   selectedSeat?: seatsInterface;
 }) {
+  const { data: session } = useSession();
   const flightProvider = useContext(AppStateContext);
   const { chosenFlight } = flightProvider!;
   const [cardNumber, setCardNumber] = useState("");
@@ -27,18 +29,46 @@ export default function PaymentModal({
       setInsurance(1);
     }
   };
-
+  const createTransaction = async () => {
+    const response = await fetch("/api/transaction", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        customerID: session?.user?.email,
+        flightID: chosenFlight.flight?.flightID,
+        seatCode: selectedSeat?.seatCode,
+        plane: chosenFlight.flight?.plane.aircraftID,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    toast.success("Payment Successful!");
     console.log({
       // cardNumber,
       // expirationDate,
       // cvv,
       // ticketCancellation,
+      chosenFlight,
       selectedSeat,
       insurance,
     });
+    console.log({
+      customerID: session?.user?.email,
+      flightID: chosenFlight.flight?.flightID,
+      seatCode: selectedSeat?.seatCode,
+      plane: chosenFlight.flight?.plane.aircraftID,
+    });
+
+    toast.promise(createTransaction(), {
+      pending: "Creating Transaction...",
+      success: "Transaction Created!",
+      error: "Error Creating Transaction",
+    });
+
     onClose();
   };
   return (

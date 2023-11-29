@@ -37,9 +37,10 @@ export default function UserSelection(props: {
           <button
             className="w-36 px-5 py-3 rounded border bg-indigo-500 justify-start items-center gap-2 flex"
             onClick={() => setIsPaymentModalOpen(true)}
+            disabled={!selectedSeat}
           >
             <div className="text-white text-base font-normal">
-              Proceed to payment
+              {selectedSeat ? "Proceed to payment" : "Please select a seat"}
             </div>
           </button>
           {isPaymentModalOpen && (

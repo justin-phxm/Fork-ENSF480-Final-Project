@@ -3,33 +3,44 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function Searchbar() {
+  const searchFlights = async () => {
+    const uri = `/api/flight/search?origin=${origin}&destination=${destination}&depart=${departDateTime}`;
+    console.log(uri);
+    const response = await fetch(uri, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+  };
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    alert(
-      origin +
-        " " +
-        destination +
-        " " +
-        depart +
-        " " +
-        returnDate +
-        " " +
-        adults
-    );
-    console.log({
-      origin,
-      destination,
-      depart,
-      returnDate,
-      adults,
-    });
+    searchFlights();
   };
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
-  const [depart, setDepart] = useState("");
-  const [returnDate, setReturnDate] = useState("");
-  const [adults, setAdults] = useState(0);
-
+  const [depart, setDepart] = useState(new Date().toISOString().slice(0, 10));
+  const [departTime, setDepartTime] = useState(
+    new Date().toISOString().slice(11, 16)
+  );
+  const [departDateTime, setDepartDateTime] = useState(
+    depart + "T" + departTime + ":00"
+  );
+  // const [returnDate, setReturnDate] = useState("");
+  // const [adults, setAdults] = useState(0);
+  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newDate = event.target.value;
+    setDepart(newDate);
+  };
+  const handleTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newTime = event.target.value;
+    setDepartTime(newTime);
+  };
+  useEffect(() => {
+    setDepartDateTime(`${depart}T${departTime}:00`);
+  }, [depart, departTime]);
   return (
     <>
       <form onSubmit={handleSubmit} data-aos="fade-up" className="flex">
@@ -85,6 +96,7 @@ export default function Searchbar() {
             onChange={(e) => setDestination(e.target.value)}
           />
         </div>
+        {/* Departure date */}
         <div className="flex">
           <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             <svg
@@ -124,10 +136,54 @@ export default function Searchbar() {
             className="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Depart - Return"
             value={depart}
-            onChange={(e) => setDepart(e.target.value)}
+            onChange={handleDateChange}
           />
         </div>
+        {/* Departure Time */}
         <div className="flex">
+          <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+            <svg
+              width="32"
+              height="33"
+              viewBox="0 0 32 33"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 6.27778C10 5.84822 10.5858 5.5 11 5.5C11.4142 5.5 12 5.84822 12 6.27778V7.83333H10V6.27778Z"
+                fill="#6E7491"
+              />
+              <path
+                d="M20 6.27778C20 5.84822 20.5858 5.5 21 5.5C21.4142 5.5 22 5.84822 22 6.27778V7.83333H20V6.27778Z"
+                fill="#6E7491"
+              />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M10 7.83333H7.75C7.33579 7.83333 7 8.18156 7 8.61111V25.7222C7 26.1518 7.33579 26.5 7.75 26.5H24.25C24.6642 26.5 25 26.1518 25 25.7222V8.61111C25 8.18156 24.6642 7.83333 24.25 7.83333H22H20H12H10ZM23.5 12.5H8.5V24.9444H23.5V12.5Z"
+                fill="#6E7491"
+              />
+              <path
+                d="M10 16C10 15.1716 10.6716 14.5 11.5 14.5C12.3284 14.5 13 15.1716 13 16C13 16.8284 12.3284 17.5 11.5 17.5C10.6716 17.5 10 16.8284 10 16Z"
+                fill="#6E7491"
+              />
+              <path
+                d="M22 19C22 18.1716 21.3284 17.5 20.5 17.5C19.6716 17.5 19 18.1716 19 19C19 19.8284 19.6716 20.5 20.5 20.5C21.3284 20.5 22 19.8284 22 19Z"
+                fill="#6E7491"
+              />
+            </svg>
+          </span>
+          <input
+            type="time"
+            id="website-admin"
+            className="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Depart - time"
+            value={departTime}
+            onChange={handleTimeChange}
+          />
+        </div>
+        {/* Adults */}
+        {/* <div className="flex">
           <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             <svg
               width="32"
@@ -152,7 +208,8 @@ export default function Searchbar() {
             value={adults}
             onChange={(e) => setAdults(parseInt(e.target.value))}
           />
-        </div>
+        </div> */}
+        {/* Submit */}
         <button className="w-24 h-12 px-5 py-3 hover:opacity-70 bg-indigo-500 rounded justify-start items-center gap-2 inline-flex">
           <div className="text-neutral-50 text-lg">Search</div>
         </button>

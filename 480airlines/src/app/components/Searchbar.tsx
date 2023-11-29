@@ -1,9 +1,26 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React, { useState, useEffect, useContext } from "react";
+import { useRouter } from "next/navigation";
+import { AppStateContext } from "./FlightContext";
+import flight2Interface from "../interfaces/flight2";
 
 export default function Searchbar() {
+  const flightProvider = useContext(AppStateContext);
+  const { appState, setAppState } = flightProvider!;
+  const router = useRouter();
+  function removeDuplicateFlights(flights: flight2Interface[]) {
+    const uniqueFlights = [];
+    const seenFlightIDs = new Set();
+
+    for (const flight of flights) {
+      if (!seenFlightIDs.has(flight.flightID)) {
+        uniqueFlights.push(flight);
+        seenFlightIDs.add(flight.flightID);
+      }
+    }
+
+    return uniqueFlights;
+  }
   const searchFlights = async () => {
     const uri = `/api/flight/search?origin=${origin}&destination=${destination}&depart=${departDateTime}`;
     console.log(uri);
@@ -15,6 +32,20 @@ export default function Searchbar() {
     });
     const data = await response.json();
     console.log(data);
+    const flightsArrivalAirport: flight2Interface[] =
+      data.flightsArrivalAirport;
+    const flightsDestinationAirport: flight2Interface[] =
+      data.flightsDestinationAirport;
+    const flightsDepartureDate: flight2Interface[] = data.flightsDepartureDate;
+    const flights: flight2Interface[] = [
+      ...flightsArrivalAirport,
+      ...flightsDestinationAirport,
+      ...flightsDepartureDate,
+    ];
+    const uniqueFlights = removeDuplicateFlights(flights);
+    console.log(uniqueFlights);
+    setAppState({ flights: uniqueFlights });
+    router.push("/flightSelection");
   };
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -213,11 +244,14 @@ export default function Searchbar() {
           />
         </div> */}
         {/* Submit */}
-        <Link href="/flightSelection">
-          <button className="w-24 h-12 px-5 py-3 hover:opacity-70 bg-indigo-500 rounded justify-start items-center gap-2 inline-flex">
-            <div className="text-neutral-50 text-lg">Search</div>
-          </button>
-        </Link>
+        {/* <Link type="submit" href="/flightSelection"> */}
+        <button
+          type="submit"
+          className="w-24 h-12 px-5 py-3 hover:opacity-70 bg-indigo-500 rounded justify-start items-center gap-2 inline-flex"
+        >
+          <div className="text-neutral-50 text-lg">Search</div>
+        </button>
+        {/* </Link> */}
       </form>
     </>
   );

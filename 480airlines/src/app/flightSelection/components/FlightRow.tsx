@@ -33,9 +33,9 @@ export default function FlightRow(props: { flight?: flightInterface }) {
         onClick={() => setChosenFlight({ flight: flight })}
         href="/seatSelection"
       >
-        <li className="px-4 py-1 w-full cursor-pointer transition ease-in hover:-translate-y-1 duration-300 hover:bg-indigo-200 border-b-2 shadow border-violet-500 rounded gap-2 inline-flex">
+        <li className="px-4 py-1 inline-flex w-full cursor-pointer transition ease-in hover:-translate-y-1 duration-300 hover:bg-indigo-200 border-b-2 shadow border-violet-500 rounded gap-2">
           {/* Image */}
-          <div className="w-10 h-10 items-center flex">
+          <div className="w-10 h-10 my-auto items-center flex">
             <svg
               width="32"
               height="32"
@@ -52,22 +52,30 @@ export default function FlightRow(props: { flight?: flightInterface }) {
             </svg>
           </div>
           {/* Details */}
-          <section className="flex w-full px-4 py-2 flex-row justify-between ">
-            {/* Flight ID */}
-            <div className="text-slate-800 whitespace-nowrap">
-              ID:{flight && flight.flightID}
+          <div className="flex w-full flex-col text-slate-800 whitespace-nowrap">
+            <section className="flex w-full px-4 py-2 flex-row justify-between rounded-full bg-indigo-300 ">
+              {/* Flight ID */}
+              <div className="text-slate-800 whitespace-nowrap">
+                ID:{flight && flight.flightID}
+              </div>
+              {/* Flight Duration */}
+              <div className="text-slate-800 whitespace-nowrap">
+                Duration: {flightDurationHours}h {flightDurationMinutes}m
+              </div>
+              {/* Local Flight Time */}
+              <div className=" text-slate-800 whitespace-nowrap">
+                {departureTime} -{arrivalTime}
+              </div>
+              {/* Price */}
+              <div className=" text-slate-800">
+                ${flight && flight.flightID}
+              </div>
+            </section>
+            <div className="flex flex-row gap-2 justify-between">
+              <div className="">Origin City: {flight?.departureCity}</div>
+              <div className="">Destination: {flight?.arrivalCity}</div>
             </div>
-            {/* Flight Duration */}
-            <div className="text-slate-800 whitespace-nowrap">
-              Duration: {flightDurationHours}h {flightDurationMinutes}m
-            </div>
-            {/* Local Flight Time */}
-            <div className=" text-slate-800 whitespace-nowrap">
-              {departureTime} -{arrivalTime}
-            </div>
-            {/* Price */}
-            <div className=" text-slate-800">${flight && flight.flightID}</div>
-          </section>
+          </div>
         </li>
       </Link>
     </>

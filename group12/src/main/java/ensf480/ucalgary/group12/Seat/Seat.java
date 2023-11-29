@@ -18,19 +18,19 @@ public class Seat {
     @Column(name = "SeatType")
     private String seatType;
     @Column(name = "SeatCode")
-    private String seatNumber;
+    private String seatCode;
     @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name = "AircraftID")
+    @JoinColumn(name = "Plane")
     private Aircraft aircraft;
     
     public Seat() {
     }
 
-    public Seat(int seatsID, boolean availability, String seatType, String seatNumber) {
+    public Seat(int seatsID, boolean availability, String seatType, String seatCode) {
         this.seatsID = seatsID;
         this.availability = availability;
         this.seatType = seatType;
-        this.seatNumber = seatNumber;
+        this.seatCode = seatCode;
     }
 
     public void setAvailability(boolean val){
@@ -41,12 +41,12 @@ public class Seat {
         return this.availability;
     }
 
-    public String getSeatNumber() {
-        return seatNumber;
+    public String getseatCode() {
+        return seatCode;
     }
 
-    public void setSeatNumber(String sn) {
-        seatNumber = sn;
+    public void setseatCode(String sn) {
+        seatCode = sn;
     }
 
     public String getSeatType() {

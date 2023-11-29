@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Integer> {
-
+    public Flight findByFlightID(int id);
     public Flight findByArrivalCity(String id);
     public Flight findByArrivalAirport(String id);
     public Flight findByDepartureCity(String id);

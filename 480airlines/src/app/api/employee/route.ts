@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   const response = await fetch("http://localhost:8080/employee/getEmployee");
+  if (!response.ok) {
+    return NextResponse.error();
+  }
   return response;
 }
 
@@ -24,8 +27,8 @@ export async function DELETE(req: Request) {
   });
   const responseText = await response.text();
   // console.log(responseText);
-  return NextResponse.json(
-    { message: responseText }
-    // { status: 200 }
-  );
+  if (!response.ok) {
+    return NextResponse.error();
+  }
+  return NextResponse.json({ message: responseText });
 }

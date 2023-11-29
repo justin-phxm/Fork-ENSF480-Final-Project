@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   const response = await fetch("http://localhost:8080/flights/getFlights");
+  if (!response.ok) {
+    return NextResponse.error();
+  }
   return response;
 }
 
@@ -15,6 +18,9 @@ export async function POST(req: Request) {
     },
     body: JSON.stringify(body),
   });
+  if (!response.ok) {
+    return NextResponse.error();
+  }
   return response;
 }
 
@@ -31,5 +37,8 @@ export async function DELETE(req: Request) {
     body: JSON.stringify(body),
   });
   const responseText = await response.text();
+  if (!response.ok) {
+    return NextResponse.error();
+  }
   return NextResponse.json({ message: responseText });
 }

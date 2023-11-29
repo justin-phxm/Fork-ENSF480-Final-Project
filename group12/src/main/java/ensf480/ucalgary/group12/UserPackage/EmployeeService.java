@@ -1,0 +1,21 @@
+package ensf480.ucalgary.group12.UserPackage;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmployeeService {
+    private final EmployeeRepository repo;
+
+    @Autowired
+    EmployeeService(EmployeeRepository repo){
+        this.repo = repo;
+    }
+
+    public List<Employee> getAllEmployees(){
+        return repo.findAll();
+    }
+
+}

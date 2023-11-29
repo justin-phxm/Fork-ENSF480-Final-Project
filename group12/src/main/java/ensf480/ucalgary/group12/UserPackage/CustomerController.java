@@ -28,11 +28,17 @@ public class CustomerController {
         return service.getCustomer(id);
     }
 
+    // attempted to set up catching so that when member is set to false, it takes
+    // away all of the perks. each of the perks
+    // also tried to make them first check that isMember is true before adding them
     @PutMapping("/updateMemberStatus/{id}")
     public void updateMemberStatus(@PathVariable("id") int id, @RequestParam boolean newStatus) {
         service.updateMemberStatus(id, newStatus);
     }
 
+    // note that atm updateCreditCard is randomly generating the card num. 
+    // thus, delete is used for getting rid of it and update is really more like 
+    // "add it in"
     @PutMapping("/updateCreditCard/{id}")
     public void updateCreditCard(@PathVariable("id") int id) {
         service.updateCreditCardIfMember(id);

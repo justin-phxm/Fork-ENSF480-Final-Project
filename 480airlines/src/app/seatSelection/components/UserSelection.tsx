@@ -3,8 +3,11 @@ import flightInterface from "@/app/interfaces/flight2";
 import React, { useState } from "react";
 import PaymentModal from "./PaymentModal";
 import { useSession } from "next-auth/react";
+import seatsInterface from "@/app/interfaces/seats";
 
-export default function UserSelection(props: { selectedSeat: string }) {
+export default function UserSelection(props: {
+  selectedSeat?: seatsInterface;
+}) {
   const { selectedSeat } = props;
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const { data: session } = useSession();
@@ -24,11 +27,9 @@ export default function UserSelection(props: { selectedSeat: string }) {
             </div>
           </div>
           <div className="grow shrink basis-0 p-2 flex-col justify-start items-start gap-1 inline-flex">
-            <div className="text-slate-400 text-sm font-normal">
-              Seat number
-            </div>
+            <div className="text-slate-400 text-sm font-normal">Seat code</div>
             <div className="text-slate-500 text-lg font-semibold">
-              {selectedSeat}
+              {selectedSeat?.seatCode}
             </div>
           </div>
         </div>
@@ -42,7 +43,10 @@ export default function UserSelection(props: { selectedSeat: string }) {
             </div>
           </button>
           {isPaymentModalOpen && (
-            <PaymentModal onClose={() => setIsPaymentModalOpen(false)} />
+            <PaymentModal
+              selectedSeat={selectedSeat}
+              onClose={() => setIsPaymentModalOpen(false)}
+            />
           )}
         </div>
       </div>

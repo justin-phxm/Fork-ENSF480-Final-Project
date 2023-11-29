@@ -1,28 +1,35 @@
+import seatsInterface from "@/app/interfaces/seats";
 import React from "react";
 
 export default function SeatOrdinary(props: {
-  availability: boolean;
-  setSelectedSeat: (seatCode: string) => void;
-  seatCode: string;
-  selectedSeat: string;
+  seat?: seatsInterface;
+  // availability: boolean;
+  setSelectedSeat: (chosenSeat: seatsInterface) => void;
+  // seatCode: string;
+  selectedSeat?: seatsInterface;
 }) {
-  const { availability, seatCode, setSelectedSeat, selectedSeat } = props;
+  const {
+    // availability, seatCode,
+    setSelectedSeat,
+    selectedSeat,
+    seat,
+  } = props;
   const seatColor =
-    selectedSeat === seatCode
+    selectedSeat?.seatCode === seat?.seatCode
       ? "from-indigo-300 to-indigo-500"
-      : availability
+      : seat?.availability
       ? "from-emerald-300 to-teal-500"
       : "from-violet-100 to-violet-100";
   const handleClick = () => {
-    if (availability) {
-      setSelectedSeat(seatCode);
+    if (seat?.availability) {
+      setSelectedSeat(seat);
     }
   };
   return (
     <div
       onClick={handleClick}
       className={`w-7 h-10 ${
-        availability && "cursor-pointer"
+        seat?.availability && "cursor-pointer"
       } flex-col justify-center items-center inline-flex`}
     >
       <div

@@ -1,9 +1,10 @@
 import React from "react";
 import Seat from "./Seat";
+import seatsInterface from "@/app/interfaces/seats";
 export default function Row(props: {
-  seats: boolean[];
-  setSelectedSeat: (seatCode: string) => void;
-  selectedSeat: string;
+  seats: seatsInterface[];
+  setSelectedSeat: (chosenSeat: seatsInterface) => void;
+  selectedSeat?: seatsInterface;
 }) {
   const { seats, setSelectedSeat, selectedSeat } = props;
 
@@ -27,9 +28,10 @@ export default function Row(props: {
             )
             .map((seat, index) => (
               <Seat
-                availability={seat}
+                seat={seat}
+                // availability={seat.availability}
                 key={index}
-                seatCode={`Business ${rowIndex + 1} - A${index}`}
+                // seatCode={seat.seatCode}
                 setSelectedSeat={setSelectedSeat}
                 selectedSeat={selectedSeat}
               />
@@ -50,9 +52,10 @@ export default function Row(props: {
             )
             .map((seat, index) => (
               <Seat
-                availability={seat}
+                seat={seat}
+                // availability={seat.availability}
                 key={index}
-                seatCode={`Business ${rowIndex + 1} - B${index}`}
+                // seatCode={seat.seatCode}
                 setSelectedSeat={setSelectedSeat}
                 selectedSeat={selectedSeat}
               />

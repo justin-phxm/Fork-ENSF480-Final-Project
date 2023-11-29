@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, createContext } from "react";
 import Row from "./Row";
 import Image from "next/image";
 import RowComfort from "./RowComfort";
@@ -13,11 +13,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import { flight } from "@/app/fakeData/flight";
 import { AppStateContext } from "@/app/components/FlightContext";
+import seatsInterface from "@/app/interfaces/seats";
 export default function SeatSelection() {
+  const seatContext = createContext<string | undefined>(undefined);
   useEffect(() => {
     // Replace the URL with your actual API endpoint
-    const apiUrl = "http://localhost:8080/seats/getSeats/1";
-
+    console.log(chosenFlight.flight?.flightID);
+    const flightID = chosenFlight.flight?.flightID;
+    const apiUrl = `http://localhost:8080/seats/getSeats/${flightID}`;
     // Make a GET request using Axios
     axios
       .get(apiUrl)
@@ -35,7 +38,22 @@ export default function SeatSelection() {
   const { chosenFlight } = flightProvider!;
   const flight = chosenFlight?.flight;
   const [seats, setSeats] = useState([]);
-  const [selectedSeat, setSelectedSeat] = useState<string>("--");
+  const [ordinarySeats, setOrdinarySeats] = useState([]);
+  const [comfortSeats, setComfortSeats] = useState([]);
+  const [businessSeats, setBusinessSeats] = useState([]);
+  const [selectedSeat, setSelectedSeat] = useState<seatsInterface>();
+  useEffect(() => {
+    const filterBySeatType =
+      (seatType: "Business" | "Comfort" | "Ordinary") =>
+      (seat: seatsInterface) =>
+        seat.seatType === seatType;
+    setOrdinarySeats(seats.filter(filterBySeatType("Ordinary")));
+    setComfortSeats(seats.filter(filterBySeatType("Comfort")));
+    setBusinessSeats(seats.filter(filterBySeatType("Business")));
+    // console.log(ordinarySeats);
+    // console.log(comfortSeats);
+    // console.log(businessSeats);
+  }, [seats]);
   return (
     <>
       {flight ? (
@@ -96,7 +114,7 @@ export default function SeatSelection() {
               <div className="py-3 w-52 bg-white rounded-lg flex-col justify-start items-center gap-3 inline-flex">
                 {/* Business class Seats */}
                 <Row
-                  seats={seats}
+                  seats={businessSeats}
                   setSelectedSeat={setSelectedSeat}
                   selectedSeat={selectedSeat}
                 />
@@ -135,7 +153,7 @@ export default function SeatSelection() {
                 </div>
                 {/* Comfort class seats */}
                 <RowComfort
-                  seats={seats}
+                  seats={comfortSeats}
                   setSelectedSeat={setSelectedSeat}
                   selectedSeat={selectedSeat}
                 />
@@ -170,7 +188,7 @@ export default function SeatSelection() {
                 </div>
                 {/* Economy class seats */}
                 <RowOrdinary
-                  seats={seats}
+                  seats={ordinarySeats}
                   setSelectedSeat={setSelectedSeat}
                   selectedSeat={selectedSeat}
                 />

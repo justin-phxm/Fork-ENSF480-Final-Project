@@ -1,21 +1,44 @@
 "use client";
-import React, { useState } from "react";
+import { AppStateContext } from "@/app/components/FlightContext";
+import seatsInterface from "@/app/interfaces/seats";
+import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function PaymentModal({ onClose }: { onClose: () => void }) {
+export default function PaymentModal({
+  onClose,
+  selectedSeat,
+}: {
+  onClose: () => void;
+  selectedSeat?: seatsInterface;
+}) {
+  const flightProvider = useContext(AppStateContext);
+  const { chosenFlight } = flightProvider!;
   const [cardNumber, setCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvv, setCVV] = useState("");
   const [ticketCancellation, setTicketCancellation] = useState(false);
+  const [insurance, setInsurance] = useState(0);
   const handleTicketCancellationChange = (event: React.ChangeEvent) => {
     setTicketCancellation(!ticketCancellation);
+    if (ticketCancellation) {
+      setInsurance(0);
+    } else {
+      setInsurance(1);
+    }
   };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     toast.success("Payment Successful!");
-    console.log({ cardNumber, expirationDate, cvv, ticketCancellation });
+    console.log({
+      // cardNumber,
+      // expirationDate,
+      // cvv,
+      // ticketCancellation,
+      selectedSeat,
+      insurance,
+    });
     onClose();
   };
   return (
@@ -105,7 +128,6 @@ export default function PaymentModal({ onClose }: { onClose: () => void }) {
             className="p-2 mb-4 border justify-start border-gray-300 rounded"
             checked={ticketCancellation}
             onChange={handleTicketCancellationChange}
-            required
           />
           <div className=""></div>
           <button

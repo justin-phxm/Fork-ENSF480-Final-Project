@@ -1,9 +1,10 @@
 import React from "react";
 import SeatOrdinary from "./SeatOrdinary";
+import seatsInterface from "@/app/interfaces/seats";
 export default function RowComfort(props: {
-  seats: boolean[];
-  setSelectedSeat: (seatCode: string) => void;
-  selectedSeat: string;
+  seats: seatsInterface[];
+  setSelectedSeat: (chosenSeat: seatsInterface) => void;
+  selectedSeat?: seatsInterface;
 }) {
   const { seats, setSelectedSeat, selectedSeat } = props;
 
@@ -27,9 +28,10 @@ export default function RowComfort(props: {
             )
             .map((seat, index) => (
               <SeatOrdinary
-                availability={seat}
+                seat={seat}
+                // availability={seat.availability}
                 key={index}
-                seatCode={`Comfort ${rowIndex + 1} - A${index}`}
+                // seatCode={seat.seatCode}
                 setSelectedSeat={setSelectedSeat}
                 selectedSeat={selectedSeat}
               />
@@ -50,9 +52,10 @@ export default function RowComfort(props: {
             )
             .map((seat, index) => (
               <SeatOrdinary
-                availability={seat}
+                seat={seat}
+                // availability={seat.availability}
                 key={index}
-                seatCode={`Comfort ${rowIndex + 1} - B${index}`}
+                // seatCode={seat.seatCode}
                 setSelectedSeat={setSelectedSeat}
                 selectedSeat={selectedSeat}
               />

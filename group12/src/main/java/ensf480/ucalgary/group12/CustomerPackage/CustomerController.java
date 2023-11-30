@@ -64,4 +64,9 @@ public class CustomerController {
     public void updateLoungeDiscount(@PathVariable("id") int id, @RequestParam boolean loungeDiscount) {
         service.updateLoungeDiscount(id, loungeDiscount);
     }
+
+    @PostMapping("/addCustomer")
+    public void addCustomer(@RequestBody Customer customer) {
+        service.addCustomer(customer);
+    }
 }

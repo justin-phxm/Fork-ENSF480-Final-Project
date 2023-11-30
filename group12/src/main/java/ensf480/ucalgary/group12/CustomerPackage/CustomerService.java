@@ -103,11 +103,9 @@ public class CustomerService {
     public void addCustomer(Customer customer) {
         // Ensure that the customer's email is not null or empty
         if (customer.getEmail() == null || customer.getEmail().isEmpty()) {
-            // Handle the error, throw an exception, or return an appropriate response
             return;
         }
 
-        // Check if the customer with the provided email already exists
         Customer existingCustomer = repo.findByEmail(customer.getEmail());
 
         if (existingCustomer == null) {
@@ -124,7 +122,6 @@ public class CustomerService {
             existingCustomer.setLoungeDiscount(customer.getLoungeDiscount());
             existingCustomer.setAddress(customer.getAddress());
 
-            // Save the updated customer
             repo.save(existingCustomer);
         }
     }

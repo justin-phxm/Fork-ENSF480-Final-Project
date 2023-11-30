@@ -146,11 +146,11 @@ VALUES
 
 INSERT INTO Seats (SeatsID, Availability, SeatType, SeatCode, Plane)
 	VALUES
-(1, true, 'Business', 'A1', 1),
+(1, false, 'Business', 'A1', 1),
 (1, true, 'Business', 'B1', 1),
 (1, true, 'Business', 'C1', 1),
 (1, true, 'Business', 'D1', 1),
-(1, true, 'Business', 'A2', 1),
+(1, false, 'Business', 'A2', 1),
 (1, true, 'Business', 'B2', 1),
 (1, true, 'Business', 'C2', 1),
 (1, true, 'Business', 'D2', 1),
@@ -255,5 +255,6 @@ INSERT INTO Seats (SeatsID, Availability, SeatType, SeatCode, Plane)
 
 INSERT INTO Transactions (Email, FlightID, SeatCode, Aircraft)
 VALUES
+-- Seats must be unavailable --
 	("john.doe@email.com", 1, 'A1', 1),
     ("jane.smith@email.com", 1, 'A2', 1);

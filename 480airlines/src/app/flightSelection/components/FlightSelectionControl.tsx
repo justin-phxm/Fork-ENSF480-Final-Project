@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import Searchbar from "@/app/components/Searchbar";
 import FlightTable from "./FlightTable";
 import flight2Interface from "@/app/interfaces/flight2";
-import { fakeFlight, fakeFlight2 } from "@/app/fakeData/flight2";
+// import { fakeFlight, fakeFlight2 } from "@/app/fakeData/flight2";
 import { AppStateContext } from "@/app/components/FlightContext";
 export default function FlightSelectionControl() {
   const flightProvider = useContext(AppStateContext);

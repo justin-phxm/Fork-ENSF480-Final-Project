@@ -1,4 +1,7 @@
-package ensf480.ucalgary.group12.UserPackage;
+package ensf480.ucalgary.group12.CrewMemberPackage;
+
+import ensf480.ucalgary.group12.UserPackage.BrowseStrategy;
+import ensf480.ucalgary.group12.UserPackage.User;
 
 public class CrewMember extends User{
     private String firstName;

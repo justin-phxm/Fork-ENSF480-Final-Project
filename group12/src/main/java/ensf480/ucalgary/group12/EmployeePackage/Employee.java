@@ -1,4 +1,4 @@
-package ensf480.ucalgary.group12.UserPackage;
+package ensf480.ucalgary.group12.EmployeePackage;
 import java.util.Objects;
 import jakarta.persistence.*;
 

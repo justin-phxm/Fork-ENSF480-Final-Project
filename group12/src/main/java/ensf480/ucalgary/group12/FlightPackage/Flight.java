@@ -3,8 +3,8 @@ package ensf480.ucalgary.group12.FlightPackage;
 import java.beans.Transient;
 import java.util.Date;
 
-import ensf480.ucalgary.group12.UserPackage.CrewMember;
 import ensf480.ucalgary.group12.AircraftPackage.Aircraft;
+import ensf480.ucalgary.group12.CrewMemberPackage.CrewMember;
 import ensf480.ucalgary.group12.CustomerPackage.Customer;
 import jakarta.persistence.*;
 

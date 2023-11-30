@@ -1,7 +1,9 @@
-package ensf480.ucalgary.group12.UserPackage;
+package ensf480.ucalgary.group12.AdminPackage;
 
 import ensf480.ucalgary.group12.FlightPackage.Flight;
 import ensf480.ucalgary.group12.FlightPackage.FlightService;
+import ensf480.ucalgary.group12.UserPackage.BrowseStrategy;
+import ensf480.ucalgary.group12.UserPackage.User;
 import ensf480.ucalgary.group12.AircraftPackage.Aircraft;
 import ensf480.ucalgary.group12.AircraftPackage.AircraftService;
 

@@ -3,7 +3,20 @@ import { NextResponse } from "next/server";
 const uri = "http://localhost:8080/transactions";
 
 export async function GET(req: Request) {
-  const response = await fetch(uri + "/getTransactions");
+  const url = new URL(req.url);
+  const urlQuery = url.searchParams;
+
+  let email = urlQuery.get("email");
+
+  if (!email) {
+    return NextResponse.error();
+  }
+
+  const serverURI = uri + `/getTransactionsByE/${email}`;
+  console.log(serverURI);
+  const response = await fetch(serverURI, {
+    method: "GET",
+  });
   if (!response.ok) {
     return NextResponse.error();
   }

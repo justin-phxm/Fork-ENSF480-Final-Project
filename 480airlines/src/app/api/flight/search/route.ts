@@ -40,7 +40,7 @@ export async function GET(req: Request) {
   const urlQuery = url.searchParams;
   // console.log(urlQuery);
 
-  let origin = urlQuery.get("origin") ?? "null";
+  let origin = urlQuery.get("origin");
   if (!origin) {
     origin = "null";
   }

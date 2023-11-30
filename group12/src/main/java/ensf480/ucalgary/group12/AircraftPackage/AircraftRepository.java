@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface AircraftRepository extends JpaRepository<Aircraft, Integer> {
-    
+    public Aircraft findByAircraftName(String n);
 }

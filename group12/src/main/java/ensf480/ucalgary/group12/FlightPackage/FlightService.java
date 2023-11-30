@@ -16,9 +16,13 @@ public class FlightService {
     public FlightService(FlightRepository r){
         this.repo = r;
     }
-
+    
     public List<Flight> getAllFlights(){
         return repo.findAll();
+    }
+
+    public Flight addFlight(Flight f){
+        return repo.save(f);
     }
 
     public Flight getFlightById(int id){

@@ -20,7 +20,7 @@ public class Flight {
     private String departureAirport;
     @Column(name = "ArrivalAirport")
     private String arrivalAirport;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "AircraftID")
     private Aircraft plane;
     @Column(name = "ArrivalTime")

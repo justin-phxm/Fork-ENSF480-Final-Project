@@ -16,6 +16,10 @@ public class AircraftService {
         this.repo = r;
     }
 
+    public Aircraft getAircraftByName(String n){
+        return repo.findByAircraftName(n);
+    }
+
     public List<Aircraft> getAllAircrafts(){
         return repo.findAll();
     }

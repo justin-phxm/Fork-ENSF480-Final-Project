@@ -1,14 +1,27 @@
 package ensf480.ucalgary.group12.TransactionPackage;
 
+import jakarta.persistence.*;
+import java.util.List;
+import ensf480.ucalgary.group12.TransactionPackage.Transaction;
 
+@Entity
+@Table(name = "Ticket")
 public class Ticket {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "SeatNumber")
     private String seatNumber;
+    @Column(name = "Destination")
     private String destination;
+    @Column(name = "Origin")
     private String origin;
+    @Column(name = "PlaneID")
     private int planeID;
+    @OneToOne(mappedBy = "ticket")
+    private Transaction t;
 
-    public Ticket(){
-        
+    public Ticket(){     
     }
 
     public String getSeatNumber() {

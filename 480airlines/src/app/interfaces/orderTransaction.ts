@@ -1,5 +1,5 @@
 export default interface orderTransactionInterface {
-  id: number;
+  iD: number;
   email: string;
   flightID: number;
   seatCode: string;

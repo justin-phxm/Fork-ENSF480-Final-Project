@@ -1,6 +1,7 @@
 "use client";
 import { AppStateContext } from "@/app/components/FlightContext";
 import seatsInterface from "@/app/interfaces/seats";
+import transactionInterface from "@/app/interfaces/transaction";
 import { useSession } from "next-auth/react";
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
@@ -30,38 +31,38 @@ export default function PaymentModal({
     }
   };
   const createTransaction = async () => {
+    const body = {
+      customerID: session?.user?.email,
+      flightID: chosenFlight.flight?.flightID,
+      seatCode: selectedSeat?.seatCode,
+      plane: chosenFlight.flight?.plane.aircraftID,
+      insurance: insurance,
+      seatType: selectedSeat?.seatType,
+      aircraftID: chosenFlight.flight?.plane.aircraftID,
+    };
     const response = await fetch("/api/transaction", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        customerID: session?.user?.email,
-        flightID: chosenFlight.flight?.flightID,
-        seatCode: selectedSeat?.seatCode,
-        plane: chosenFlight.flight?.plane.aircraftID,
-      }),
+      body: JSON.stringify(body),
     });
     const data = await response.json();
     console.log(data);
   };
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log({
-      // cardNumber,
-      // expirationDate,
-      // cvv,
-      // ticketCancellation,
-      chosenFlight,
-      selectedSeat,
-      insurance,
-    });
-    console.log({
-      customerID: session?.user?.email,
-      flightID: chosenFlight.flight?.flightID,
-      seatCode: selectedSeat?.seatCode,
-      plane: chosenFlight.flight?.plane.aircraftID,
-    });
+    // console.log({
+    //   chosenFlight,
+    //   selectedSeat,
+    //   insurance,
+    // });
+    // console.log({
+    //   customerID: session?.user?.email,
+    //   flightID: chosenFlight.flight?.flightID,
+    //   seatCode: selectedSeat?.seatCode,
+    //   plane: chosenFlight.flight?.plane.aircraftID,
+    // });
 
     toast.promise(createTransaction(), {
       pending: "Creating Transaction...",

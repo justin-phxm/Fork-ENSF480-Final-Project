@@ -5,32 +5,46 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 
 export default function AddAircraft() {
+  const addAircraft = async (aircraftName: string) => {
+    const body = { name: aircraftName };
+    const res = await fetch("/api/aircraft", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log({
-      aircraftID,
-      aircraftName,
-      seatsBusinessClass,
-      seatsComfortClass,
-      seatsOrdinaryClass,
+    // console.log({
+    //   aircraftID,
+    //   aircraftName,
+    //   seatsBusinessClass,
+    //   seatsComfortClass,
+    //   seatsOrdinaryClass,
+    // });
+    toast.promise(addAircraft(aircraftName), {
+      pending: "Adding Aircraft...",
+      success: "Aircraft Added!",
+      error: "Error Adding Aircraft",
     });
-    toast.success("Aircraft Added!");
   };
-  const [aircraftID, setAircraftID] = useState("");
+  // const [aircraftID, setAircraftID] = useState("");
   const [aircraftName, setAircraftName] = useState("");
-  const [seatsBusinessClass, setSeatsBusinessClass] = useState(0);
-  const [seatsComfortClass, setSeatsComfortClass] = useState(0);
-  const [seatsOrdinaryClass, setSeatsOrdinaryClass] = useState(0);
+  // const [seatsBusinessClass, setSeatsBusinessClass] = useState(0);
+  // const [seatsComfortClass, setSeatsComfortClass] = useState(0);
+  // const [seatsOrdinaryClass, setSeatsOrdinaryClass] = useState(0);
   return (
     <>
-      <div
-        data-aos="fade-up"
-        className=" border border-slate-400 p-2 rounded bg-white"
-      >
-        <h1 className="text-lg font-bold">Add Aircraft</h1>
-        <form onSubmit={handleSubmit} className="flex">
-          {/* AircraftID */}
-          <div className="flex">
+      <div className=" border border-slate-400 p-2 rounded bg-white">
+        <div className="" data-aos="fade-right">
+          <h1 className="text-lg font-bold">Add Aircraft</h1>
+          <form onSubmit={handleSubmit} className="flex">
+            {/* AircraftID */}
+            {/* <div className="flex">
             <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
               <svg
                 width="32"
@@ -56,51 +70,38 @@ export default function AddAircraft() {
               value={aircraftID}
               onChange={(e) => setAircraftID(e.target.value)}
             />
-          </div>
-          {/* aircraftName */}
-          <div className="flex">
+          </div> */}
+            {/* aircraftName */}
+            <div className="flex">
+              <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                <svg
+                  width="33"
+                  height="33"
+                  viewBox="0 0 33 33"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M7.34152 9.97884C7.07104 9.89096 6.78638 10.067 6.74415 10.3482L6.23752 13.723C6.16495 14.2065 6.45251 14.6715 6.91742 14.8225L24.1767 20.4304C24.9832 20.6925 25.8494 20.2511 26.1114 19.4446C26.3838 18.6063 25.896 17.7113 25.0439 17.4859L19.7322 16.0805L18.4041 6.70728C18.349 6.31838 18.0772 5.99483 17.7037 5.87345C17.0777 5.67006 16.4244 6.09886 16.362 6.7541L15.6019 14.7384L8.34571 12.7959L7.64239 10.2921C7.60078 10.1439 7.48787 10.0264 7.34152 9.97884ZM26.1776 23.4521H5.64758V25.0314H26.1776V23.4521Z"
+                    fill="#6E7491"
+                  />
+                </svg>
+              </span>
+              <input
+                required
+                type="text"
+                id="website-admin"
+                className="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Aircraft Name"
+                value={aircraftName}
+                onChange={(e) => setAircraftName(e.target.value)}
+              />
+            </div>
+            {/* Number of Ordinary Seats */}
+            {/* <div className="flex">
             <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-              <svg
-                width="33"
-                height="33"
-                viewBox="0 0 33 33"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M7.34152 9.97884C7.07104 9.89096 6.78638 10.067 6.74415 10.3482L6.23752 13.723C6.16495 14.2065 6.45251 14.6715 6.91742 14.8225L24.1767 20.4304C24.9832 20.6925 25.8494 20.2511 26.1114 19.4446C26.3838 18.6063 25.896 17.7113 25.0439 17.4859L19.7322 16.0805L18.4041 6.70728C18.349 6.31838 18.0772 5.99483 17.7037 5.87345C17.0777 5.67006 16.4244 6.09886 16.362 6.7541L15.6019 14.7384L8.34571 12.7959L7.64239 10.2921C7.60078 10.1439 7.48787 10.0264 7.34152 9.97884ZM26.1776 23.4521H5.64758V25.0314H26.1776V23.4521Z"
-                  fill="#6E7491"
-                />
-              </svg>
-            </span>
-            <input
-              required
-              type="text"
-              id="website-admin"
-              className="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Aircraft Name"
-              value={aircraftName}
-              onChange={(e) => setAircraftName(e.target.value)}
-            />
-          </div>
-          {/* Number of Ordinary Seats */}
-          <div className="flex">
-            <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-              {/* <svg
-                width="32"
-                height="33"
-                viewBox="0 0 32 33"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="16" cy="11.5" r="4" fill="#6E7491" />
-                <path
-                  d="M10 24.5C8.89543 24.5 7.97435 23.5907 8.24685 22.5202C9.12788 19.0595 12.265 16.5 16 16.5C19.735 16.5 22.8721 19.0595 23.7531 22.5202C24.0257 23.5907 23.1046 24.5 22 24.5H10Z"
-                  fill="#6E7491"
-                />
-              </svg> */}
               <p className="text-sm font-light">Ordinary</p>
             </span>
             <input
@@ -113,9 +114,9 @@ export default function AddAircraft() {
               value={seatsOrdinaryClass}
               onChange={(e) => setSeatsOrdinaryClass(parseInt(e.target.value))}
             />
-          </div>
-          {/* Number of Comfort Seats */}
-          <div className="flex">
+          </div> */}
+            {/* Number of Comfort Seats */}
+            {/* <div className="flex">
             <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
               <p className="text-sm font-light">Comfort</p>
             </span>
@@ -128,9 +129,9 @@ export default function AddAircraft() {
               value={seatsComfortClass}
               onChange={(e) => setSeatsComfortClass(parseInt(e.target.value))}
             />
-          </div>
-          {/* Number of Business Seats */}
-          <div className="flex">
+          </div> */}
+            {/* Number of Business Seats */}
+            {/* <div className="flex">
             <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
               <p className="text-sm font-light">Business</p>
             </span>
@@ -144,14 +145,15 @@ export default function AddAircraft() {
               value={seatsBusinessClass}
               onChange={(e) => setSeatsBusinessClass(parseInt(e.target.value))}
             />
-          </div>
-          {/* Submit */}
-          <button className=" px-5 py-3 hover:opacity-70 bg-indigo-500 rounded items-center gap-2 inline-flex">
-            <div className="text-neutral-50 whitespace-nowrap">
-              Add Aircraft
-            </div>
-          </button>
-        </form>
+          </div> */}
+            {/* Submit */}
+            <button className=" px-5 py-3 hover:opacity-70 bg-indigo-500 rounded items-center gap-2 inline-flex">
+              <div className="text-neutral-50 whitespace-nowrap">
+                Add Aircraft
+              </div>
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );

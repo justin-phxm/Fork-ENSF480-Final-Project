@@ -197,3 +197,57 @@ If you have any questions, please contact us at 480airlines@gmail.com.`;
     return NextResponse.error();
   }
 };
+
+export const ticketCancellationEmail = async (
+  email: string,
+  name: string,
+  transactionID: number,
+  origin: string,
+  destination: string
+) => {
+  const textContent = `Hi ${name},
+    We are sad to hear that you have cancelled your ticket. Here are the details of your cancellation:
+    Email: ${email}
+    Name: ${name}
+    Transaction ID: ${transactionID}
+    Origin: ${origin}
+    Destination: ${destination}
+    If you have any questions, please contact us at 480airlines@gmail.com.`;
+  let params = {
+    Source: "480airlines@gmail.com",
+    Destination: {
+      ToAddresses: [email],
+    },
+    ReplyToAddresses: [],
+    Message: {
+      Body: {
+        Html: {
+          Charset: "UTF-8",
+          Data: `<html><body><h1>Hi ${name},</h1><p>We are sad to hear that you have cancelled your ticket. Here are the details of your cancellation:<br />
+            <strong>Email:</strong> ${email}<br />
+            <strong>Name:</strong> ${name}<br />
+            <strong>Transaction ID:</strong> ${transactionID}<br />
+            <strong>Origin:</strong> ${origin}<br />
+            <strong>Destination:</strong> ${destination}<br /></p></body></html>
+            If you have any questions, please contact us at 480airlines@gmail.com`,
+        },
+        Text: {
+          Charset: "UTF-8",
+          Data: textContent,
+        },
+      },
+      Subject: {
+        Charset: "UTF-8",
+        Data: `Cancellation Confirmation - 480airlines`,
+      },
+    },
+  };
+  try {
+    const res = await AWS_SES.sendEmail(params).promise();
+    console.log("Email sent successfully", res);
+    return res;
+  } catch (error) {
+    console.log("Error sending email", error);
+    return NextResponse.error();
+  }
+};

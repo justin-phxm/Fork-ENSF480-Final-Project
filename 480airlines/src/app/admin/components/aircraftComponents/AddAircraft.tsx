@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 export default function AddAircraft() {
   const addAircraft = async (aircraftName: string) => {
-    const body = { name: aircraftName };
+    const body = { aircraftName: aircraftName };
     const res = await fetch("/api/aircraft", {
       method: "POST",
       headers: {
@@ -19,13 +19,6 @@ export default function AddAircraft() {
   };
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    // console.log({
-    //   aircraftID,
-    //   aircraftName,
-    //   seatsBusinessClass,
-    //   seatsComfortClass,
-    //   seatsOrdinaryClass,
-    // });
     toast.promise(addAircraft(aircraftName), {
       pending: "Adding Aircraft...",
       success: "Aircraft Added!",

@@ -30,16 +30,16 @@ export default function AdminControl() {
             <Searchbar></Searchbar>
           </div>
         </div>
-        <BrowseCrew></BrowseCrew>
-        <BrowseAircrafts></BrowseAircrafts>
         <AddFlight></AddFlight>
-        <AddAircraft></AddAircraft>
-        <AddCrew></AddCrew>
         <ModifyFlight></ModifyFlight>
-        <RemoveCrew></RemoveCrew>
+        <AddAircraft></AddAircraft>
         <RemoveAircraft></RemoveAircraft>
         <RemoveFlight></RemoveFlight>
+        <RemoveCrew></RemoveCrew>
+        <AddCrew></AddCrew>
         <ViewRegistered></ViewRegistered>
+        <BrowseCrew></BrowseCrew>
+        <BrowseAircrafts></BrowseAircrafts>
         <ToastContainer position="bottom-right"></ToastContainer>
       </div>
     </>

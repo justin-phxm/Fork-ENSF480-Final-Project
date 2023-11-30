@@ -286,6 +286,14 @@ public class Customer extends User{
         this.lastName = lastName;
     }
 
+    public String getAddress(){
+        return address;
+    }
+
+    public void setAddress(String adr){
+        this.address = adr;
+    }
+
     public String getCreditCardNum() {
         return creditCardNum;
     }

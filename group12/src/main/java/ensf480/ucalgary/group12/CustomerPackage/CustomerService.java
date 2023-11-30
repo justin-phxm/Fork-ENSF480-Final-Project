@@ -99,4 +99,33 @@ public class CustomerService {
             repo.save(customer);
         }
     }
+
+    public void addCustomer(Customer customer) {
+        // Ensure that the customer's email is not null or empty
+        if (customer.getEmail() == null || customer.getEmail().isEmpty()) {
+            // Handle the error, throw an exception, or return an appropriate response
+            return;
+        }
+
+        // Check if the customer with the provided email already exists
+        Customer existingCustomer = repo.findByEmail(customer.getEmail());
+
+        if (existingCustomer == null) {
+            // If the customer doesn't exist, save the new customer
+            repo.save(customer);
+        } else {
+            // If the customer already exists, update the customer details
+            existingCustomer.setFirstName(customer.getFirstName());
+            existingCustomer.setLastName(customer.getLastName());
+            existingCustomer.setIsMember(customer.getIsMember());
+            existingCustomer.setCreditCardNum(customer.getCreditCardNum());
+            existingCustomer.setCompanionTicket(customer.getCompanionTicket());
+            existingCustomer.setMonthlyEmails(customer.getMonthlyEmails());
+            existingCustomer.setLoungeDiscount(customer.getLoungeDiscount());
+            existingCustomer.setAddress(customer.getAddress());
+
+            // Save the updated customer
+            repo.save(existingCustomer);
+        }
+    }
 }

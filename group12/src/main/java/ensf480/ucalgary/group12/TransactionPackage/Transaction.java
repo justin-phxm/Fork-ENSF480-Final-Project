@@ -3,9 +3,7 @@ package ensf480.ucalgary.group12.TransactionPackage;
 import jakarta.persistence.*;
 
 import java.util.List;
-
 import ensf480.ucalgary.group12.TransactionPackage.Ticket;
-
 
 @Entity
 @Table(name = "Transactions")
@@ -21,10 +19,11 @@ public class Transaction {
     private String seatCode;
     @Column(name = "Aircraft")
     private int plane;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "TicketID")
+    private Ticket ticket = new Ticket();
     @Transient
     private double price;
-    @Transient
-    private Ticket ticket = new Ticket();
 
     public Transaction(){
     }

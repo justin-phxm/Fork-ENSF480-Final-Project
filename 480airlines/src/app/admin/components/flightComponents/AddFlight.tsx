@@ -4,22 +4,65 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 
 export default function AddFlight() {
+  const addFlight = async () => {
+    const res = await fetch("/api/flight", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        departureAirport: departureAirport,
+        arrivalAirport: arrivalAirport,
+        plane: { aircraftName: aircraftName },
+        dateOfArrival: arrivalDateTime,
+        dateOfDeparture: departureDateTime,
+        departureCity: departureCity,
+        arrivalCity: arrivalCity,
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log({});
-    toast.success("Flight Added!");
+    console.log({
+      departureAirport: departureAirport,
+      arrivalAirport: arrivalAirport,
+      plane: { aircraftName: aircraftName },
+      dateOfArrival: arrivalDateTime,
+      dateOfDeparture: departureDateTime,
+      departureCity: departureCity,
+      arrivalCity: arrivalCity,
+    });
+    toast.promise(addFlight(), {
+      pending: "Adding Flight...",
+      success: "Flight Added!",
+      error: "Error Adding Flight",
+    });
   };
   const [departureCity, setDepartureCity] = useState("");
   const [arrivalCity, setArrivalCity] = useState("");
   const [departureAirport, setDepartureAirport] = useState("");
   const [arrivalAirport, setArrivalAirport] = useState("");
-  const [departureDate, setDepartureDate] = useState("");
-  const [arrivalDate, setArrivalDate] = useState("");
-  const [departureTime, setDepartureTime] = useState("");
-  const [arrivalTime, setArrivalTime] = useState("");
-  const [departureDateTime, setDepartureDateTime] = useState("");
-  const [arrivalDateTime, setArrivalDateTime] = useState("");
-  const [aircraftID, setAircraftID] = useState("");
+  const [departureDate, setDepartureDate] = useState(
+    new Date().toISOString().slice(0, 10)
+  );
+  const [arrivalDate, setArrivalDate] = useState(
+    new Date().toISOString().slice(0, 10)
+  );
+  const [departureTime, setDepartureTime] = useState(
+    new Date().toISOString().slice(11, 16)
+  );
+  const [arrivalTime, setArrivalTime] = useState(
+    new Date().toISOString().slice(11, 16)
+  );
+  const [departureDateTime, setDepartureDateTime] = useState(
+    new Date().toISOString()
+  );
+  const [arrivalDateTime, setArrivalDateTime] = useState(
+    new Date().toISOString()
+  );
+  const [aircraftName, setAircraftName] = useState("");
   useEffect(() => {
     setDepartureDateTime(departureDate + "T" + departureTime + ":00");
     setArrivalDateTime(arrivalDate + "T" + arrivalTime + ":00");
@@ -35,7 +78,7 @@ export default function AddFlight() {
               {/* Departure City */}
               <div className="flex">
                 <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                  Departure city
+                  Departure City
                 </span>
                 <input
                   required
@@ -68,7 +111,7 @@ export default function AddFlight() {
               {/* Departure Airport */}
               <div className="flex">
                 <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                  Departure airport
+                  Departure Airport
                 </span>
                 <input
                   required
@@ -158,19 +201,19 @@ export default function AddFlight() {
                 />
               </div>
             </section>
-            {/* Aircraft ID */}
+            {/* Aircraft Name */}
             <div className="flex">
               <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                Aircraft ID
+                Aircraft Name
               </span>
               <input
                 required
                 type="text"
                 id="website-admin"
                 className="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="AircraftID"
-                value={aircraftID}
-                onChange={(e) => setAircraftID(e.target.value)}
+                placeholder="Aircraft Name"
+                value={aircraftName}
+                onChange={(e) => setAircraftName(e.target.value)}
               />
             </div>
             <button

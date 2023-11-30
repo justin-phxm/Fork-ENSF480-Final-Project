@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 export default function ModifyFlight() {
   const modifyFlight = async () => {
     const response = await fetch("api/flight", {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },

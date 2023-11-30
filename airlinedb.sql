@@ -77,6 +77,16 @@ CREATE TABLE Seats (
     FOREIGN KEY (Plane) REFERENCES Aircrafts(AircraftID) ON DELETE CASCADE 	ON UPDATE CASCADE
 );
 
+DROP TABLE IF EXISTS Ticket;
+CREATE TABLE Ticket (
+	ID INT PRIMARY KEY AUTO_INCREMENT,
+	SeatNumber VARCHAR(3),
+	Destination VARCHAR(20),
+	Origin VARCHAR(20),
+	PlaneID INT
+);
+     
+
 DROP TABLE IF EXISTS Transactions;
 CREATE TABLE Transactions (
 	ID INT PRIMARY KEY AUTO_INCREMENT,
@@ -84,7 +94,9 @@ CREATE TABLE Transactions (
     FlightID INT,
     SeatCode VARCHAR(3),
     Aircraft INT,
-    FOREIGN KEY (FlightID) REFERENCES Flights(FlightID)
+    TicketID INT,
+    FOREIGN KEY (FlightID) REFERENCES Flights(FlightID),
+    FOREIGN KEY (TicketID) REFERENCES Ticket(ID)
 );
 
 INSERT INTO User (Email, BrowseStyle)
@@ -146,11 +158,11 @@ VALUES
 
 INSERT INTO Seats (SeatsID, Availability, SeatType, SeatCode, Plane)
 	VALUES
-(1, false, 'Business', 'A1', 1),
+(1, true, 'Business', 'A1', 1),
 (1, true, 'Business', 'B1', 1),
 (1, true, 'Business', 'C1', 1),
 (1, true, 'Business', 'D1', 1),
-(1, false, 'Business', 'A2', 1),
+(1, true, 'Business', 'A2', 1),
 (1, true, 'Business', 'B2', 1),
 (1, true, 'Business', 'C2', 1),
 (1, true, 'Business', 'D2', 1),
@@ -252,9 +264,3 @@ INSERT INTO Seats (SeatsID, Availability, SeatType, SeatCode, Plane)
 (11, true, 'Business', 'A2', 1),
 (11, true, 'Business', 'A3', 1),
 (11, true, 'Business', 'A4', 1);
-
-INSERT INTO Transactions (Email, FlightID, SeatCode, Aircraft)
-VALUES
--- Seats must be unavailable --
-	("john.doe@email.com", 1, 'A1', 1),
-    ("jane.smith@email.com", 1, 'A2', 1);

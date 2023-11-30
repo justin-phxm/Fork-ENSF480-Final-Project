@@ -1,6 +1,5 @@
 package ensf480.ucalgary.group12.FlightPackage;
 
-import java.beans.Transient;
 import java.util.Date;
 
 import ensf480.ucalgary.group12.AircraftPackage.Aircraft;

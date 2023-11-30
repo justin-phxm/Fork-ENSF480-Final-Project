@@ -26,11 +26,13 @@ export default function FlightSelectionControl() {
   }, [appState]);
 
   return (
-    <div className="mx-auto max-w-4xl bg-white rounded p-4 gap-4">
-      <Searchbar />
-      <div className="py-2">
-        {/* <h2 className=" italic font-semibold py-2">Choose a flight</h2> */}
-        <FlightTable flights={flights} />
+    <div className="bg-white border-t p-4">
+      <div className="mx-auto max-w-4xl bg-slate-100 rounded p-4 gap-4">
+        <Searchbar />
+        <div className="py-2">
+          {/* <h2 className=" italic font-semibold py-2">Choose a flight</h2> */}
+          <FlightTable flights={flights} />
+        </div>
       </div>
     </div>
   );

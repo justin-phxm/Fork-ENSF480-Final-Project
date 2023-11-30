@@ -6,6 +6,7 @@ const nextConfig = {
       "res.cloudinary.com",
       "flowbite.s3.amazonaws.com",
       "iso.500px.com",
+      "lh3.googleusercontent.com",
     ],
   },
 };

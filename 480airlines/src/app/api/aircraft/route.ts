@@ -4,6 +4,9 @@ const uri = "http://localhost:8080/aircrafts/";
 
 export async function GET(req: Request) {
   const response = await fetch("http://localhost:8080/aircrafts/getAircrafts");
+  if (!response.ok) {
+    return NextResponse.error();
+  }
   return response;
 }
 
@@ -37,9 +40,5 @@ export async function DELETE(req: Request) {
     body: JSON.stringify(body),
   });
   const responseText = await response.text();
-  // console.log(responseText);
-  return NextResponse.json(
-    { message: responseText }
-    // { status: 200 }
-  );
+  return NextResponse.json({ message: responseText });
 }

@@ -5,7 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSession } from "next-auth/react";
 const AWS = require("aws-sdk");
 require("aws-sdk/lib/maintenance_mode_message").suppress = true;
-import { sendEmail } from "@/app/api/email/membershipEmail";
+import {
+  sendEmail,
+  signupMonthlyEmail,
+  signupCompanionTicketEmail,
+} from "@/app/api/email/membershipEmail";
 export default function MembershipRegistrationControl() {
   const { data: session, status } = useSession();
   const handleOnSubmit = async (e: React.SyntheticEvent) => {
@@ -20,6 +24,23 @@ export default function MembershipRegistrationControl() {
             success: `You have successfully signed up for membership!`,
             error: "Error signing you up for membership",
           });
+          toast.promise(
+            signupMonthlyEmail(session.user.email, session.user?.name),
+            {
+              pending: "Signing you up for monthly newsletters...",
+              success: `You have successfully signed up for monthly newsletters!`,
+              error: "Error signing you up for monthly newsletters",
+            }
+          );
+          toast.promise(
+            signupCompanionTicketEmail(session.user.email, session.user?.name),
+            {
+              pending: "Signing you up for companion ticket membership...",
+              success: `You have successfully signed up for the promotional companion ticket!`,
+              error:
+                "Error signing you up for the promotional companion ticket",
+            }
+          );
         }
       } catch (error) {
         console.log(error);
@@ -33,6 +54,7 @@ export default function MembershipRegistrationControl() {
           Email sign-up
         </label>
         <div className="relative">
+          {/* Image */}
           <div className="absolute inset-y-0 rtl:inset-x-0 start-0 flex items-center ps-3.5 pointer-events-none">
             <svg
               className="w-4 h-4 text-gray-500 dark:text-gray-400"

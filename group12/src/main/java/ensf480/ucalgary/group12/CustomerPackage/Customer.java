@@ -1,6 +1,8 @@
-package ensf480.ucalgary.group12.UserPackage;
+package ensf480.ucalgary.group12.CustomerPackage;
 
-import ensf480.ucalgary.group12.TransactionPackage.*;
+import ensf480.ucalgary.group12.MemberPackage.*;
+//import ensf480.ucalgary.group12.TransactionPackage.*;
+import ensf480.ucalgary.group12.UserPackage.*;
 
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.jdbc.core.JdbcTemplate;

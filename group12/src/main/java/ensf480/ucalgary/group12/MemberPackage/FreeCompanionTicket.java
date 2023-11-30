@@ -1,4 +1,6 @@
-package ensf480.ucalgary.group12.UserPackage;
+package ensf480.ucalgary.group12.MemberPackage;
+
+//import ensf480.ucalgary.group12.MemberPackage.MembershipDecorator;
 
 public class FreeCompanionTicket extends MembershipDecorator{
     public FreeCompanionTicket(Membership membership){

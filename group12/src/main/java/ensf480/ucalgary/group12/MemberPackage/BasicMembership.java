@@ -1,4 +1,4 @@
-package ensf480.ucalgary.group12.UserPackage;
+package ensf480.ucalgary.group12.MemberPackage;
 
 public class BasicMembership implements Membership{
     @Override

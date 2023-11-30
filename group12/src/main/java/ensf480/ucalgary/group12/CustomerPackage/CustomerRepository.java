@@ -1,6 +1,6 @@
-package ensf480.ucalgary.group12.UserPackage;
+package ensf480.ucalgary.group12.CustomerPackage;
 
-import ensf480.ucalgary.group12.TransactionPackage.*;
+//import ensf480.ucalgary.group12.TransactionPackage.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

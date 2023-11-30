@@ -1,4 +1,6 @@
-package ensf480.ucalgary.group12.UserPackage;
+package ensf480.ucalgary.group12.MemberPackage;
+
+//import ensf480.ucalgary.group12.MemberPackage.Membership;
 
 public abstract class MembershipDecorator implements Membership{
     private Membership membership;

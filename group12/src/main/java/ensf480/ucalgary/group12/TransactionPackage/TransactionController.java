@@ -60,6 +60,9 @@ public class TransactionController {
     @DeleteMapping("cancelTicket/{id}")
     public void deleteTransaction(@PathVariable int id){
         Transaction t = service.getTransactionByID(id);
+        if (t == null){
+            return;
+        }
         Seat seat = sservice.findSeatByCodeAndID(t.getSeatCode(), t.getPlane());
         seat.setAvailability(true);  
         sservice.updateSeat(seat);

@@ -1,11 +1,12 @@
+import { NextResponse } from "next/server";
+
 const AWS = require("aws-sdk");
 require("dotenv").config();
 require("aws-sdk/lib/maintenance_mode_message").suppress = true;
 
-// AWS.config.update({ region: "ca-central-1" });
 const SES_CONFIG = {
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: "AKIA2PL4QHOOGCKBMP6F",
+  secretAccessKey: "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",
   region: "ca-central-1",
 };
 
@@ -42,8 +43,9 @@ export const sendEmail = async (email: string, name: string) => {
   try {
     const res = await AWS_SES.sendEmail(params).promise();
     console.log("Email sent successfully", res);
+    return res;
   } catch (error) {
     console.log("Error sending email", error);
+    return NextResponse.error();
   }
 };
-// sendEmail("480airlines@gmail.com", "justin pham");

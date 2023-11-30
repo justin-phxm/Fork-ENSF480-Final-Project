@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { ticketPurchaseEmail } from "@/app/api/email/membershipEmail";
 export default function PaymentModal({
   onClose,
   selectedSeat,
@@ -52,23 +52,55 @@ export default function PaymentModal({
   };
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // console.log({
-    //   chosenFlight,
-    //   selectedSeat,
-    //   insurance,
-    // });
-    // console.log({
-    //   customerID: session?.user?.email,
-    //   flightID: chosenFlight.flight?.flightID,
-    //   seatCode: selectedSeat?.seatCode,
-    //   plane: chosenFlight.flight?.plane.aircraftID,
-    // });
-
     toast.promise(createTransaction(), {
       pending: "Creating Transaction...",
       success: "Transaction Created!",
       error: "Error Creating Transaction",
     });
+    if (
+      session &&
+      session.user &&
+      session.user.email &&
+      session.user.name &&
+      chosenFlight.flight?.flightID &&
+      selectedSeat?.seatCode &&
+      chosenFlight.flight?.plane.aircraftID &&
+      insurance &&
+      selectedSeat?.seatType &&
+      chosenFlight.flight?.plane.aircraftID
+    ) {
+      console.log(
+        session?.user?.email,
+        session?.user?.name,
+        "TicketID: faukjljkl1214xz",
+        chosenFlight.flight?.flightID,
+        selectedSeat?.seatCode,
+        chosenFlight.flight?.plane.aircraftID,
+        insurance,
+        selectedSeat?.seatType,
+        chosenFlight.flight?.plane.aircraftID
+      );
+      toast.promise(
+        ticketPurchaseEmail(
+          session?.user?.email,
+          session?.user?.name,
+          "TicketID: faukjljkl1214xz",
+          chosenFlight.flight?.flightID,
+          selectedSeat?.seatCode,
+          chosenFlight.flight?.plane.aircraftID,
+          insurance,
+          selectedSeat?.seatType,
+          chosenFlight.flight?.plane.aircraftID
+        ),
+        {
+          pending: "Sending Payment Receipt Email...",
+          success: "Email Sent!",
+          error: "Error Sending Payment Receipt Email",
+        }
+      );
+    } else {
+      toast.error("Error Sending Payment Receipt Email");
+    }
 
     onClose();
   };

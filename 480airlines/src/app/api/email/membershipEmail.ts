@@ -129,3 +129,71 @@ export const signupCompanionTicketEmail = async (
     return NextResponse.error();
   }
 };
+
+export const ticketPurchaseEmail = async (
+  email: string,
+  name: string,
+  ticket: string,
+  flightID: number,
+  seatCode: string,
+  plane: number,
+  insurance: number,
+  seatType: string,
+  aircraftID: number
+) => {
+  const textContent = `Hi ${name},
+
+Thank you for purchasing a ticket. Here are the details of your booking:
+
+Email: ${email}
+Name: ${name}
+Ticket Number: ${ticket}
+Flight ID: ${flightID}
+Seat Code: ${seatCode}
+Plane: ${plane}
+Insurance: ${insurance}
+Seat Type: ${seatType}
+Aircraft ID: ${aircraftID}
+
+If you have any questions, please contact us at 480airlines@gmail.com.`;
+  let params = {
+    Source: "480airlines@gmail.com",
+    Destination: {
+      ToAddresses: [email],
+    },
+    ReplyToAddresses: [],
+    Message: {
+      Body: {
+        Html: {
+          Charset: "UTF-8",
+          Data: `<html><body><h1>Hi ${name},</h1><p>Thank you for purchasing a ticket. Here are the details of your booking:<br />
+            <strong>Email:</strong> ${email}<br />
+            <strong>Name:</strong> ${name}<br />
+            <strong>Ticket Number:</strong> ${ticket}<br />
+            <strong>Flight ID:</strong> ${flightID}<br />
+            <strong>Seat Code:</strong> ${seatCode}<br />
+            <strong>Plane:</strong> ${plane}<br />
+            <strong>Insurance:</strong> ${insurance}<br />
+            <strong>Seat Type:</strong> ${seatType}<br />
+            <strong>Aircraft ID:</strong> ${aircraftID}<br /></p></body></html>`,
+        },
+        Text: {
+          Charset: "UTF-8",
+          Data: textContent,
+        },
+      },
+      Subject: {
+        Charset: "UTF-8",
+        Data: `Booking Confirmation - 480airlines`,
+      },
+    },
+  };
+  try {
+    const res = await AWS_SES.sendEmail(params).promise();
+    console.log("Email sent successfully", res);
+    return res;
+  } catch (error) {
+    console.log("Error sending email", error);
+    return NextResponse.error();
+  }
+};

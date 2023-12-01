@@ -2,13 +2,24 @@ import { NextResponse } from "next/server";
 
 const uri = "http://localhost:8080/Customer";
 export async function GET(req: Request) {
-  const response = await fetch("http://localhost:8080/Customer/getCustomer");
+  const url = new URL(req.url);
+  const urlQuery = url.searchParams;
+  let email = urlQuery.get("email");
+  if (!email) {
+    email = "null";
+  }
+  const serverURI = `${uri}/view/${email}`;
+  const response = await fetch(serverURI, {
+    method: "GET",
+  });
+  const responseBody = await response.body?.getReader().read();
+  console.log(responseBody);
   return response;
 }
 
 export async function POST(req: Request) {
   const body = await req.json();
-  console.log(body);
+  // console.log(body);
   const response = await fetch(`${uri}/addCustomer`, {
     method: "POST",
     headers: {

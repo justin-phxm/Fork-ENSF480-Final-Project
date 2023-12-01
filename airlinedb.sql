@@ -111,10 +111,10 @@ VALUES
     ('Justin', 'Pham', 'justin.phamx4@gmail.com');
 
 
-INSERT INTO Customer (FirstName, LastName, Email, isMember, creditCard, companionTicket, monthlyEmails, loungeDiscount, Address)
+INSERT INTO Customer (FirstName, LastName, Email, isMember, creditCard, companionTicket, monthlyEmails, loungeDiscount, Address, Onflight)
 VALUES
-    ('John', 'Doe', 'john.doe@email.com', FALSE, NULL, FALSE, FALSE, FALSE, '123 Street'),
-    ('Jane', 'Smith', 'jane.smith@email.com', TRUE, '1234567890123456', TRUE, FALSE, TRUE, 'Sesame Street');
+    ('John', 'Doe', 'john.doe@email.com', FALSE, NULL, FALSE, FALSE, FALSE, '123 Street', 0),
+    ('Jane', 'Smith', 'jane.smith@email.com', TRUE, '1234567890123456', TRUE, FALSE, TRUE, 'Sesame Street', 0);
     
 INSERT INTO Employee (FirstName, LastName, EmployeeRole, Email)
 VALUES

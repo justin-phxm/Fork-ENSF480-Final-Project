@@ -58,16 +58,12 @@ export default function PaymentModal({
       error: "Error Creating Transaction",
     });
     if (
-      session &&
-      session.user &&
-      session.user.email &&
+      session?.user?.email &&
       session.user.name &&
       chosenFlight.flight?.flightID &&
       selectedSeat?.seatCode &&
       chosenFlight.flight?.plane.aircraftID &&
-      insurance &&
-      selectedSeat?.seatType &&
-      chosenFlight.flight?.plane.aircraftID
+      selectedSeat?.seatType
     ) {
       console.log(
         session?.user?.email,
@@ -84,7 +80,7 @@ export default function PaymentModal({
         ticketPurchaseEmail(
           session?.user?.email,
           session?.user?.name,
-          "TicketID: faukjljkl1214xz",
+          "TicketID: 1439393",
           chosenFlight.flight?.flightID,
           selectedSeat?.seatCode,
           chosenFlight.flight?.plane.aircraftID,

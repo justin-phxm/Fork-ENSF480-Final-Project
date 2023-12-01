@@ -24,6 +24,14 @@ public class CustomerService {
         return repo.findByCustomerID(id);
     }
 
+    public Customer getCustomerByE(String id){
+        return repo.findByEmail(id);
+    }
+
+    public List<Customer> getPassengers(int id){
+        return repo.findByOnflight(id);
+    }
+
     public void updateMemberStatus(int customerId, boolean newStatus) {
         Customer customer = repo.findByCustomerID(customerId);
         if (customer != null) {
@@ -121,7 +129,7 @@ public class CustomerService {
             existingCustomer.setMonthlyEmails(customer.getMonthlyEmails());
             existingCustomer.setLoungeDiscount(customer.getLoungeDiscount());
             existingCustomer.setAddress(customer.getAddress());
-
+            existingCustomer.setOnflight(customer.getOnflight());
             repo.save(existingCustomer);
         }
     }

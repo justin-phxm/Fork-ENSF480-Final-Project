@@ -6,6 +6,6 @@ public class CustomerPermission implements BrowseStrategy{
     
     @Override
     public void browse(){
-        
+        System.out.println("temp");
     };
 }

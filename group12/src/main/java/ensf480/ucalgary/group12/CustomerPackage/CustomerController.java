@@ -52,7 +52,7 @@ public class CustomerController {
     // away all of the perks. each of the perks
     // also tried to make them first check that isMember is true before adding them
     @PutMapping("/updateMemberStatus/{id}")
-    public void updateMemberStatus(@PathVariable("id") int id, @RequestParam boolean newStatus) {
+    public void updateMemberStatus(@PathVariable("id") String id, @RequestParam boolean newStatus) {
         service.updateMemberStatus(id, newStatus);
     }
 
@@ -60,27 +60,27 @@ public class CustomerController {
     // thus, delete is used for getting rid of it and update is really more like 
     // "add it in"
     @PutMapping("/updateCreditCard/{id}")
-    public void updateCreditCard(@PathVariable("id") int id) {
+    public void updateCreditCard(@PathVariable("id") String id) {
         service.updateCreditCardIfMember(id);
     }
 
     @DeleteMapping("/deleteCreditCard/{id}")
-    public void deleteCreditCard(@PathVariable("id") int id) {
+    public void deleteCreditCard(@PathVariable("id") String id) {
         service.deleteCreditCard(id);
     }
 
     @PutMapping("/updateCompanionTicket/{id}")
-    public void updateCompanionTicket(@PathVariable("id") int id, @RequestParam boolean companionTicket) {
+    public void updateCompanionTicket(@PathVariable("id") String id, @RequestParam boolean companionTicket) {
         service.updateCompanionTicket(id, companionTicket);
     }
 
     @PutMapping("/updateMonthlyEmails/{id}")
-    public void updateMonthlyEmails(@PathVariable("id") int id, @RequestParam boolean monthlyEmails) {
+    public void updateMonthlyEmails(@PathVariable("id") String id, @RequestParam boolean monthlyEmails) {
         service.updateMonthlyEmails(id, monthlyEmails);
     }
 
     @PutMapping("/updateLoungeDiscount/{id}")
-    public void updateLoungeDiscount(@PathVariable("id") int id, @RequestParam boolean loungeDiscount) {
+    public void updateLoungeDiscount(@PathVariable("id") String id, @RequestParam boolean loungeDiscount) {
         service.updateLoungeDiscount(id, loungeDiscount);
     }
 

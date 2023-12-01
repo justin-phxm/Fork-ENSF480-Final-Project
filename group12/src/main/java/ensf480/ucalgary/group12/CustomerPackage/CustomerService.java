@@ -32,8 +32,8 @@ public class CustomerService {
         return repo.findByOnflight(id);
     }
 
-    public void updateMemberStatus(int customerId, boolean newStatus) {
-        Customer customer = repo.findByCustomerID(customerId);
+    public void updateMemberStatus(String customerId, boolean newStatus) {
+        Customer customer = repo.findByEmail(customerId);
         if (customer != null) {
             if(newStatus){
                 customer.setIsMember(true);
@@ -49,8 +49,8 @@ public class CustomerService {
         }
     }
 
-    public void updateCreditCardIfMember(int customerId) {
-        Customer customer = repo.findByCustomerID(customerId);
+    public void updateCreditCardIfMember(String customerId) {
+        Customer customer = repo.findByEmail(customerId);
 
         if (customer != null && customer.getIsMember()) {
             String newCreditCard = generateRandomCreditCard();
@@ -59,8 +59,8 @@ public class CustomerService {
         }
     }
 
-    public void deleteCreditCard(int customerId) {
-        Customer customer = repo.findByCustomerID(customerId);
+    public void deleteCreditCard(String customerId) {
+        Customer customer = repo.findByEmail(customerId);
 
         if (customer != null) {
             // Set creditCard to null
@@ -81,8 +81,8 @@ public class CustomerService {
 
     //
 
-    public void updateCompanionTicket(int customerId, boolean companionTicket) {
-        Customer customer = repo.findByCustomerID(customerId);
+    public void updateCompanionTicket(String customerId, boolean companionTicket) {
+        Customer customer = repo.findByEmail(customerId);
 
         if (customer != null && customer.getIsMember()) {
             customer.setCompanionTicket(companionTicket);
@@ -90,8 +90,8 @@ public class CustomerService {
         }
     }
 
-    public void updateMonthlyEmails(int customerId, boolean monthlyEmails) {
-        Customer customer = repo.findByCustomerID(customerId);
+    public void updateMonthlyEmails(String customerId, boolean monthlyEmails) {
+        Customer customer = repo.findByEmail(customerId);
 
         if (customer != null && customer.getIsMember()) {
             customer.setMonthlyEmails(monthlyEmails);
@@ -99,8 +99,8 @@ public class CustomerService {
         }
     }
 
-    public void updateLoungeDiscount(int customerId, boolean loungeDiscount) {
-        Customer customer = repo.findByCustomerID(customerId);
+    public void updateLoungeDiscount(String customerId, boolean loungeDiscount) {
+        Customer customer = repo.findByEmail(customerId);
 
         if (customer != null && customer.getIsMember()) {
             customer.setLoungeDiscount(loungeDiscount);

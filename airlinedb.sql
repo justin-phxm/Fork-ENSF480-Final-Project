@@ -11,7 +11,6 @@ CREATE TABLE User (
 
 DROP TABLE IF EXISTS Customer;
 CREATE TABLE Customer (
-    
     ID INT PRIMARY KEY AUTO_INCREMENT,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
@@ -22,7 +21,7 @@ CREATE TABLE Customer (
     monthlyEmails BOOLEAN, 
     loungeDiscount BOOLEAN,
     Address VARCHAR(20),
-    FOREIGN KEY (Email) REFERENCES User(Email) ON DELETE CASCADE 	ON UPDATE CASCADE
+    Onflight INT
  );
 
 DROP TABLE IF EXISTS Employee;
@@ -33,7 +32,6 @@ CREATE TABLE Employee (
     EmployeeRole VARCHAR(20),
     Email VARCHAR(100),
     FOREIGN KEY (Email) REFERENCES User(Email) ON DELETE CASCADE 	ON UPDATE CASCADE
-
 );
 
 DROP TABLE IF EXISTS Admin;
@@ -85,7 +83,6 @@ CREATE TABLE Ticket (
 	Origin VARCHAR(20),
 	PlaneID INT
 );
-     
 
 DROP TABLE IF EXISTS Transactions;
 CREATE TABLE Transactions (

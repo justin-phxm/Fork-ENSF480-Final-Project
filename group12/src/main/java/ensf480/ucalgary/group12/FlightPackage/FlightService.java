@@ -1,8 +1,6 @@
 package ensf480.ucalgary.group12.FlightPackage;
 
 import java.util.Date;
-import ensf480.ucalgary.group12.FlightPackage.Flight;
-import ensf480.ucalgary.group12.FlightPackage.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,5 @@
 package ensf480.ucalgary.group12.AircraftPackage;
 
-import ensf480.ucalgary.group12.AircraftPackage.Aircraft;
-import ensf480.ucalgary.group12.AircraftPackage.AircraftService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

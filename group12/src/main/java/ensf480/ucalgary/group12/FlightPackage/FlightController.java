@@ -2,8 +2,6 @@ package ensf480.ucalgary.group12.FlightPackage;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import ensf480.ucalgary.group12.FlightPackage.Flight;
-import ensf480.ucalgary.group12.FlightPackage.FlightService;
 import ensf480.ucalgary.group12.AircraftPackage.AircraftService;
 import ensf480.ucalgary.group12.AircraftPackage.Aircraft;
 

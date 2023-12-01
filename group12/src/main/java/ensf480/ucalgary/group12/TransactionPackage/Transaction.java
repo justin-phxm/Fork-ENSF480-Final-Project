@@ -3,7 +3,6 @@ package ensf480.ucalgary.group12.TransactionPackage;
 import jakarta.persistence.*;
 
 import java.util.List;
-import ensf480.ucalgary.group12.TransactionPackage.Ticket;
 
 @Entity
 @Table(name = "Transactions")

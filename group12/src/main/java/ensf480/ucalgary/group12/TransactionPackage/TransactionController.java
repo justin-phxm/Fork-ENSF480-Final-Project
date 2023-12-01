@@ -2,9 +2,6 @@ package ensf480.ucalgary.group12.TransactionPackage;
 
 import ensf480.ucalgary.group12.Seat.SeatService;
 import ensf480.ucalgary.group12.Seat.Seat;
-import ensf480.ucalgary.group12.TransactionPackage.Transaction;
-import ensf480.ucalgary.group12.TransactionPackage.Transaction;
-import ensf480.ucalgary.group12.TransactionPackage.TransactionService;
 import ensf480.ucalgary.group12.FlightPackage.FlightService;
 import ensf480.ucalgary.group12.CustomerPackage.CustomerService;
 import ensf480.ucalgary.group12.CustomerPackage.Customer;

@@ -21,7 +21,7 @@ public class CustomerService {
     }
 
     public Customer getCustomer(int id){
-        return repo.findByID(id);
+        return repo.findByCustomerID(id);
     }
 
     public Customer getCustomerByE(String id){

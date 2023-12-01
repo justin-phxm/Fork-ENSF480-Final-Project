@@ -39,6 +39,15 @@ public class CustomerController {
         return service.getPassengers(id);
     }
 
+    @GetMapping("/view/{id}")
+    public String viewMember(@PathVariable String id){
+        Customer c = service.getCustomerByE(id);
+        if (c == null){
+            return "User does not exist";
+        }
+        return c.viewMembership();
+    }
+
     // attempted to set up catching so that when member is set to false, it takes
     // away all of the perks. each of the perks
     // also tried to make them first check that isMember is true before adding them

@@ -68,6 +68,7 @@ public class Customer extends User{
             ret = "Not a Member";
             return ret;
         }
+        MembershipStatus = new BasicMembership();
         if(companionTicket){
             MembershipStatus = new FreeCompanionTicket(MembershipStatus);
             ret += MembershipStatus.viewMembership();

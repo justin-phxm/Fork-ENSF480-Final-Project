@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
 
+import { API_URL } from "../apiInfo";
+
+const uri = API_URL + "/Employee";
+
 export async function GET(req: Request) {
-  const response = await fetch("http://localhost:8080/employee/getEmployee");
+  const serverURI = `${uri}/getEmployees`;
+  console.log(serverURI);
+  const response = await fetch(serverURI);
   if (!response.ok) {
     return NextResponse.error();
   }

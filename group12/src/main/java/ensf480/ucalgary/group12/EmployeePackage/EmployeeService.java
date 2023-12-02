@@ -20,6 +20,10 @@ public class EmployeeService {
     }
 
     public Employee addEmployee(Employee e){
+        Employee f = repo.findByEmail(e.getEmail());
+        if (f!=null){
+            return null;
+        }
         return repo.save(e);
     }
 

@@ -8,6 +8,7 @@ import {
   sendEmail,
   signupMonthlyEmail,
   signupCompanionTicketEmail,
+  signupLoungeDiscountEmail,
 } from "@/app/api/email/membershipEmail";
 export default function MembershipRegistrationControl() {
   const { data: session, status } = useSession();
@@ -134,48 +135,50 @@ export default function MembershipRegistrationControl() {
     if (session && session.user?.email && session.user?.name) {
       const res = await handleSignupCompanionTicket(session.user.email);
       console.log(res);
-      // toast.promise(
-      //   signupCompanionTicketEmail(session.user.email, session.user?.name),
-      //   {
-      //     pending: "Signing you up for the promotional companion ticket...",
-      //     success: `You have successfully signed up for the promotional companion ticket!`,
-      //     error: "Error signing you up for the promotional companion ticket",
-      //   }
-      // );
+      toast.promise(
+        signupCompanionTicketEmail(session.user.email, session.user?.name),
+        {
+          pending: "Signing you up for the promotional companion ticket...",
+          success: `You have successfully signed up for the promotional companion ticket!`,
+          error: "Error signing you up for the promotional companion ticket",
+        }
+      );
     } else {
       console.log("Please make sure you are logged in");
     }
   };
+  // Monthly Emails
   const handleOnSubmitPN = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (session && session.user?.email && session.user?.name) {
       const res = await handleSignupMonthlyEmail(session.user.email);
       console.log(res);
-      // toast.promise(
-      //   signupCompanionTicketEmail(session.user.email, session.user?.name),
-      //   {
-      //     pending: "Signing you up for the promotional companion ticket...",
-      //     success: `You have successfully signed up for the promotional companion ticket!`,
-      //     error: "Error signing you up for the promotional companion ticket",
-      //   }
-      // );
+      toast.promise(
+        signupMonthlyEmail(session.user.email, session.user?.name),
+        {
+          pending: "Signing you up for the monthly email newsletter...",
+          success: `You have successfully signed up for the monthly email newsletter!`,
+          error: "Error signing you up for the monthly email newsletter",
+        }
+      );
     } else {
       console.log("Please make sure you are logged in");
     }
   };
+  // Lounge Discounts
   const handleOnSubmitLD = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (session && session.user?.email && session.user?.name) {
       const res = await handleSignupLoungeDiscount(session.user.email);
       console.log(res);
-      // toast.promise(
-      //   signupCompanionTicketEmail(session.user.email, session.user?.name),
-      //   {
-      //     pending: "Signing you up for the promotional companion ticket...",
-      //     success: `You have successfully signed up for the promotional companion ticket!`,
-      //     error: "Error signing you up for the promotional companion ticket",
-      //   }
-      // );
+      toast.promise(
+        signupLoungeDiscountEmail(session.user.email, session.user?.name),
+        {
+          pending: "Signing you up for the promotional lounge discount...",
+          success: `You have successfully signed up for the promotional lounge discount!`,
+          error: "Error signing you up for the promotional lounge discount",
+        }
+      );
     } else {
       console.log("Please make sure you are logged in");
     }

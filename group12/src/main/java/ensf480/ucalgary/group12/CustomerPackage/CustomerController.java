@@ -60,8 +60,8 @@ public class CustomerController {
     // thus, delete is used for getting rid of it and update is really more like 
     // "add it in"
     @PutMapping("/updateCreditCard/{id}")
-    public void updateCreditCard(@PathVariable("id") String id) {
-        service.updateCreditCardIfMember(id);
+    public String updateCreditCard(@PathVariable("id") String id) {
+        return service.updateCreditCardIfMember(id);
     }
 
     @DeleteMapping("/deleteCreditCard/{id}")

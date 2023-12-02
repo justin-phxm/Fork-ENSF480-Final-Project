@@ -49,13 +49,17 @@ public class CustomerService {
         }
     }
 
-    public void updateCreditCardIfMember(String customerId) {
+    public String updateCreditCardIfMember(String customerId) {
         Customer customer = repo.findByEmail(customerId);
 
         if (customer != null && customer.getIsMember()) {
             String newCreditCard = generateRandomCreditCard();
             customer.setCreditCardNum(newCreditCard);
             repo.save(customer);
+            return newCreditCard;
+        }
+        else{
+            return "";
         }
     }
 

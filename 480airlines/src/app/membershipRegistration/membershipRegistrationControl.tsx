@@ -47,14 +47,15 @@ export default function MembershipRegistrationControl() {
     }
   };
   const getMembershipDetails = async () => {
-    const res = await fetch(`/api/customer?email=${session?.user?.email}`, {
+    const res = await fetch(`/api/membership?email=${session?.user?.email}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
-    const data = await res.json();
+    const data = await res.text();
     console.log(data);
+    setMembershipDetails(data);
   };
   useEffect(() => {
     if (session) {

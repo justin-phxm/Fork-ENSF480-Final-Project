@@ -19,4 +19,8 @@ public class EmployeeService {
         return repo.findAll();
     }
 
+    public Employee addEmployee(Employee e){
+        return repo.save(e);
+    }
+
 }

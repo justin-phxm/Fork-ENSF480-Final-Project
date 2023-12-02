@@ -120,6 +120,7 @@ INSERT INTO Employee (FirstName, LastName, EmployeeRole, Email)
 VALUES
     ('Ryan', 'Gosling', 'Crew',"ryan.gosling@gmail.com"),
     ('Brad', 'Pitt', 'Crew', "Brad.pitt@gmail.com"),
+    ('Justin', 'Pham', 'Admin', "justin.phamx4@gmail.com"),
     ('Barack', 'Obama', 'Agent',"BarackObama@gmail.com");
 
 INSERT INTO Aircrafts (AircraftName)

@@ -27,4 +27,12 @@ public class EmployeeService {
         return repo.save(e);
     }
 
+    public String removeEmployee(int e){
+        try {
+            repo.deleteById(e);
+            return "Employee with ID " + e + " was removed";
+        } catch (Exception f) {
+            return "Employee with ID " + e + " not found";
+        }
+    }
 }

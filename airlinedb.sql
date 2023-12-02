@@ -30,8 +30,7 @@ CREATE TABLE Employee (
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     EmployeeRole VARCHAR(20),
-    Email VARCHAR(100),
-    FOREIGN KEY (Email) REFERENCES User(Email) ON DELETE CASCADE 	ON UPDATE CASCADE
+    Email VARCHAR(100)
 );
 
 DROP TABLE IF EXISTS Admin;

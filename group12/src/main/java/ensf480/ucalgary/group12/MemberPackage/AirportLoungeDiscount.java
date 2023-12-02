@@ -9,8 +9,9 @@ public class AirportLoungeDiscount extends MembershipDecorator{
 
     @Override
     public String viewMembership(){
-        String ret1 = super.viewMembership();
+        //String ret1 = super.viewMembership();
         String ret2 = " + Airport Lounge Discount";
-        return ret1 + ret2;
+        //return ret1 + ret2;
+        return ret2;
     }
 }

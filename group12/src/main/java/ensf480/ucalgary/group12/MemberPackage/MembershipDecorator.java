@@ -16,6 +16,6 @@ public abstract class MembershipDecorator implements Membership{
         // are extending this so the super.viewMembership() in theirs is returning
         // this one I believe
         // I will need to fix this later if it does not behave as expected
-        return "Membership has ";
+        return "Basic Membership + ";
     }
 }

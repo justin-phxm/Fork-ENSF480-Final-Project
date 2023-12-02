@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,20 +14,22 @@ const SigninButton = () => {
       },
       body: JSON.stringify(userInfo),
     });
-    // const data = await res.json();
-    // console.log(data);
   };
-  if (session?.user?.name && session.user.email) {
-    let [firstName, lastName] = ["", ""];
-    [firstName, lastName] = session.user.name.split(/\s+/, 2);
-    const userInfo: AccountInterface = {
-      email: session.user.email,
-      firstName: firstName,
-      lastName: lastName,
-      onflight: 0,
-    };
-    createAccount(userInfo);
+  useEffect(() => {
+    if (session?.user?.name && session?.user?.email) {
+      let [firstName, lastName] = ["", ""];
+      [firstName, lastName] = session.user.name.split(/\s+/, 2);
+      const userInfo: AccountInterface = {
+        email: session.user.email,
+        firstName: firstName,
+        lastName: lastName,
+        onflight: 0,
+      };
+      createAccount(userInfo);
+    }
+  }, [session?.user?.email]);
 
+  if (session?.user?.name) {
     return (
       <div className="flex gap-4 ml-auto">
         <Link href="/account" className="text-sky-600">

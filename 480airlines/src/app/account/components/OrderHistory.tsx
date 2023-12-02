@@ -8,9 +8,12 @@ import { ticketCancellationEmail } from "@/app/api/email/membershipEmail";
 import { useSession } from "next-auth/react";
 export default function OrderHistory(props: {
   transactions?: orderTransactionInterface[];
+  setTransactions: React.Dispatch<
+    React.SetStateAction<orderTransactionInterface[]>
+  >;
 }) {
   const { data: session } = useSession();
-  const { transactions } = props;
+  const { transactions, setTransactions } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [cancellingOrder, setCancellingOrder] = useState<
     orderTransactionInterface | undefined
@@ -44,6 +47,12 @@ export default function OrderHistory(props: {
           error: "Error sending email",
         }
       );
+    }
+    if (transactions) {
+      const updatedTransactions = transactions.filter(
+        (transaction) => transaction.iD !== transactionID
+      );
+      setTransactions(updatedTransactions);
     }
   };
   const handleCancelClick = () => {

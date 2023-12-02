@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import OrderHistory from "./components/OrderHistory";
 import orderTransactionInterface from "../interfaces/orderTransaction";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AccountControl() {
   const { data: session } = useSession();
@@ -32,7 +33,10 @@ export default function AccountControl() {
               -- Click on a flight to cancel
             </span>
           </h1>
-          <OrderHistory transactions={transactions}></OrderHistory>
+          <OrderHistory
+            transactions={transactions}
+            setTransactions={setTransactions}
+          ></OrderHistory>
         </div>
       </div>
       <ToastContainer position="bottom-right"></ToastContainer>

@@ -15,7 +15,21 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  return NextResponse.json({ message: "Hello from Next.js!" });
+  const body = await req.json();
+  console.log(body);
+  const serverURI = `${uri}/addEmployee`;
+  console.log(serverURI);
+  const response = await fetch(serverURI, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  if (!response.ok) {
+    return NextResponse.error();
+  }
+  return response;
 }
 
 export async function DELETE(req: Request) {

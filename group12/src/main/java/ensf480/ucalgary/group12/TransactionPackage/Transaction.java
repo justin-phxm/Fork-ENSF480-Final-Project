@@ -21,7 +21,7 @@ public class Transaction {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "TicketID")
     private Ticket ticket = new Ticket();
-    @Transient
+    @Column(name = "Price")
     private double price;
 
     public Transaction(){
@@ -39,7 +39,7 @@ public class Transaction {
         if (insure == 1){
             total *= 1.15;
         }
-
+        
         return total;
     }
 

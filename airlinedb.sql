@@ -91,6 +91,7 @@ CREATE TABLE Transactions (
     SeatCode VARCHAR(3),
     Aircraft INT,
     TicketID INT,
+    Price DOUBLE,
     FOREIGN KEY (FlightID) REFERENCES Flights(FlightID),
     FOREIGN KEY (TicketID) REFERENCES Ticket(ID)
 );

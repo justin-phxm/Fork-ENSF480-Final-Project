@@ -6,7 +6,21 @@ import Link from "next/link";
 import AccountInterface from "../interfaces/account";
 const SigninButton = () => {
   const { data: session } = useSession();
+  const getAccount = async (email: string) => {
+    console.log("Getting account");
+    const res = await fetch(`/api/customer?email=${email}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    const account = await data.response;
+    console.log(account);
+    return account;
+  };
   const createAccount = async (userInfo: AccountInterface) => {
+    console.log("Creating account");
     const res = await fetch("/api/customer", {
       method: "POST",
       headers: {
@@ -25,7 +39,17 @@ const SigninButton = () => {
         lastName: lastName,
         onflight: 0,
       };
-      createAccount(userInfo);
+      getAccount(session.user.email)
+        .then((data) => {
+          console.log(data);
+          if (data.length === 0) {
+            createAccount(userInfo);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // createAccount(userInfo);
     }
   }, [session?.user?.email]);
 

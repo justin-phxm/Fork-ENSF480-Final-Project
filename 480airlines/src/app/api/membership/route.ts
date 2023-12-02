@@ -1,9 +1,17 @@
 import { NextResponse } from "next/server";
 
+const uri = "http://localhost:8080/Customer";
 export async function GET(req: Request) {
-  const response = await fetch(
-    "http://localhost:8080/membership/getMembership"
-  );
+  const url = new URL(req.url);
+  const urlQuery = url.searchParams;
+  let email = urlQuery.get("email");
+  if (!email) {
+    email = "null";
+  }
+  const serverURI = `${uri}/view/${email}`;
+  const response = await fetch(serverURI, {
+    method: "GET",
+  });
   return response;
 }
 

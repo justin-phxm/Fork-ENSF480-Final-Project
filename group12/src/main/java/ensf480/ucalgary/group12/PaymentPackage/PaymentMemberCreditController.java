@@ -16,8 +16,8 @@ public class PaymentMemberCreditController {
     }
 
     @GetMapping("/processCreditCardPayment/{id}")
-    public String processCreditCardPayment(@PathVariable("id") int customerID){
-        Customer customer = s.getCustomer(customerID);
+    public String processCreditCardPayment(@PathVariable("id") String id){
+        Customer customer = s.getCustomerByE(id);
 
         PaymentMemberCredit payMemCred = new PaymentMemberCredit(customer);
         return payMemCred.pay();

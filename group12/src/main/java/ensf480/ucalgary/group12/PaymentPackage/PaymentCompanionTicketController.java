@@ -16,8 +16,8 @@ public class PaymentCompanionTicketController {
     }
 
     @GetMapping("/processCompanionTicketPayment/{id}")
-    public String processCompanionTicketPayment(@PathVariable("id") int customerID){
-        Customer customer = s.getCustomer(customerID);
+    public String processCompanionTicketPayment(@PathVariable("id") String id){
+        Customer customer = s.getCustomerByE(id);
 
         PaymentCompanionTicket payCompTick = new PaymentCompanionTicket(customer);
 

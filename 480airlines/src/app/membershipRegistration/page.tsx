@@ -23,8 +23,8 @@ export default function page() {
       body: "Unlock a personalized travel experience tailored just for you. Our registered members enjoy perks that go beyond the ordinary, ensuring your journeys are extraordinary.",
     },
     {
-      title: "Special Members-Only Events:",
-      body: "Join our exclusive members-only events and gatherings. Connect with fellow travelers, share stories, and be part of a community that shares your passion for exploration.",
+      title: "Company Credit Card",
+      body: "Enjoy the convenience of a company credit card. Our registered members receive a company credit card, making it easier than ever to book flights and manage expenses.",
     },
     {
       title: "Dedicated Customer Support",

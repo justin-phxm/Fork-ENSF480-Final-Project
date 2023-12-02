@@ -18,7 +18,7 @@ export default function DestinationCard(props: { flight: flight2Interface }) {
 
   return (
     <>
-      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-sm hover:opacity-90 transition ease-in hover:-translate-y-1 duration-300 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <Link href="#">
           <Image
             width={400}

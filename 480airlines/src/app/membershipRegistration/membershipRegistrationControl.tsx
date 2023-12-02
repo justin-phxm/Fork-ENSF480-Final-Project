@@ -9,6 +9,7 @@ import {
   signupMonthlyEmail,
   signupCompanionTicketEmail,
   signupLoungeDiscountEmail,
+  signupCreditCardEmail,
 } from "@/app/api/email/membershipEmail";
 export default function MembershipRegistrationControl() {
   const { data: session, status } = useSession();
@@ -77,6 +78,26 @@ export default function MembershipRegistrationControl() {
     return data;
   };
 
+  const handleSignupCreditCard = async (email: string) => {
+    const uri = `/api/membershipPerks?creditCard=true`;
+
+    const res = await fetch(uri, {
+      body: JSON.stringify({
+        email: email,
+        getCreditCard: "true",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+    });
+    console.log(res);
+    const data = await res.json();
+    console.log(data);
+    getMembershipDetails();
+    return data;
+  };
+
   const handleOnSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (session && session.user?.email && session.user?.name) {
@@ -87,28 +108,6 @@ export default function MembershipRegistrationControl() {
         success: `You have successfully signed up for membership!`,
         error: "Error signing you up for membership",
       });
-      // try {
-      //     toast.promise(
-      //       signupMonthlyEmail(session.user.email, session.user?.name),
-      //       {
-      //         pending: "Signing you up for monthly newsletters...",
-      //         success: `You have successfully signed up for monthly newsletters!`,
-      //         error: "Error signing you up for monthly newsletters",
-      //       }
-      //     );
-      //     toast.promise(
-      //       signupCompanionTicketEmail(session.user.email, session.user?.name),
-      //       {
-      //         pending: "Signing you up for companion ticket membership...",
-      //         success: `You have successfully signed up for the promotional companion ticket!`,
-      //         error:
-      //           "Error signing you up for the promotional companion ticket",
-      //       }
-      //     );
-      //   }
-      // } catch (error) {
-      //   console.log(error);
-      // }
     } else {
       console.log("Please make sure you are logged in");
     }
@@ -183,10 +182,35 @@ export default function MembershipRegistrationControl() {
       console.log("Please make sure you are logged in");
     }
   };
+  // Credit Card
+  const handleOnSubmitCC = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    if (session && session.user?.email && session.user?.name) {
+      const res = await handleSignupCreditCard(session.user.email);
+      console.log(res);
+      const creditCardNumber = res.message;
+      console.log(creditCardNumber);
+      toast.promise(
+        signupCreditCardEmail(
+          session.user.email,
+          session.user?.name,
+          creditCardNumber
+        ),
+        {
+          pending: "Signing you up for the promotional lounge discount...",
+          success: `You have successfully signed up for the promotional lounge discount!`,
+          error: "Error signing you up for the promotional lounge discount",
+        }
+      );
+    } else {
+      console.log("Please make sure you are logged in");
+    }
+  };
   const [membershipDetails, setMembershipDetails] = useState("Loading...");
   return (
     <>
       <div className="flex flex-col gap-4">
+        {/* Email Signup form */}
         <form className="w-full max-w-md mx-auto">
           <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
             Email sign-up
@@ -276,6 +300,19 @@ export default function MembershipRegistrationControl() {
 
                         <button
                           onClick={handleOnSubmitLD}
+                          className="text-white p-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        >
+                          Sign up
+                        </button>
+                      </li>
+                    )}
+                    {/* Credit Card */}
+                    {!membershipDetails.includes("Company Credit card") && (
+                      <li className="flex flex-row items-center justify-between gap-4">
+                        <p className="text-sm italic">Company Credit Card</p>
+
+                        <button
+                          onClick={handleOnSubmitCC}
                           className="text-white p-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                           Sign up

@@ -26,6 +26,7 @@ export async function PUT(req: Request) {
   let response1 = null;
   let response2 = null;
   let response3 = null;
+  let response4 = null;
   const formData = new FormData();
   if (companionTicket !== "null") {
     formData.append("companionTicket", companionTicket);
@@ -55,16 +56,25 @@ export async function PUT(req: Request) {
       body: formData,
     });
   }
+  if (body.getCreditCard && body.getCreditCard === "true") {
+    const serverURI4 = `${uri}/updateCreditCard/${body.email}`;
+    console.log(serverURI4);
+    response4 = await fetch(serverURI4, {
+      method: "PUT",
+    });
+  }
 
   const responseText1 = await response1?.text();
   const responseText2 = await response2?.text();
   const responseText3 = await response3?.text();
+  const responseText4 = await response4?.text();
   console.log(responseText1);
   console.log(responseText2);
   console.log(responseText3);
+  console.log(responseText4);
   const responseText = `${responseText1 ?? ""}${responseText2 ?? ""}${
     responseText3 ?? ""
-  }`;
+  } ${responseText4 ?? ""}`;
   console.log(responseText);
 
   return NextResponse.json({ message: responseText });

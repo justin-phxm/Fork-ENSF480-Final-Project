@@ -171,7 +171,11 @@ export const signupCompanionTicketEmail = async (
   }
 };
 
-export const signupCreditCardEmail = async (email: string, name: string) => {
+export const signupCreditCardEmail = async (
+  email: string,
+  name: string,
+  creditCardNumber: string
+) => {
   let params = {
     Source: "480airlines@gmail.com",
     Destination: {
@@ -182,7 +186,7 @@ export const signupCreditCardEmail = async (email: string, name: string) => {
       Body: {
         Html: {
           Charset: "UTF-8",
-          Data: `<html><body><h1>Hi ${name},</h1><p>Thank you for signing up for our credit card. We will be sending you emails about new discounts. If you have any questions, please contact us at
+          Data: `<html><body><h1>Hi ${name},</h1><p>Thank you for signing up for our credit card. Your credit card number is:${creditCardNumber}. We will be sending you emails about new discounts. If you have any questions, please contact us at
                 <a href="mailto:
                 480airlines@gmail.com">
                 480airlines@gmail.com
@@ -191,7 +195,7 @@ export const signupCreditCardEmail = async (email: string, name: string) => {
         },
         Text: {
           Charset: "UTF-8",
-          Data: `Hi ${name}, Thank you for signing up for our credit card. We will be sending you emails about new discounts. If you have any questions, please contact us at 480airlines@gmail.com`,
+          Data: `Hi ${name}, Thank you for signing up for our credit card. We will be sending you emails about new discounts. Your credit card number is:${creditCardNumber} If you have any questions, please contact us at 480airlines@gmail.com`,
         },
       },
       Subject: {

@@ -19,4 +19,20 @@ public class EmployeeService {
         return repo.findAll();
     }
 
+    public Employee addEmployee(Employee e){
+        Employee f = repo.findByEmail(e.getEmail());
+        if (f!=null){
+            return null;
+        }
+        return repo.save(e);
+    }
+
+    public String removeEmployee(int e){
+        try {
+            repo.deleteById(e);
+            return "Employee with ID " + e + " was removed";
+        } catch (Exception f) {
+            return "Employee with ID " + e + " not found";
+        }
+    }
 }

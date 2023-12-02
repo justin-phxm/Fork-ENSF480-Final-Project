@@ -49,7 +49,7 @@ export default function OrderRow(props: {
             </div>
             {/* Price */}
             <div className="text-slate-800 whitespace-nowrap">
-              Price: ${transaction.price}
+              Price: ${transaction.price.toFixed(2)}
             </div>
             {/* Seat Code */}
             <div className="text-slate-800 whitespace-nowrap">

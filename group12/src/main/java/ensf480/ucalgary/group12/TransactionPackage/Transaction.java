@@ -3,7 +3,6 @@ package ensf480.ucalgary.group12.TransactionPackage;
 import jakarta.persistence.*;
 
 import java.util.List;
-import ensf480.ucalgary.group12.TransactionPackage.Ticket;
 
 @Entity
 @Table(name = "Transactions")
@@ -22,7 +21,7 @@ public class Transaction {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "TicketID")
     private Ticket ticket = new Ticket();
-    @Transient
+    @Column(name = "Price")
     private double price;
 
     public Transaction(){
@@ -40,7 +39,7 @@ public class Transaction {
         if (insure == 1){
             total *= 1.15;
         }
-
+        
         return total;
     }
 

@@ -88,6 +88,47 @@ export const signupMonthlyEmail = async (email: string, name: string) => {
   }
 };
 
+export const signupLoungeDiscountEmail = async (
+  email: string,
+  name: string
+) => {
+  let params = {
+    Source: "480airlines@gmail.com",
+    Destination: {
+      ToAddresses: [email],
+    },
+    ReplyToAddresses: [],
+    Message: {
+      Body: {
+        Html: {
+          Charset: "UTF-8",
+          Data: `<html><body><h1>Hi ${name},</h1><p>Thank you for signing up for our lounge discount. We will be sending you emails about new discounts. If you have any questions, please contact us at
+                <a href="mailto:480airlines@gmail.com">
+                480airlines@gmail.com
+                </a>
+                </p></body></html>`,
+        },
+        Text: {
+          Charset: "UTF-8",
+          Data: `Hi ${name}, Thank you for signing up for our lounge discount. We will be sending you emails about new discounts. If you have any questions, please contact us at 480airlines@gmail.com`,
+        },
+      },
+      Subject: {
+        Charset: "UTF-8",
+        Data: `480Airlines Lounge Discount, ${name}!`,
+      },
+    },
+  };
+  try {
+    const res = await AWS_SES.sendEmail(params).promise();
+    console.log("Email sent successfully", res);
+    return res;
+  } catch (error) {
+    console.log("Error sending email", error);
+    return NextResponse.error();
+  }
+};
+
 export const signupCompanionTicketEmail = async (
   email: string,
   name: string
@@ -117,6 +158,49 @@ export const signupCompanionTicketEmail = async (
       Subject: {
         Charset: "UTF-8",
         Data: `480Airlines -- Companion Ticket Promotion, ${name}!`,
+      },
+    },
+  };
+  try {
+    const res = await AWS_SES.sendEmail(params).promise();
+    console.log("Email sent successfully", res);
+    return res;
+  } catch (error) {
+    console.log("Error sending email", error);
+    return NextResponse.error();
+  }
+};
+
+export const signupCreditCardEmail = async (
+  email: string,
+  name: string,
+  creditCardNumber: string
+) => {
+  let params = {
+    Source: "480airlines@gmail.com",
+    Destination: {
+      ToAddresses: [email],
+    },
+    ReplyToAddresses: [],
+    Message: {
+      Body: {
+        Html: {
+          Charset: "UTF-8",
+          Data: `<html><body><h1>Hi ${name},</h1><p>Thank you for signing up for our credit card. Your credit card number is:${creditCardNumber}. We will be sending you emails about new discounts. If you have any questions, please contact us at
+                <a href="mailto:
+                480airlines@gmail.com">
+                480airlines@gmail.com
+                </a>
+                </p></body></html>`,
+        },
+        Text: {
+          Charset: "UTF-8",
+          Data: `Hi ${name}, Thank you for signing up for our credit card. We will be sending you emails about new discounts. Your credit card number is:${creditCardNumber} If you have any questions, please contact us at 480airlines@gmail.com`,
+        },
+      },
+      Subject: {
+        Charset: "UTF-8",
+        Data: `480Airlines Credit Card, ${name}!`,
       },
     },
   };

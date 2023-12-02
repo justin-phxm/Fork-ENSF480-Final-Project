@@ -8,13 +8,21 @@ export async function GET(req: Request) {
   if (!email) {
     email = "null";
   }
-  const serverURI = `${uri}/view/${email}`;
-  const response = await fetch(serverURI, {
-    method: "GET",
-  });
-  const responseBody = await response.body?.getReader().read();
-  console.log(responseBody);
-  return response;
+  const serverURI = `${uri}/getCustomerByE/${email}`;
+  try {
+    const response = await fetch(serverURI, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    return NextResponse.json({ message: "success", response: data });
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json({ message: "success", response: "" });
+  }
 }
 
 export async function POST(req: Request) {
@@ -29,6 +37,7 @@ export async function POST(req: Request) {
   });
   return NextResponse.json({ message: "success" });
 }
+
 export async function PUT(req: Request) {
   const body = await req.json();
   console.log(body);
@@ -44,6 +53,7 @@ export async function PUT(req: Request) {
   });
   return NextResponse.json({ message: "success", response: response });
 }
+
 export async function DELETE(req: Request) {
   const body = await req.json();
   console.log(body);

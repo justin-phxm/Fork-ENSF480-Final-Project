@@ -1,6 +1,7 @@
 export default interface EmployeeInterface {
   id: number;
-  FirstName: string;
-  LastName: string;
-  EmployeeRole: string;
+  firstName: string;
+  lastName: string;
+  employeeRole: string;
+  email: string;
 }

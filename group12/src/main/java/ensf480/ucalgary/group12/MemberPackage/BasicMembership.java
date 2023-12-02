@@ -4,6 +4,6 @@ public class BasicMembership implements Membership{
     @Override
     public String viewMembership(){
         //System.out.println("Basic Membership");
-        return "Basic Membership";
+        return "Basic Membership + ";
     }
 }

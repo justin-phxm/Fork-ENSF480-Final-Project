@@ -1,6 +1,5 @@
 package ensf480.ucalgary.group12.Seat;
 
-import ensf480.ucalgary.group12.Seat.Seat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

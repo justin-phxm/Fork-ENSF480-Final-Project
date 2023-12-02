@@ -1,7 +1,5 @@
 package ensf480.ucalgary.group12.Seat;
 
-import ensf480.ucalgary.group12.Seat.Seat;
-import ensf480.ucalgary.group12.Seat.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

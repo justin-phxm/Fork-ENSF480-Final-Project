@@ -1,7 +1,6 @@
 package ensf480.ucalgary.group12.FlightPackage;
 
 import java.util.Date;
-import ensf480.ucalgary.group12.FlightPackage.Flight;
 import ensf480.ucalgary.group12.Seat.Seat;
 
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -30,8 +30,7 @@ CREATE TABLE Employee (
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     EmployeeRole VARCHAR(20),
-    Email VARCHAR(100),
-    FOREIGN KEY (Email) REFERENCES User(Email) ON DELETE CASCADE 	ON UPDATE CASCADE
+    Email VARCHAR(100)
 );
 
 DROP TABLE IF EXISTS Admin;
@@ -92,6 +91,7 @@ CREATE TABLE Transactions (
     SeatCode VARCHAR(3),
     Aircraft INT,
     TicketID INT,
+    Price DOUBLE,
     FOREIGN KEY (FlightID) REFERENCES Flights(FlightID),
     FOREIGN KEY (TicketID) REFERENCES Ticket(ID)
 );
@@ -120,6 +120,7 @@ INSERT INTO Employee (FirstName, LastName, EmployeeRole, Email)
 VALUES
     ('Ryan', 'Gosling', 'Crew',"ryan.gosling@gmail.com"),
     ('Brad', 'Pitt', 'Crew', "Brad.pitt@gmail.com"),
+    ('Justin', 'Pham', 'Admin', "justin.phamx4@gmail.com"),
     ('Barack', 'Obama', 'Agent',"BarackObama@gmail.com");
 
 INSERT INTO Aircrafts (AircraftName)

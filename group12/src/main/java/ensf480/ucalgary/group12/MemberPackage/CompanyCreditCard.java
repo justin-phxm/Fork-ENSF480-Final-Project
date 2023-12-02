@@ -18,9 +18,10 @@ public class CompanyCreditCard extends MembershipDecorator{
     
     @Override
     public String viewMembership(){
-        String ret1 = super.viewMembership();
+        //String ret1 = super.viewMembership();
         //System.out.println(" with Company credit card number:" + creditCardNumber);
         String ret = " + Company Credit card";
-        return ret1 + ret;
+        //return ret1 + ret;
+        return ret;
     }
 }

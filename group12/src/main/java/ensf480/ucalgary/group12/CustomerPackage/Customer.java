@@ -4,7 +4,6 @@ import ensf480.ucalgary.group12.MemberPackage.*;
 import ensf480.ucalgary.group12.UserPackage.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ensf480.ucalgary.group12.CustomerPackage.CustomerPermission;
 import jakarta.persistence.*;
 
 @Entity
@@ -69,6 +68,7 @@ public class Customer extends User{
             return ret;
         }
         MembershipStatus = new BasicMembership();
+        ret += "Basic Membership";
         if(companionTicket){
             MembershipStatus = new FreeCompanionTicket(MembershipStatus);
             ret += MembershipStatus.viewMembership();

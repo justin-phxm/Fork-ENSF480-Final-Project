@@ -1,12 +1,26 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import AccountInterface from "../interfaces/account";
 const SigninButton = () => {
   const { data: session } = useSession();
+  const getAccount = async (email: string) => {
+    console.log("Getting account");
+    const res = await fetch(`/api/customer?email=${email}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    const account = await data.response;
+    console.log(account);
+    return account;
+  };
   const createAccount = async (userInfo: AccountInterface) => {
+    console.log("Creating account");
     const res = await fetch("/api/customer", {
       method: "POST",
       headers: {
@@ -14,20 +28,32 @@ const SigninButton = () => {
       },
       body: JSON.stringify(userInfo),
     });
-    // const data = await res.json();
-    // console.log(data);
   };
-  if (session?.user?.name && session.user.email) {
-    let [firstName, lastName] = ["", ""];
-    [firstName, lastName] = session.user.name.split(/\s+/, 2);
-    const userInfo: AccountInterface = {
-      email: session.user.email,
-      firstName: firstName,
-      lastName: lastName,
-      onflight: 0,
-    };
-    createAccount(userInfo);
+  useEffect(() => {
+    if (session?.user?.name && session?.user?.email) {
+      let [firstName, lastName] = ["", ""];
+      [firstName, lastName] = session.user.name.split(/\s+/, 2);
+      const userInfo: AccountInterface = {
+        email: session.user.email,
+        firstName: firstName,
+        lastName: lastName,
+        onflight: 0,
+      };
+      getAccount(session.user.email)
+        .then((data) => {
+          console.log(data);
+          if (data.length === 0) {
+            createAccount(userInfo);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // createAccount(userInfo);
+    }
+  }, [session?.user?.email]);
 
+  if (session?.user?.name) {
     return (
       <div className="flex gap-4 ml-auto">
         <Link href="/account" className="text-sky-600">

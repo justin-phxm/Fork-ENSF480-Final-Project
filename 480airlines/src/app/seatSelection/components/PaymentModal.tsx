@@ -10,7 +10,11 @@ import { ticketPurchaseEmail } from "@/app/api/email/membershipEmail";
 export default function PaymentModal({
   onClose,
   selectedSeat,
+  insurance,
+  setInsurance,
 }: {
+  insurance: number;
+  setInsurance: (insurance: number) => void;
   onClose: () => void;
   selectedSeat?: seatsInterface;
 }) {
@@ -20,8 +24,10 @@ export default function PaymentModal({
   const [cardNumber, setCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvv, setCVV] = useState("");
-  const [ticketCancellation, setTicketCancellation] = useState(false);
-  const [insurance, setInsurance] = useState(0);
+  const [ticketCancellation, setTicketCancellation] = useState(
+    insurance ? true : false
+  );
+  // const [insurance, setInsurance] = useState(0);
   const handleTicketCancellationChange = (event: React.ChangeEvent) => {
     setTicketCancellation(!ticketCancellation);
     if (ticketCancellation) {

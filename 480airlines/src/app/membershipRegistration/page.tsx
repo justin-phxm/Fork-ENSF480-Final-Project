@@ -2,7 +2,7 @@ import React from "react";
 import MembershipFeatureCards from "./components/MembershipFeatureCards";
 import MembershipHero from "./components/MembershipHero";
 import MembershipFeatureCardLarge from "./components/MembershipFeatureCardLarge";
-import LuggageImage from "../../../public/luggageImage";
+import LuggageImage from "../../../public/LuggageImage";
 
 export default function page() {
   const memberBenefits = [

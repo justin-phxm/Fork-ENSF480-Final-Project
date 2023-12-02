@@ -67,9 +67,7 @@ export default function FlightRow(props: { flight?: flightInterface }) {
                 {departureTime} -{arrivalTime}
               </div>
               {/* Price */}
-              <div className=" text-slate-800">
-                ${flight && flight.flightID}
-              </div>
+              <div className=" text-slate-800">$500</div>
             </section>
             <div className="flex flex-row gap-2 justify-between">
               <div className="">Origin City: {flight?.departureCity}</div>

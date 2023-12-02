@@ -9,8 +9,9 @@ public class ReceiveMonthlyEmails extends MembershipDecorator{
 
     @Override
     public String viewMembership(){
-        String ret1 = super.viewMembership();
+        //String ret1 = super.viewMembership();
         String ret2 = " + Monthly Email Subscription";
-        return ret1 + ret2;
+        //return ret1 + ret2;
+        return ret2;
     }
 }

@@ -19,6 +19,29 @@ export async function POST(req: Request) {
   return NextResponse.json({ message: "Hello from Next.js!" });
 }
 
+export async function PUT(req: Request) {
+  const body = await req.json();
+  console.log(body);
+
+  const formData = new FormData();
+  formData.append("newStatus", "true");
+
+  const serverURI = `${uri}/updateMemberStatus/${body.email}`;
+  console.log(serverURI);
+
+  const response = await fetch(serverURI, {
+    method: "PUT",
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
+    body: formData,
+  });
+  const responseText = await response.text();
+  console.log(responseText);
+
+  return NextResponse.json({ message: responseText });
+}
+
 export async function DELETE(req: Request) {
   const body = await req.json();
   console.log(body);

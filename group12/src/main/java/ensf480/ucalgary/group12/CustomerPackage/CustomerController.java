@@ -3,6 +3,8 @@ package ensf480.ucalgary.group12.CustomerPackage;
 //import ensf480.ucalgary.group12.TransactionPackage.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -60,8 +62,13 @@ public class CustomerController {
     // thus, delete is used for getting rid of it and update is really more like 
     // "add it in"
     @PutMapping("/updateCreditCard/{id}")
-    public String updateCreditCard(@PathVariable("id") String id) {
-        return service.updateCreditCardIfMember(id);
+    public ResponseEntity<String> updateCreditCard(@PathVariable("id") String id) {
+        String ret = service.updateCreditCardIfMember(id);
+        if(ret.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer could not be found or is not a member");
+        }
+
+        return ResponseEntity.ok(ret);
     }
 
     @DeleteMapping("/deleteCreditCard/{id}")

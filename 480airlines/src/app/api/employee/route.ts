@@ -21,18 +21,17 @@ export async function POST(req: Request) {
 export async function DELETE(req: Request) {
   const body = await req.json();
   console.log(body);
-  const uri =
-    "http://localhost:8080/employee/deleteEmployee/" + body.employeeID;
 
-  const response = await fetch(uri, {
+  const serverURI = `${uri}/removeEmployee/${body.id}`;
+  console.log(serverURI);
+
+  const response = await fetch(serverURI, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
   });
+
   const responseText = await response.text();
-  // console.log(responseText);
+  console.log(responseText);
+
   if (!response.ok) {
     return NextResponse.error();
   }

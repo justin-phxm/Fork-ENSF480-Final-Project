@@ -19,8 +19,22 @@ public class PaymentCompanionTicketController {
     public String processCompanionTicketPayment(@PathVariable("id") String id){
         Customer customer = s.getCustomerByE(id);
 
-        PaymentCompanionTicket payCompTick = new PaymentCompanionTicket(customer);
+        //PaymentCompanionTicket payCompTick = new PaymentCompanionTicket(customer);
+        if (customer != null && customer.getCompanionTicket()) {
+            PaymentCompanionTicket payCompTick = new PaymentCompanionTicket(customer);
 
-        return payCompTick.pay();
+            String paymentResult = payCompTick.pay();
+
+            if ("Payment details for Member Companion Ticket found, completing payment".equals(paymentResult)) {
+                customer.setCompanionTicket(false);
+                // Save the updated customer information to the database
+                s.updateCompanionTicket(id, false);
+            }
+
+            return paymentResult;
+        } else {
+            return "Member Companion Ticket not found";
+        }
+        //return payCompTick.pay();
     }
 }

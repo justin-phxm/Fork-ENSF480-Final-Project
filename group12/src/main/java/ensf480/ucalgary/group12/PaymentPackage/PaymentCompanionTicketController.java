@@ -26,7 +26,6 @@ public class PaymentCompanionTicketController {
             String paymentResult = payCompTick.pay();
 
             if ("Payment details for Member Companion Ticket found, completing payment".equals(paymentResult)) {
-                customer.setCompanionTicket(false);
                 // Save the updated customer information to the database
                 s.updateCompanionTicket(id, false);
             }

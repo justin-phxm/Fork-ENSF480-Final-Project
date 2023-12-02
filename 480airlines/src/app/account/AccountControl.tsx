@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import OrderHistory from "./components/OrderHistory";
 import orderTransactionInterface from "../interfaces/orderTransaction";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AccountControl() {
   const { data: session } = useSession();

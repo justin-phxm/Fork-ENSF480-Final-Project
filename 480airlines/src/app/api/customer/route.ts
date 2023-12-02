@@ -12,8 +12,8 @@ export async function GET(req: Request) {
   const response = await fetch(serverURI, {
     method: "GET",
   });
-  const responseBody = await response.body?.getReader().read();
-  console.log(responseBody);
+  // const responseBody = await response.body?.getReader().read();
+  // console.log(responseBody);
   return response;
 }
 

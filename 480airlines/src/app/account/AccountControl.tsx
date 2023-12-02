@@ -33,7 +33,10 @@ export default function AccountControl() {
               -- Click on a flight to cancel
             </span>
           </h1>
-          <OrderHistory transactions={transactions}></OrderHistory>
+          <OrderHistory
+            transactions={transactions}
+            setTransactions={setTransactions}
+          ></OrderHistory>
         </div>
       </div>
       <ToastContainer position="bottom-right"></ToastContainer>

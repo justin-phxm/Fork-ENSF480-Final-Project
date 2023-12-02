@@ -41,14 +41,11 @@ export default function AdminControl() {
   useEffect(() => {
     console.log(authorizedUsers);
     const myEmail = session?.user?.email;
-    // const myEmail = "justin.phamx4@gmail.com";
     const isEmailInArray = authorizedUsers.some(
       (employee) => employee.email === myEmail
     );
-    // console.log(authorizedUsers);
-    console.log(isEmailInArray);
     setAuthorized(isEmailInArray);
-  }, [authorizedUsers]);
+  }, [authorizedUsers, session?.user?.email]);
 
   const [authorized, setAuthorized] = React.useState<boolean>(false);
   return authorized ? (

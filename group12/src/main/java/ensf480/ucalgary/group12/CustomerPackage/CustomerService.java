@@ -108,6 +108,26 @@ public class CustomerService {
         }
     }
 
+    public void updateMemberPreferences(String id, Boolean companionTicket, Boolean monthlyEmails, Boolean loungeDiscount) {
+        Customer customer = repo.findByEmail(id);
+
+        if (customer != null) {
+            if (companionTicket != null) {
+                customer.setCompanionTicket(companionTicket);
+            }
+
+            if (monthlyEmails != null) {
+                customer.setMonthlyEmails(monthlyEmails);
+            }
+
+            if (loungeDiscount != null) {
+                customer.setLoungeDiscount(loungeDiscount);
+            }
+
+            repo.save(customer);
+        }
+    }
+
     public void addCustomer(Customer customer) {
         // Ensure that the customer's email is not null or empty
         if (customer.getEmail() == null || customer.getEmail().isEmpty()) {

@@ -84,6 +84,16 @@ public class CustomerController {
         service.updateLoungeDiscount(id, loungeDiscount);
     }
 
+    @PutMapping("/updateMemberPreferences/{id}")
+    public void updateMemberPreferences(
+        @PathVariable("id") String id,
+        @RequestParam(required = false) Boolean companionTicket,
+        @RequestParam(required = false) Boolean monthlyEmails,
+        @RequestParam(required = false) Boolean loungeDiscount
+    ) {
+        service.updateMemberPreferences(id, companionTicket, monthlyEmails, loungeDiscount);
+    }
+
     @PostMapping("/addCustomer")
     public void addCustomer(@RequestBody Customer customer) {
         service.addCustomer(customer);

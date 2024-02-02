@@ -2,18 +2,7 @@
 # ENSF 480 - Principles of Software Design
 ## Flight Reservation Web Application
 
-**Due Date: November 29th, 2023**
-
-### Group Information
-**Group 12**
-| Name         | UCID     |
-|--------------|----------|
-| Justin Pham  | 30139323 |
-| Joseph Duong | 30145210 |
-| Aidan Wong   | 30147200 |
-| Rohan Kapila | 30145862 |
-
----
+![image](https://github.com/justin-phxm/Fork-ENSF480-Final-Project/assets/113923596/bfd5dc9f-cdb9-4613-8f54-b35464f5e411)
 
 ## Project Overview
 
@@ -95,18 +84,5 @@ npm run start
 
 6. **Access the Application**
 Open your web browser and navigate to http://localhost:3000 to access the Flight Reservation Web Application. 
-
----
-
-## Getting Started
-
-[Explain how users can get started with your application. Include any necessary configuration or setup.]
-
----
-
-## Contributing
-
-Team contributions are as follows:
-
 
 ---
